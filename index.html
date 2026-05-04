@@ -865,10 +865,30 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
   stroke-width: 1;
   fill: none;
 }
-@media (max-width: 600px) {
-  .stack-diagram { max-width: 100%; }
-  .stack-diagram .sd-title { font-size: 26px; }
-  .stack-diagram .sd-hub-title { font-size: 32px; }
+@media (max-width: 720px) {
+  /* Don't shrink the SVG below readable. Let it overflow horizontally and
+     scroll. Keeps the diagram usable on phones without redrawing it. */
+  .stack-diagram {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+  .stack-diagram svg {
+    min-width: 720px;
+  }
+  .stack-diagram::after {
+    content: "scroll →";
+    display: block;
+    font-family: var(--ui);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: var(--s-3);
+    text-align: right;
+    padding-right: var(--s-3);
+  }
 }
 
 /* ============ WEARABLE INTEGRATION ============ */
