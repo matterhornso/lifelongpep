@@ -793,27 +793,14 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
 
 /* ============ STACK DIAGRAM ============ */
 .stack-diagram {
-  margin: 0;
   width: 100%;
-  max-width: 100%;
+  max-width: 1080px;
+  margin: var(--s-8) auto 0;
+  padding: var(--s-6) 0;
+  border-top: 1px solid var(--hairline);
 }
-.whats-next-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-  gap: var(--s-8);
-  align-items: start;
-  margin-top: var(--s-2);
-}
-.whats-next-grid .stack-diagram {
-  position: sticky;
-  top: 90px;
-}
-@media (max-width: 1080px) {
-  .whats-next-grid {
-    grid-template-columns: 1fr;
-    gap: var(--s-7);
-  }
-  .whats-next-grid .stack-diagram { position: static; }
+#whats-next .stack-diagram {
+  margin-top: var(--s-9);
 }
 .stack-diagram svg {
   display: block;
@@ -1324,32 +1311,31 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
       supplements once we add them.
     </p>
 
-    <div class="whats-next-grid">
-      <ol class="roadmap" aria-label="Roadmap">
-        <li class="roadmap-item live">
-          <div class="roadmap-when">Live now</div>
-          <div class="roadmap-what">
-            <h3>Peptide consults &amp; supply</h3>
-            <p>Consult a longevity doctor. If they prescribe peptides, we ship them through licensed compounding channels.</p>
-          </div>
-        </li>
-        <li class="roadmap-item">
-          <div class="roadmap-when">Next</div>
-          <div class="roadmap-what">
-            <h3>Recovery bookings</h3>
-            <p>Book sauna, steam, salt baths, cold plunge, and red light therapy sessions in your city. Doctor-recommended, time-slotted, paid in one place &mdash; and logged to your wearable just like the peptides.</p>
-          </div>
-        </li>
-        <li class="roadmap-item">
-          <div class="roadmap-when">After that</div>
-          <div class="roadmap-what">
-            <h3>Supplements</h3>
-            <p>Curated stack &mdash; magnesium, omega-3, NAD+ precursors, creatine &mdash; sourced and quality-checked, with a doctor-recommendable layer on top.</p>
-          </div>
-        </li>
-      </ol>
+    <ol class="roadmap" aria-label="Roadmap">
+      <li class="roadmap-item live">
+        <div class="roadmap-when">Live now</div>
+        <div class="roadmap-what">
+          <h3>Peptide consults &amp; supply</h3>
+          <p>Consult a longevity doctor. If they prescribe peptides, we ship them through licensed compounding channels.</p>
+        </div>
+      </li>
+      <li class="roadmap-item">
+        <div class="roadmap-when">Next</div>
+        <div class="roadmap-what">
+          <h3>Recovery bookings</h3>
+          <p>Book sauna, steam, salt baths, cold plunge, and red light therapy sessions in your city. Doctor-recommended, time-slotted, paid in one place &mdash; and logged to your wearable just like the peptides.</p>
+        </div>
+      </li>
+      <li class="roadmap-item">
+        <div class="roadmap-when">After that</div>
+        <div class="roadmap-what">
+          <h3>Supplements</h3>
+          <p>Curated stack &mdash; magnesium, omega-3, NAD+ precursors, creatine &mdash; sourced and quality-checked, with a doctor-recommendable layer on top.</p>
+        </div>
+      </li>
+    </ol>
 
-      <figure class="stack-diagram" aria-labelledby="stack-figure-title">
+    <figure class="stack-diagram" aria-labelledby="stack-figure-title">
         <figcaption id="stack-figure-title" class="sr-only">
           One platform: peptides are live now; recovery experiences are next;
           supplements are after that. Each one logs to your health tracker
@@ -1398,7 +1384,6 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
           </g>
         </svg>
       </figure>
-    </div>
   </section>
 
   <!-- ============ WEARABLE INTEGRATION ============ -->
