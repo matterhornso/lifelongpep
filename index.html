@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>lifelongpep — Doctor-gated longevity, end to end.</title>
+<meta name="description" content="A longevity platform, starting with a peptide marketplace and doctor consultations. Recovery experiences and supplements next. Booking opens soon — join the waitlist.">
+<meta property="og:title" content="lifelongpep — Doctor-gated longevity, end to end.">
+<meta property="og:description" content="A longevity platform, starting with a peptide marketplace and doctor consultations. Booking opens soon.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#5C2E2E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #F4F0E8;
+  --surface: #FFFFFF;
+  --surface-2: #EDE7DA;
+  --ink: #1A1A1A;
+  --muted: #5A554A;
+  --hairline: rgba(26, 26, 26, 0.10);
+  --hairline-strong: rgba(26, 26, 26, 0.22);
+  --accent: #5C2E2E;
+  --accent-soft: #5C2E2E14;
+  --success: #3F6B3F;
+  --warning: #A06A2C;
+  --error: #8C2A2A;
+
+  --display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --body: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --ui: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --r-input: 2px;
+  --r-card: 4px;
+  --r-button: 4px;
+
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px;
+  --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px; --s-10: 128px;
+
+  --measure: 64ch;
+  --max-shell: 1240px;
+
+  --grain: radial-gradient(circle at 1px 1px, rgba(26,26,26,0.018) 1px, transparent 0);
+}
+
+[data-theme="dark"] {
+  --bg: #1A1814;
+  --surface: #252220;
+  --surface-2: #2F2A26;
+  --ink: #F0EBE0;
+  --muted: #ACA396;
+  --hairline: rgba(240, 235, 224, 0.12);
+  --hairline-strong: rgba(240, 235, 224, 0.24);
+  --accent: #B85959;
+  --accent-soft: #B8595918;
+  --success: #79A479;
+  --warning: #C99063;
+  --error: #C76060;
+  --grain: radial-gradient(circle at 1px 1px, rgba(240,235,224,0.025) 1px, transparent 0);
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) { color-scheme: dark; }
+  html:not([data-theme="light"]):not([data-theme="dark"]) {
+    --bg: #1A1814; --surface: #252220; --surface-2: #2F2A26;
+    --ink: #F0EBE0; --muted: #ACA396;
+    --hairline: rgba(240,235,224,0.12); --hairline-strong: rgba(240,235,224,0.24);
+    --accent: #B85959; --accent-soft: #B8595918;
+    --success: #79A479; --warning: #C99063; --error: #C76060;
+  }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern" 1;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  background-image: var(--grain);
+  background-size: 4px 4px;
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 19px;
+  line-height: 1.55;
+  font-weight: 400;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  min-height: 100vh;
+}
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: color-mix(in srgb, var(--accent) 75%, var(--ink)); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+::selection { background: var(--accent); color: var(--bg); }
+
+/* ============ TOP BAR ============ */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid var(--hairline);
+  padding: var(--s-4) var(--s-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--ui);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.brand {
+  font-family: var(--display);
+  font-size: 26px;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  color: var(--ink);
+  line-height: 1;
+}
+.brand .dot { color: var(--accent); }
+.topbar nav {
+  display: flex;
+  gap: var(--s-6);
+  align-items: center;
+  font-size: 14px;
+}
+.topbar nav a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.1s ease-out;
+  padding: 8px 0;
+}
+.topbar nav a:hover { color: var(--ink); }
+.topbar nav a.active { color: var(--ink); }
+.topbar .right {
+  display: flex;
+  gap: var(--s-3);
+  align-items: center;
+}
+
+.theme-toggle {
+  font-family: var(--ui);
+  font-size: 13px;
+  background: transparent;
+  border: 1px solid var(--hairline);
+  color: var(--muted);
+  padding: 7px 13px;
+  border-radius: var(--r-button);
+  cursor: pointer;
+  transition: border-color 0.1s ease-out, color 0.1s ease-out;
+  min-height: 32px;
+  letter-spacing: 0.01em;
+}
+.theme-toggle:hover { border-color: var(--ink); color: var(--ink); }
+
+/* ============ SHELL ============ */
+.shell {
+  max-width: var(--max-shell);
+  margin: 0 auto;
+  padding: 0 var(--s-6);
+}
+
+/* ============ HERO ============ */
+.hero {
+  padding: var(--s-9) 0 var(--s-9);
+  border-bottom: 1px solid var(--hairline);
+}
+.eyebrow {
+  font-family: var(--ui);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: var(--s-5);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+.eyebrow .pip {
+  display: inline-block;
+  width: 8px; height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+.hero h1 {
+  font-family: var(--display);
+  font-size: clamp(56px, 8.4vw, 124px);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  font-weight: 400;
+  margin-bottom: var(--s-5);
+  max-width: 16ch;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+.hero .lede {
+  font-family: var(--body);
+  font-size: 22px;
+  line-height: 1.45;
+  font-weight: 400;
+  color: var(--ink);
+  max-width: 56ch;
+  margin-bottom: var(--s-7);
+}
+.hero .lede em { font-style: italic; color: var(--muted); }
+
+/* signup inline */
+.signup-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  align-items: center;
+  margin-bottom: var(--s-5);
+}
+.signup-form .input-wrap {
+  flex: 1 1 280px;
+  min-width: 240px;
+  position: relative;
+}
+.input {
+  font-family: var(--ui);
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--r-input);
+  padding: 13px 14px;
+  width: 100%;
+  transition: border-color 0.1s ease-out;
+  min-height: 44px;
+}
+.input:focus { outline: none; border-color: var(--accent); }
+.input::placeholder { color: var(--muted); }
+
+.btn {
+  font-family: var(--ui);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 13px 24px;
+  border-radius: var(--r-button);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.1s ease-out, color 0.1s ease-out, border-color 0.1s ease-out;
+  letter-spacing: 0.005em;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--surface);
+  border-color: var(--accent);
+}
+.btn-primary:hover {
+  background: color-mix(in srgb, var(--accent) 85%, var(--ink));
+}
+.btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.btn-secondary:hover { background: var(--ink); color: var(--bg); }
+.btn-ghost {
+  background: transparent;
+  color: var(--muted);
+  border-color: var(--hairline);
+}
+.btn-ghost:hover { color: var(--ink); border-color: var(--ink); }
+
+.btn .arrow { transition: transform 0.15s ease-out; }
+.btn:hover .arrow { transform: translateX(2px); }
+
+.fineprint {
+  font-family: var(--ui);
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.fineprint strong { color: var(--ink); font-weight: 500; }
+
+/* hero stats / trust line */
+.trust-row {
+  display: flex;
+  gap: var(--s-7);
+  flex-wrap: wrap;
+  padding-top: var(--s-6);
+  margin-top: var(--s-6);
+  border-top: 1px solid var(--hairline);
+  font-family: var(--ui);
+  font-size: 13px;
+  color: var(--muted);
+}
+.trust-row > div { display: flex; flex-direction: column; gap: 2px; }
+.trust-row strong {
+  color: var(--ink);
+  font-size: 17px;
+  font-weight: 500;
+  font-family: var(--display);
+  letter-spacing: -0.01em;
+  font-feature-settings: "tnum" 1;
+}
+
+/* ============ SECTIONS ============ */
+.section {
+  padding: var(--s-9) 0;
+  border-bottom: 1px solid var(--hairline);
+}
+.section-label {
+  font-family: var(--ui);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: var(--s-4);
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+.section-label::before {
+  content: "";
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+}
+.section-title {
+  font-family: var(--display);
+  font-size: clamp(44px, 5.5vw, 64px);
+  line-height: 1.0;
+  letter-spacing: -0.022em;
+  font-weight: 400;
+  margin-bottom: var(--s-5);
+  max-width: 22ch;
+}
+.section-title em { font-style: italic; color: var(--accent); }
+.section-lede {
+  font-family: var(--body);
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--muted);
+  max-width: 60ch;
+  margin-bottom: var(--s-7);
+}
+
+/* ============ THREE PROPS ============ */
+.props {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--hairline);
+  border-left: 1px solid var(--hairline);
+}
+.props.props-4 { grid-template-columns: repeat(4, 1fr); }
+.prop {
+  padding: var(--s-6) var(--s-5) var(--s-7);
+  border-right: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+.prop .num {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 28px;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+  margin-bottom: var(--s-2);
+  font-feature-settings: "tnum" 1;
+}
+.prop h3 {
+  font-family: var(--display);
+  font-size: 32px;
+  line-height: 1.1;
+  letter-spacing: -0.018em;
+  font-weight: 400;
+  margin-bottom: var(--s-2);
+}
+.prop p {
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+.prop .key-word { color: var(--accent); font-style: italic; }
+
+/* ============ LATEST ISSUE ============ */
+.issue-card {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-card);
+  padding: var(--s-7) var(--s-7) var(--s-6);
+  margin-top: var(--s-2);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--s-7);
+  align-items: end;
+}
+.issue-card .meta {
+  font-family: var(--ui);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: var(--s-4);
+}
+.issue-card .meta span {
+  color: var(--muted);
+  margin-left: var(--s-3);
+  padding-left: var(--s-3);
+  border-left: 1px solid var(--hairline);
+}
+.issue-card h3 {
+  font-family: var(--display);
+  font-size: clamp(32px, 4.2vw, 48px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  margin-bottom: var(--s-3);
+  max-width: 18ch;
+}
+.issue-card h3 em { font-style: italic; color: var(--accent); }
+.issue-card .deck {
+  font-family: var(--body);
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--muted);
+  font-style: italic;
+  font-weight: 300;
+  margin-bottom: var(--s-5);
+  max-width: 50ch;
+}
+.issue-card .byline {
+  font-family: var(--ui);
+  font-size: 13px;
+  color: var(--muted);
+}
+.issue-card .byline strong { color: var(--ink); font-weight: 500; }
+.issue-card .read-link {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--s-2);
+  text-decoration: none;
+  white-space: nowrap;
+  font-family: var(--ui);
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+.issue-card .read-cta {
+  font-family: var(--display);
+  font-size: 28px;
+  color: var(--accent);
+  font-style: italic;
+  letter-spacing: -0.01em;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  font-weight: 400;
+}
+
+/* ============ DOCTOR PANEL ============ */
+.doctor-section .section-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-9);
+  align-items: start;
+}
+.criteria-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+.criteria-list li {
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--ink);
+  padding-left: var(--s-5);
+  position: relative;
+}
+.criteria-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 13px;
+  width: 12px;
+  height: 1px;
+  background: var(--accent);
+}
+.criteria-list li strong { color: var(--accent); font-weight: 500; }
+.criteria-rule {
+  font-family: var(--ui);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  margin-top: var(--s-5);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--hairline);
+  line-height: 1.5;
+}
+.criteria-rule strong { color: var(--ink); font-weight: 500; }
+
+.doctor-cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+.dcard {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-card);
+  padding: var(--s-5) var(--s-6);
+}
+.dcard .name {
+  font-family: var(--display);
+  font-size: 26px;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  margin-bottom: 2px;
+}
+.dcard .creds {
+  font-family: var(--ui);
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  margin-bottom: var(--s-3);
+}
+.dcard .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-bottom: var(--s-3);
+}
+.dcard .tag {
+  font-family: var(--ui);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 4px 8px;
+  border-radius: 2px;
+}
+.dcard .footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--hairline);
+  font-family: var(--ui);
+  font-size: 12px;
+  color: var(--muted);
+}
+.dcard .availability {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.dcard .availability::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: var(--success);
+  border-radius: 50%;
+}
+
+/* ============ ROADMAP ============ */
+.roadmap {
+  list-style: none;
+  margin-top: var(--s-2);
+  border-top: 1px solid var(--hairline);
+}
+.roadmap-item {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: var(--s-7);
+  align-items: start;
+  padding: var(--s-6) 0;
+  border-bottom: 1px solid var(--hairline);
+}
+.roadmap-when {
+  font-family: var(--ui);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  padding-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+.roadmap-when::before {
+  content: "";
+  width: 12px;
+  height: 1px;
+  background: var(--muted);
+  display: block;
+}
+.roadmap-item.live .roadmap-when {
+  color: var(--accent);
+}
+.roadmap-item.live .roadmap-when::before {
+  background: var(--accent);
+}
+.roadmap-item.live .roadmap-when::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  display: block;
+  margin-left: auto;
+}
+.roadmap-what h3 {
+  font-family: var(--display);
+  font-size: 32px;
+  line-height: 1.1;
+  letter-spacing: -0.018em;
+  font-weight: 400;
+  margin-bottom: var(--s-2);
+}
+.roadmap-what p {
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ink);
+  max-width: 60ch;
+}
+.roadmap-item:not(.live) .roadmap-what h3 { color: var(--muted); }
+.roadmap-item:not(.live) .roadmap-what p { color: var(--muted); }
+
+/* ============ PRICING ============ */
+.pricing-block {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-card);
+  padding: var(--s-7);
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: var(--s-8);
+  align-items: center;
+  margin-top: var(--s-2);
+}
+.pricing-headline h3 {
+  font-family: var(--display);
+  font-size: 40px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  margin-bottom: var(--s-3);
+  max-width: 14ch;
+}
+.pricing-headline h3 em { font-style: italic; color: var(--accent); }
+.pricing-headline p {
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.price-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--hairline-strong);
+}
+.price-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--s-4);
+  align-items: baseline;
+  padding: var(--s-4) 0;
+  border-bottom: 1px solid var(--hairline);
+}
+.price-row:last-child {
+  border-bottom: 0;
+  border-top: 1px solid var(--hairline-strong);
+  padding-top: var(--s-5);
+}
+.price-row .label {
+  font-family: var(--ui);
+  font-size: 14px;
+  color: var(--ink);
+  letter-spacing: 0.005em;
+}
+.price-row .label .sub {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 2px;
+  letter-spacing: 0.04em;
+}
+.price-row .amount {
+  font-family: var(--display);
+  font-size: 28px;
+  line-height: 1;
+  letter-spacing: -0.015em;
+  font-feature-settings: "tnum" 1;
+  color: var(--ink);
+}
+.price-row.user .amount { color: var(--accent); }
+
+/* ============ STANCE ============ */
+.stance {
+  border-top: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+  padding: var(--s-8) 0;
+  margin: 0;
+  background: var(--surface-2);
+  background-image: var(--grain);
+}
+.stance .shell { padding-top: 0; padding-bottom: 0; }
+.stance .stance-eyebrow {
+  font-family: var(--ui);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: var(--s-5);
+}
+.stance blockquote {
+  font-family: var(--display);
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1.15;
+  letter-spacing: -0.018em;
+  font-weight: 400;
+  font-style: italic;
+  max-width: 32ch;
+  color: var(--ink);
+}
+.stance blockquote .accent { color: var(--accent); font-style: italic; }
+.stance .stance-attr {
+  font-family: var(--ui);
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: var(--s-5);
+  letter-spacing: 0.04em;
+}
+.stance .stance-attr strong { color: var(--ink); font-weight: 500; }
+
+/* ============ FAQ ============ */
+.faq {
+  margin-top: var(--s-2);
+}
+.faq-item {
+  border-bottom: 1px solid var(--hairline);
+  padding: var(--s-5) 0;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--s-7);
+  align-items: start;
+}
+.faq-item:first-child { border-top: 1px solid var(--hairline); }
+.faq-item h4 {
+  font-family: var(--display);
+  font-size: 26px;
+  line-height: 1.15;
+  letter-spacing: -0.012em;
+  font-weight: 400;
+  color: var(--ink);
+}
+.faq-item h4 em { font-style: italic; color: var(--accent); }
+.faq-item .a {
+  font-family: var(--body);
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+.faq-item .a strong { color: var(--accent); font-weight: 500; }
+.faq-item .a a { color: var(--accent); }
+
+/* ============ STACK DIAGRAM ============ */
+.stack-diagram {
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+}
+.whats-next-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: var(--s-8);
+  align-items: start;
+  margin-top: var(--s-2);
+}
+.whats-next-grid .stack-diagram {
+  position: sticky;
+  top: 90px;
+}
+@media (max-width: 1080px) {
+  .whats-next-grid {
+    grid-template-columns: 1fr;
+    gap: var(--s-7);
+  }
+  .whats-next-grid .stack-diagram { position: static; }
+}
+.stack-diagram svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.stack-diagram .sd-node rect {
+  fill: var(--surface);
+  stroke: var(--hairline-strong);
+  stroke-width: 1;
+}
+.stack-diagram .sd-node-live rect {
+  stroke: var(--accent);
+  stroke-width: 1.5;
+}
+.stack-diagram .sd-node-hub rect {
+  fill: var(--surface-2);
+  stroke: var(--accent);
+  stroke-width: 1.5;
+}
+.stack-diagram .sd-node-wearable rect {
+  fill: var(--surface);
+  stroke: var(--hairline-strong);
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+}
+.stack-diagram .sd-eyebrow {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  fill: var(--ink);
+}
+.stack-diagram .sd-eyebrow.sd-accent { fill: var(--accent); }
+.stack-diagram .sd-eyebrow.sd-muted { fill: var(--muted); }
+.stack-diagram .sd-title {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 28px;
+  letter-spacing: -0.018em;
+  fill: var(--ink);
+  font-weight: 400;
+}
+.stack-diagram .sd-title.sd-muted-display { fill: var(--muted); }
+.stack-diagram .sd-sub {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-style: italic;
+  font-size: 14px;
+  fill: var(--muted);
+  font-weight: 400;
+}
+.stack-diagram .sd-hub-title {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 38px;
+  letter-spacing: -0.02em;
+  fill: var(--ink);
+  font-weight: 400;
+}
+.stack-diagram .sd-hub-title .sd-dot { fill: var(--accent); }
+.stack-diagram .sd-line {
+  stroke: var(--accent);
+  stroke-width: 1;
+  fill: none;
+}
+@media (max-width: 600px) {
+  .stack-diagram { max-width: 100%; }
+  .stack-diagram .sd-title { font-size: 26px; }
+  .stack-diagram .sd-hub-title { font-size: 32px; }
+}
+
+/* ============ WEARABLE INTEGRATION ============ */
+.integration-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: var(--s-9);
+  align-items: start;
+  margin-top: var(--s-2);
+}
+.integration-h3 {
+  font-family: var(--display);
+  font-size: 30px;
+  line-height: 1.15;
+  letter-spacing: -0.018em;
+  font-weight: 400;
+  margin-bottom: var(--s-3);
+  color: var(--ink);
+}
+.integration-body {
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ink);
+  max-width: 56ch;
+}
+.integration-body a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.integration-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  margin-top: var(--s-5);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--hairline);
+}
+.integration-features li {
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink);
+  padding-left: var(--s-5);
+  position: relative;
+}
+.integration-features li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 12px;
+  height: 1px;
+  background: var(--accent);
+}
+.integration-features li strong { color: var(--accent); font-weight: 500; }
+
+.wearable-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--hairline-strong);
+}
+.wearable-list li {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.6fr) minmax(0, 1fr);
+  gap: var(--s-5);
+  align-items: baseline;
+  padding: var(--s-5) 0;
+  border-bottom: 1px solid var(--hairline);
+}
+.wearable-list li:last-child { border-bottom: 1px solid var(--hairline-strong); }
+.wearable-list .w-name {
+  font-family: var(--display);
+  font-size: 30px;
+  line-height: 1.05;
+  letter-spacing: -0.018em;
+  font-weight: 400;
+  color: var(--ink);
+}
+.wearable-list .w-data {
+  font-family: var(--ui);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+@media (max-width: 1080px) {
+  .integration-grid { grid-template-columns: 1fr; gap: var(--s-7); }
+}
+@media (max-width: 520px) {
+  .wearable-list li { grid-template-columns: 1fr; gap: 4px; padding: var(--s-4) 0; }
+  .wearable-list .w-name { font-size: 24px; }
+}
+
+/* ============ CONTACT ============ */
+.contact-block {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--s-7);
+  align-items: baseline;
+  padding: var(--s-7) 0;
+  border-top: 1px solid var(--hairline-strong);
+  border-bottom: 1px solid var(--hairline);
+}
+.contact-email {
+  font-family: var(--display);
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+  font-style: italic;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
+  font-weight: 400;
+  word-break: break-all;
+}
+.contact-meta {
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--muted);
+  max-width: 50ch;
+}
+.contact-meta strong { color: var(--ink); font-weight: 500; }
+@media (max-width: 820px) {
+  .contact-block { grid-template-columns: 1fr; gap: var(--s-5); }
+}
+
+/* ============ FINAL CTA ============ */
+.final-cta {
+  padding: var(--s-9) 0 var(--s-10);
+  border-bottom: 1px solid var(--hairline);
+  text-align: left;
+}
+.final-cta h2 {
+  font-family: var(--display);
+  font-size: clamp(48px, 6vw, 72px);
+  line-height: 1.0;
+  letter-spacing: -0.022em;
+  font-weight: 400;
+  margin-bottom: var(--s-5);
+  max-width: 18ch;
+}
+.final-cta h2 em { font-style: italic; color: var(--accent); }
+.final-cta .lede {
+  font-family: var(--body);
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--muted);
+  max-width: 52ch;
+  margin-bottom: var(--s-6);
+}
+
+/* ============ FOOTER ============ */
+.footer {
+  padding: var(--s-7) 0 var(--s-8);
+  font-family: var(--ui);
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.footer-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: var(--s-7);
+  margin-bottom: var(--s-7);
+}
+.footer-col .title {
+  font-family: var(--ui);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  font-weight: 500;
+  margin-bottom: var(--s-3);
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.footer-col a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.1s ease-out;
+  display: inline-block;
+  padding: 2px 0;
+}
+.footer-col a:hover { color: var(--ink); }
+.footer-meta {
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--hairline);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--s-5);
+  flex-wrap: wrap;
+}
+.footer-brand-block {
+  font-family: var(--display);
+  font-size: 22px;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  margin-bottom: var(--s-2);
+}
+.footer-brand-block .dot { color: var(--accent); }
+.footer .desc {
+  max-width: 36ch;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1080px) {
+  .pricing-block { grid-template-columns: 1fr; gap: var(--s-6); }
+  .roadmap-item { grid-template-columns: 1fr; gap: var(--s-3); }
+  .roadmap-item.live .roadmap-when::after { display: none; }
+}
+
+@media (max-width: 1080px) {
+  .props.props-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 820px) {
+  .props, .props.props-4 { grid-template-columns: 1fr; }
+  .footer-row { grid-template-columns: 2fr 1fr; }
+  .faq-item { grid-template-columns: 1fr; gap: var(--s-3); }
+  .topbar nav { display: none; }
+  .shell { padding: 0 var(--s-5); }
+  .topbar { padding: var(--s-3) var(--s-5); }
+}
+
+@media (max-width: 520px) {
+  .footer-row { grid-template-columns: 1fr; gap: var(--s-5); }
+  .hero { padding: var(--s-7) 0 var(--s-8); }
+  .section { padding: var(--s-7) 0; }
+  .pricing-block { padding: var(--s-5); }
+  .issue-card { padding: var(--s-5); }
+  .stance { padding: var(--s-7) 0; }
+  .signup-form { flex-direction: column; align-items: stretch; }
+  .signup-form .input-wrap { min-width: 0; }
+  .signup-form .btn { width: 100%; }
+  .trust-row { gap: var(--s-5); }
+  body { font-size: 17px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* contenteditable visual hint when focused */
+[contenteditable="true"]:focus {
+  outline: 1px dashed var(--accent);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* hidden but accessible */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+</style>
+</head>
+<body>
+
+<a href="#main" class="sr-only">Skip to content</a>
+
+<header class="topbar" role="banner">
+  <a href="/" class="brand" aria-label="lifelongpep, home">lifelongpep<span class="dot">.</span></a>
+  <nav aria-label="Primary">
+    <a href="#how">How it works</a>
+    <a href="#whats-next">What's next</a>
+    <a href="#wearables">Wearables</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="right">
+    <a href="#book" class="btn btn-primary" style="padding: 7px 14px; font-size: 13px; min-height: 32px;">Join waitlist</a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">Dark</button>
+  </div>
+</header>
+
+<main id="main" class="shell">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" aria-labelledby="hero-title">
+    <h1 id="hero-title">
+      Longevity. <em>Supervised.</em>
+    </h1>
+
+    <p class="lede" data-pretext="hero-lede">
+      A longevity platform, starting with a <em>peptide marketplace</em>
+      and doctor consultations. Recovery bookings &mdash; sauna, steam, salt
+      baths, cold plunge, red light therapy &mdash; and supplements next.
+    </p>
+
+    <form class="signup-form waitlist-form" id="book" novalidate>
+      <div class="input-wrap">
+        <input class="input" type="email" name="email" placeholder="you@domain.com" autocomplete="email" required aria-label="Your email address">
+      </div>
+      <button class="btn btn-primary" type="submit">
+        Join the waitlist
+        <span class="arrow" aria-hidden="true">→</span>
+      </button>
+      <a class="btn btn-secondary" href="#how">
+        See how it works
+      </a>
+    </form>
+
+    <p class="fineprint">
+      <strong>Booking opens soon.</strong>
+      Drop your email and you'll be the first to know when consults open.
+      The first 25 on the waitlist get founder pricing on the consult.
+    </p>
+
+    <div class="trust-row" aria-label="At a glance">
+      <div><strong>Doctor consultation</strong>30 minutes, video or in-person, doctor of your choice</div>
+      <div><strong>₹2,500 per consult</strong>peptide pricing shown after consult, before purchase</div>
+      <div><strong>Booking soon</strong>email signup gets you on the waitlist for early access</div>
+    </div>
+  </section>
+
+  <!-- ============ THREE PROPS ============ -->
+  <section class="section" id="how" aria-labelledby="how-title">
+    <div class="section-label">What you get</div>
+    <h2 class="section-title" id="how-title" data-pretext="how-title">
+      One platform, <em>three moves.</em>
+    </h2>
+    <p class="section-lede" data-pretext="how-lede">
+      Consult, supply, track. The minimum a longevity stack needs to be safe and
+      legible &mdash; without juggling four different services to make it work.
+    </p>
+
+    <div class="props">
+      <article class="prop">
+        <div class="num">01.</div>
+        <h3>Consult.</h3>
+        <p data-pretext="prop-1">
+          Book time with a doctor who works in <span class="key-word">longevity
+          and recovery</span> &mdash; peptides, hormones, sleep, stress &mdash;
+          not generic primary care. 30 minutes, video or in-person.
+        </p>
+      </article>
+
+      <article class="prop">
+        <div class="num">02.</div>
+        <h3>Get the peptides.</h3>
+        <p data-pretext="prop-2">
+          If your doctor prescribes peptides, we ship them through our supply
+          chain. <span class="key-word">One bundled price</span>, shown after
+          your consult before you buy. No hidden markup; our cut is on the line item.
+        </p>
+      </article>
+
+      <article class="prop">
+        <div class="num">03.</div>
+        <h3>Track on your wearable.</h3>
+        <p data-pretext="prop-3">
+          We use the
+          <a href="https://openwearables.io/" class="key-word" style="text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px;">openwearables.io</a>
+          API to log your peptide, sauna, ice bath and other recovery data into
+          your <span class="key-word">Garmin, Whoop, Oura, Amazfit, or Apple
+          Watch</span> journal. Wearable data stays with you. (None of these are
+          medical devices.)
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ HOW A CONSULT WORKS ============ -->
+  <section class="section" id="flow" aria-labelledby="flow-title">
+    <div class="section-label">How a consult works</div>
+    <h2 class="section-title" id="flow-title" data-pretext="flow-title">
+      Four steps, <em>start to finish.</em>
+    </h2>
+    <p class="section-lede">
+      Pick a slot, talk to a doctor, get what's prescribed, log your protocol.
+      Each step is on this page so there are no surprises.
+    </p>
+
+    <div class="props props-4">
+      <article class="prop">
+        <div class="num">01.</div>
+        <h3>Pick a slot.</h3>
+        <p>
+          Choose a longevity doctor and a time that works. Pay the ₹2,500
+          consult fee. If you cancel before the consult, you're not charged.
+        </p>
+      </article>
+
+      <article class="prop">
+        <div class="num">02.</div>
+        <h3>Talk for 30 minutes.</h3>
+        <p>
+          Video or in-person depending on your city. Bring your goals,
+          your bloodwork, and your wearable history if you have them.
+        </p>
+      </article>
+
+      <article class="prop">
+        <div class="num">03.</div>
+        <h3>Receive what's prescribed.</h3>
+        <p>
+          If peptides are prescribed, we ship through licensed compounding
+          pharmacies. You pay one bundled line item; our cut is shown before you
+          buy.
+        </p>
+      </article>
+
+      <article class="prop">
+        <div class="num">04.</div>
+        <h3>Track on your wearable.</h3>
+        <p>
+          Connect Garmin, Whoop, Oura, Amazfit, or Apple Watch. Your dosing
+          days log to your wearable's journal via
+          <a href="https://openwearables.io/">openwearables.io</a>. Share with
+          your doctor at follow-up if you want to.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ WHAT'S NEXT (ROADMAP) ============ -->
+  <section class="section" id="whats-next" aria-labelledby="whats-next-title">
+    <div class="section-label">What's next</div>
+    <h2 class="section-title" id="whats-next-title" data-pretext="whats-next-title">
+      The longevity stack, <em>built out.</em>
+    </h2>
+    <p class="section-lede">
+      Peptides are step one because they're the question people ask first.
+      The platform is built so the same flow handles recovery experiences and
+      supplements once we add them.
+    </p>
+
+    <div class="whats-next-grid">
+      <ol class="roadmap" aria-label="Roadmap">
+        <li class="roadmap-item live">
+          <div class="roadmap-when">Live now</div>
+          <div class="roadmap-what">
+            <h3>Peptide consults &amp; supply</h3>
+            <p>Consult a longevity doctor. If they prescribe peptides, we ship them through licensed compounding channels.</p>
+          </div>
+        </li>
+        <li class="roadmap-item">
+          <div class="roadmap-when">Next</div>
+          <div class="roadmap-what">
+            <h3>Recovery bookings</h3>
+            <p>Book sauna, steam, salt baths, cold plunge, and red light therapy sessions in your city. Doctor-recommended, time-slotted, paid in one place &mdash; and logged to your wearable just like the peptides.</p>
+          </div>
+        </li>
+        <li class="roadmap-item">
+          <div class="roadmap-when">After that</div>
+          <div class="roadmap-what">
+            <h3>Supplements</h3>
+            <p>Curated stack &mdash; magnesium, omega-3, NAD+ precursors, creatine &mdash; sourced and quality-checked, with a doctor-recommendable layer on top.</p>
+          </div>
+        </li>
+      </ol>
+
+      <figure class="stack-diagram" aria-labelledby="stack-figure-title">
+        <figcaption id="stack-figure-title" class="sr-only">
+          One platform: peptides are live now; recovery experiences are next;
+          supplements are after that. Each one logs to your health tracker
+          (Garmin, Whoop, Oura, Amazfit, Apple Watch) via openwearables.io.
+        </figcaption>
+        <svg viewBox="0 0 840 450" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true" focusable="false">
+          <g class="sd-node sd-node-live">
+            <rect x="0" y="0" width="240" height="100" rx="3" />
+            <text class="sd-eyebrow sd-accent" x="20" y="28">01 &middot; LIVE NOW</text>
+            <text class="sd-title" x="20" y="62">Peptides</text>
+            <text class="sd-sub" x="20" y="86">consult + supply</text>
+          </g>
+          <g class="sd-node">
+            <rect x="300" y="0" width="240" height="100" rx="3" />
+            <text class="sd-eyebrow sd-muted" x="320" y="28">02 &middot; NEXT</text>
+            <text class="sd-title sd-muted-display" x="320" y="62">Recovery</text>
+            <text class="sd-sub" x="320" y="86">sauna · cold plunge · red light</text>
+          </g>
+          <g class="sd-node">
+            <rect x="600" y="0" width="240" height="100" rx="3" />
+            <text class="sd-eyebrow sd-muted" x="620" y="28">03 &middot; AFTER</text>
+            <text class="sd-title sd-muted-display" x="620" y="62">Supplements</text>
+            <text class="sd-sub" x="620" y="86">curated, doctor-recommendable</text>
+          </g>
+
+          <line class="sd-line" x1="120" y1="100" x2="120" y2="150" />
+          <line class="sd-line" x1="420" y1="100" x2="420" y2="150" />
+          <line class="sd-line" x1="720" y1="100" x2="720" y2="150" />
+          <line class="sd-line" x1="120" y1="150" x2="720" y2="150" />
+          <line class="sd-line" x1="420" y1="150" x2="420" y2="190" />
+
+          <g class="sd-node sd-node-hub">
+            <rect x="160" y="190" width="520" height="108" rx="3" />
+            <text class="sd-eyebrow sd-accent" x="420" y="220" text-anchor="middle">DOCTOR-GATED &middot; ONE PLATFORM</text>
+            <text class="sd-hub-title" x="420" y="260" text-anchor="middle">lifelongpep<tspan class="sd-dot">.</tspan></text>
+            <text class="sd-sub" x="420" y="282" text-anchor="middle">consult, supply, track &mdash; cut shown on the line item</text>
+          </g>
+
+          <line class="sd-line" x1="420" y1="298" x2="420" y2="340" />
+
+          <g class="sd-node sd-node-wearable">
+            <rect x="100" y="340" width="640" height="100" rx="3" />
+            <text class="sd-eyebrow sd-muted" x="420" y="370" text-anchor="middle">YOUR HEALTH TRACKER &middot; VIA OPENWEARABLES.IO</text>
+            <text class="sd-title" x="420" y="402" text-anchor="middle">Garmin · Whoop · Oura · Amazfit · Apple Watch</text>
+            <text class="sd-sub" x="420" y="426" text-anchor="middle">peptide, sauna, ice bath sessions log to your wearable's journal</text>
+          </g>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ WEARABLE INTEGRATION ============ -->
+  <section class="section" id="wearables" aria-labelledby="wearables-title">
+    <div class="section-label">Wearable integration</div>
+    <h2 class="section-title" id="wearables-title" data-pretext="wearables-title">
+      Use the wearable <em>you already own.</em>
+    </h2>
+    <p class="section-lede">
+      We connect through <a href="https://openwearables.io/">openwearables.io</a>
+      &mdash; an open-source, unified health-data API &mdash; so your peptide,
+      sauna, and recovery sessions log to whichever wearable you already wear.
+      No new device. No data lock-in.
+    </p>
+
+    <div class="integration-grid">
+      <div class="integration-text">
+        <h3 class="integration-h3">One API, every wearable.</h3>
+        <p class="integration-body">
+          openwearables.io is the unified health-data layer we read from and
+          write to. Same shape of data, regardless of which device you wear.
+          The integration is open-source and auditable; the codebase is on
+          <a href="https://github.com/the-momentum/open-wearables">GitHub</a>.
+          Your wearable data stays on your device and inside your wearable's
+          own account &mdash; we orchestrate the log, not the storage.
+        </p>
+        <ul class="integration-features">
+          <li><strong>Open-source bridge.</strong> openwearables.io is published under an open licence. You can audit how the log is written.</li>
+          <li><strong>Unified data model.</strong> HRV, sleep, recovery, activity, workouts &mdash; one shape across providers.</li>
+          <li><strong>No new device.</strong> Bring whichever wearable you already own. Switch later without losing history.</li>
+          <li><strong>Your data stays with you.</strong> Sessions log to your wearable's own journal. We don't aggregate across users.</li>
+        </ul>
+      </div>
+
+      <ul class="wearable-list" aria-label="Supported wearables">
+        <li>
+          <span class="w-name">Garmin</span>
+          <span class="w-data">HRV · sleep · workouts · body battery</span>
+        </li>
+        <li>
+          <span class="w-name">Whoop</span>
+          <span class="w-data">recovery score · strain · sleep</span>
+        </li>
+        <li>
+          <span class="w-name">Oura</span>
+          <span class="w-data">readiness · sleep stages · HRV</span>
+        </li>
+        <li>
+          <span class="w-name">Amazfit</span>
+          <span class="w-data">activity · sleep · stress</span>
+        </li>
+        <li>
+          <span class="w-name">Apple Watch</span>
+          <span class="w-data">all of the above &middot; via Apple Health</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ PRICING ============ -->
+  <section class="section" id="pricing" aria-labelledby="pricing-title">
+    <div class="section-label">Pricing &middot; transparent</div>
+    <h2 class="section-title" id="pricing-title" data-pretext="pricing-title">
+      Two charges. <em>Both shown before you pay.</em>
+    </h2>
+    <p class="section-lede">
+      The consult is a flat fee. Peptide pricing comes from the doctor's prescription
+      and the supply chain &mdash; you see the line item before you buy. We take a
+      cut on each. We win when you stay on the platform, not when you pay more.
+    </p>
+
+    <div class="pricing-block">
+      <div class="pricing-headline">
+        <h3>Consult, <em>then peptides.</em></h3>
+        <p>You only pay for the consult upfront. If peptides are prescribed, the price is shown after the consult and you decide whether to proceed.</p>
+      </div>
+
+      <div class="price-rows">
+        <div class="price-row user">
+          <div class="label">
+            <strong>Consult</strong>
+            <span class="sub">30 minutes, video or in-person. Refundable if cancelled before.</span>
+          </div>
+          <div class="amount">₹2,500</div>
+        </div>
+        <div class="price-row">
+          <div class="label">
+            Peptide prescription
+            <span class="sub">Per the doctor's protocol; one bundled price shown after consult before purchase</span>
+          </div>
+          <div class="amount" style="font-size: 22px; color: var(--muted);">Varies</div>
+        </div>
+        <div class="price-row">
+          <div class="label">
+            Our cut
+            <span class="sub">A transparent percentage on each transaction. We don't hide it; you'll see it on the line item.</span>
+          </div>
+          <div class="amount" style="font-size: 22px; color: var(--muted);">Shown</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ TRUST PULLQUOTE ============ -->
+<aside class="stance" aria-label="How we work">
+  <div class="shell">
+    <div class="stance-eyebrow">How we work</div>
+    <blockquote data-pretext="stance">
+      Trust is the <span class="accent">first priority,</span> not access.
+      Doctors prescribe. Licensed pharmacies dispense. We handle the booking,
+      the supply chain, and the wearable log.
+    </blockquote>
+    <p class="stance-attr">
+      <strong>One platform, multiple licensed parties.</strong> The doctor's
+      prescription is independent. The pharmacy is licensed and audited. Our cut
+      is a transparent percentage on each transaction.
+    </p>
+  </div>
+</aside>
+
+<main class="shell">
+
+  <!-- ============ FAQ ============ -->
+  <section class="section" id="faq" aria-labelledby="faq-title">
+    <div class="section-label">Common questions</div>
+    <h2 class="section-title" id="faq-title" data-pretext="faq-title">
+      The five answers <em>before</em> you ask.
+    </h2>
+
+    <div class="faq">
+      <article class="faq-item">
+        <h4>Is this <em>legal?</em></h4>
+        <div class="a">
+          <strong>Yes.</strong> The doctor prescribes independently under the National
+          Medical Commission's 2023 RMP regulations. Where a prescription leads to a
+          peptide purchase, dispensing is handled by licensed compounding pharmacies that
+          fulfill against a valid prescription. lifelongpep is the booking and
+          orchestration layer; we don't operate as a pharmacy ourselves.
+        </div>
+      </article>
+
+      <article class="faq-item">
+        <h4>What if the doctor doesn't <em>prescribe</em> peptides?</h4>
+        <div class="a">
+          That's fine and often the correct answer. The consult covers your goals,
+          history, and what's appropriate for you &mdash; sometimes that's lifestyle changes,
+          sometimes it's a different intervention, sometimes peptides aren't a fit. You're
+          paying for the doctor's judgement, not for a guaranteed prescription.
+        </div>
+      </article>
+
+      <article class="faq-item">
+        <h4>How does the <em>wearable integration</em> work?</h4>
+        <div class="a">
+          We use the <strong><a href="https://openwearables.io/">openwearables.io</a></strong>
+          API to log your peptide consumption &mdash; and, when we add them, your
+          sauna, ice bath, salt bath, cold plunge, and red light therapy
+          sessions &mdash; into your Garmin, Whoop, Oura, Amazfit, or Apple Watch
+          journal, the same way you would log a workout or a meal. The wearable
+          data itself stays on your device and your wearable account.
+          <strong>None of these are medical devices;</strong>
+          this is a personal-tracking convenience, not a clinical input. Your doctor can
+          ask you to share specific data at follow-up if they want to.
+        </div>
+      </article>
+
+      <article class="faq-item">
+        <h4>Can I cancel or get a <em>refund?</em></h4>
+        <div class="a">
+          Cancel before the consult and you're not charged. If the consult happens but
+          you don't proceed to a peptide purchase, you're only out the consult fee. Peptide
+          purchases have a separate return policy posted with each line item before you
+          buy &mdash; pharmacy returns on prescription medications are limited by law.
+        </div>
+      </article>
+
+      <article class="faq-item">
+        <h4>What about the <em>broader stack</em> &mdash; sauna, supplements?</h4>
+        <div class="a">
+          Peptides today. Recovery bookings (sauna, steam, salt baths, cold plunge, red
+          light therapy) come next. Supplements after that. The same flow handles all of
+          them &mdash; consult if it needs a doctor, book or buy if it doesn't, track on
+          your wearable either way.
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section" id="contact" aria-labelledby="contact-title">
+    <div class="section-label">Contact us</div>
+    <h2 class="section-title" id="contact-title" data-pretext="contact-title">
+      One inbox, <em>monitored end-to-end.</em>
+    </h2>
+    <p class="section-lede">
+      A question about a consult, a doctor onboarding enquiry, press, or a
+      partnership &mdash; the same address handles all of it.
+    </p>
+
+    <div class="contact-block">
+      <a class="contact-email" href="mailto:hello@lifelongpep.com">hello@lifelongpep.com</a>
+      <p class="contact-meta">
+        <strong>Reply within one business day.</strong>
+        For booking issues, include your consult slot. For doctor onboarding,
+        attach your MDC registration and a one-line note on your longevity practice.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section class="final-cta" aria-labelledby="final-cta-title">
+    <div class="eyebrow"><span class="pip" aria-hidden="true"></span>Coming soon</div>
+    <h2 id="final-cta-title" data-pretext="final-cta">
+      Start your<br><em>longevity stack.</em>
+    </h2>
+    <p class="lede">
+      Booking opens soon. Drop your email and we'll let you know the day
+      consults go live. First 25 on the waitlist get founder pricing.
+    </p>
+
+    <form class="signup-form waitlist-form" novalidate>
+      <div class="input-wrap">
+        <input class="input" type="email" name="email" placeholder="you@domain.com" autocomplete="email" required aria-label="Your email address">
+      </div>
+      <button class="btn btn-primary" type="submit">
+        Join the waitlist
+        <span class="arrow" aria-hidden="true">→</span>
+      </button>
+      <a class="btn btn-secondary" href="#how">
+        Read how it works
+      </a>
+    </form>
+
+    <p class="fineprint">
+      <strong>No spam.</strong> One email when consults open, then weekly
+      notes on the marketplace, doctors, and what's next. Unsubscribe in one click.
+    </p>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer" role="contentinfo">
+  <div class="shell">
+    <div class="footer-row">
+      <div class="footer-col">
+        <div class="footer-brand-block">lifelongpep<span class="dot">.</span></div>
+        <p class="desc">
+          Doctor-gated longevity, end to end. Consult, supply, and protocol-tracking
+          on one platform. Peptides today; recovery experiences and supplements next.
+        </p>
+      </div>
+      <div class="footer-col">
+        <div class="title">Product</div>
+        <ul>
+          <li><a href="#how">What you get</a></li>
+          <li><a href="#flow">How a consult works</a></li>
+          <li><a href="#whats-next">What's next</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="title">Trust</div>
+        <ul>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#legal">Legal &amp; licensing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="title">About</div>
+        <ul>
+          <li><a href="#about">Why this exists</a></li>
+          <li><a href="#privacy">Privacy</a></li>
+          <li><a href="mailto:hello@lifelongpep.com">hello@lifelongpep.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-meta">
+      <div>&copy; 2026 lifelongpep.</div>
+      <div>Doctors prescribe. Pharmacies dispense. We orchestrate.</div>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { prepare, layout } from './pretext.js'
+
+// ----- Pretext orchestration -----
+// Track elements with [data-pretext] and one-time prepare() each. Then
+// layout() on every resize and content edit. This is the canonical
+// "Simple layout" tier from the Pretext API guide.
+
+const prepared = new Map() // element -> prepare handle
+const fontSpec = (el) => {
+  const cs = getComputedStyle(el)
+  // CSS shorthand that Pretext understands
+  // weight + size + line-height + family — we omit line-height since prepare uses size only
+  return `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`
+}
+
+function prepareEl(el) {
+  const text = el.textContent.trim()
+  if (!text) { prepared.delete(el); return }
+  const font = fontSpec(el)
+  try {
+    prepared.set(el, prepare(text, font))
+  } catch (err) {
+    console.warn('Pretext prepare failed for', el, err)
+  }
+}
+
+function layoutAll() {
+  for (const [el, handle] of prepared) {
+    if (!el.isConnected) { prepared.delete(el); continue }
+    const cs = getComputedStyle(el)
+    const lh = parseFloat(cs.lineHeight)
+    const w = el.clientWidth
+    if (!w || !lh) continue
+    try {
+      const { height } = layout(handle, w, lh)
+      // Pretext height is the computed text height; let CSS keep its own
+      // padding so we set min-height on the element to match the text.
+      el.style.minHeight = `${height}px`
+    } catch (err) {
+      console.warn('Pretext layout failed for', el, err)
+    }
+  }
+}
+
+// Wait for fonts before first prepare — text metrics depend on loaded font files.
+async function init() {
+  if (document.fonts && document.fonts.ready) {
+    try { await document.fonts.ready } catch (e) {}
+  }
+
+  // Initial prepare for every [data-pretext] element
+  document.querySelectorAll('[data-pretext]').forEach(prepareEl)
+  // Children of [data-pretext-children] containers (e.g. each <li>)
+  document.querySelectorAll('[data-pretext-children]').forEach(parent => {
+    parent.querySelectorAll(':scope > *').forEach(prepareEl)
+  })
+
+  layoutAll()
+
+  // ResizeObserver re-runs layout (cheap) on any size change
+  const ro = new ResizeObserver(() => {
+    requestAnimationFrame(layoutAll)
+  })
+  ro.observe(document.body)
+
+  // MutationObserver re-prepares on text edits (more expensive but rare)
+  const mo = new MutationObserver((mutations) => {
+    let dirty = false
+    for (const m of mutations) {
+      const target = m.target.nodeType === 3 ? m.target.parentElement : m.target
+      if (!target) continue
+      // Find the closest [data-pretext] ancestor (or a [data-pretext-children] child)
+      const el = target.closest('[data-pretext]') ||
+                 (target.parentElement && target.parentElement.matches('[data-pretext-children]') ? target : null)
+      if (el) {
+        prepareEl(el)
+        dirty = true
+      }
+    }
+    if (dirty) requestAnimationFrame(layoutAll)
+  })
+
+  document.querySelectorAll('[data-pretext], [data-pretext-children]').forEach(el => {
+    mo.observe(el, { characterData: true, subtree: true, childList: true })
+  })
+
+  document.documentElement.dataset.pretextReady = 'true'
+}
+
+init()
+
+// ----- Theme toggle (light / dark) -----
+const themeBtn = document.getElementById('themeToggle')
+const root = document.documentElement
+const setLabel = () => {
+  themeBtn.textContent = root.dataset.theme === 'dark' ? 'Light' : 'Dark'
+}
+themeBtn.addEventListener('click', () => {
+  root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark'
+  setLabel()
+  // Theme switch changes nothing about text layout in Pretext, but if it ever
+  // does (different fonts per theme), re-prepare here. For now layoutAll only
+  // covers the small chance of computed-style changes affecting line-height.
+  requestAnimationFrame(layoutAll)
+})
+setLabel()
+
+// ----- Waitlist form -----
+// Posts to formsubmit.co (no-signup form forwarder). First submission triggers
+// an activation email to hello@lifelongpep.com — confirm it once and all
+// future submissions get forwarded as plain emails.
+const WAITLIST_ENDPOINT = 'https://formsubmit.co/ajax/hello@lifelongpep.com'
+const WAITLIST_KEY = 'lifelongpep_waitlist_v1'
+
+function markWaitlistedUI(form) {
+  const btn = form.querySelector('button[type="submit"]')
+  const input = form.querySelector('input[type="email"]')
+  if (input) {
+    input.value = ''
+    input.disabled = true
+    input.placeholder = 'You\'re on the list.'
+  }
+  if (btn) {
+    btn.textContent = 'Thanks — you\'re in.'
+    btn.disabled = true
+    btn.style.opacity = '0.7'
+    btn.style.cursor = 'default'
+  }
+}
+
+function flashError(input, msg) {
+  if (!input) return
+  input.focus()
+  input.style.borderColor = 'var(--error)'
+  setTimeout(() => { input.style.borderColor = '' }, 2400)
+  if (msg) input.setAttribute('data-error', msg)
+}
+
+document.querySelectorAll('.signup-form.waitlist-form').forEach(form => {
+  // If they already signed up on this device, lock the form on load.
+  if (localStorage.getItem(WAITLIST_KEY)) markWaitlistedUI(form)
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    const input = form.querySelector('input[type="email"]')
+    const btn = form.querySelector('button[type="submit"]')
+    if (!input || !btn) return
+    if (!input.value || !input.checkValidity()) {
+      flashError(input, 'Please enter a valid email')
+      return
+    }
+
+    const email = input.value.trim()
+    btn.textContent = 'Adding you…'
+    btn.disabled = true
+
+    try {
+      const res = await fetch(WAITLIST_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          email,
+          _subject: 'lifelongpep waitlist signup',
+          _captcha: 'false',
+          _template: 'table',
+          source: window.location.href
+        })
+      })
+      if (!res.ok) throw new Error('submit failed')
+      localStorage.setItem(WAITLIST_KEY, JSON.stringify({ email, ts: Date.now() }))
+      markWaitlistedUI(form)
+    } catch (err) {
+      console.warn('Waitlist submission failed; falling back to mailto.', err)
+      // Fallback: open the user's mail client with a pre-filled email.
+      const subject = encodeURIComponent('Join lifelongpep waitlist')
+      const body = encodeURIComponent(`Hi,\n\nI'd like to join the lifelongpep waitlist.\n\nEmail: ${email}\n\nThanks.`)
+      window.location.href = `mailto:hello@lifelongpep.com?subject=${subject}&body=${body}`
+      btn.textContent = 'Join the waitlist'
+      btn.disabled = false
+    }
+  })
+})
+</script>
+
+</body>
+</html>
