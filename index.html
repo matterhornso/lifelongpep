@@ -802,12 +802,14 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
 #whats-next .stack-diagram {
   margin-top: var(--s-9);
 }
-.stack-diagram svg {
+.stack-diagram-svg {
   display: block;
   width: 100%;
   height: auto;
   overflow: visible;
 }
+/* Mobile-stacked version is hidden by default; shown via media query at <=720px. */
+.stack-diagram-mobile { display: none; }
 .stack-diagram .sd-node rect {
   fill: var(--surface);
   stroke: var(--hairline-strong);
@@ -865,29 +867,105 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
   stroke-width: 1;
   fill: none;
 }
+/* ----- Mobile stack layout (replaces SVG below 720px) ----- */
+.sd-m-card {
+  background: var(--surface);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 3px;
+  padding: var(--s-4) var(--s-5);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+.sd-m-card.sd-m-live {
+  border-color: var(--accent);
+  border-width: 1.5px;
+}
+.sd-m-card.sd-m-hub {
+  background: var(--surface-2);
+  border-color: var(--accent);
+  border-width: 1.5px;
+  text-align: center;
+  align-items: center;
+  padding: var(--s-5);
+}
+.sd-m-card.sd-m-wearable {
+  border-style: dashed;
+  text-align: center;
+  align-items: center;
+}
+.sd-m-eyebrow {
+  font-family: var(--ui);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.sd-m-eyebrow.accent { color: var(--accent); }
+.sd-m-eyebrow.muted  { color: var(--muted); }
+.sd-m-title {
+  font-family: var(--display);
+  font-size: 28px;
+  letter-spacing: -0.018em;
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--ink);
+}
+.sd-m-title.muted { color: var(--muted); }
+.sd-m-card.sd-m-hub .sd-m-title {
+  font-size: 36px;
+  letter-spacing: -0.02em;
+}
+.sd-m-card.sd-m-hub .dot { color: var(--accent); }
+.sd-m-card.sd-m-wearable .sd-m-title {
+  font-size: 22px;
+  letter-spacing: -0.012em;
+}
+.sd-m-sub {
+  font-family: var(--body);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.45;
+  margin-top: 2px;
+}
+/* Vertical connector line between sections; flow indicator. */
+.sd-m-flow {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-2);
+  font-family: var(--ui);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding: var(--s-3) 0;
+}
+.sd-m-flow::before {
+  content: "";
+  width: 1px;
+  height: 24px;
+  background: var(--accent);
+  display: block;
+}
+
 @media (max-width: 720px) {
-  /* Don't shrink the SVG below readable. Let it overflow horizontally and
-     scroll. Keeps the diagram usable on phones without redrawing it. */
-  .stack-diagram {
-    max-width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
+  .stack-diagram-svg { display: none; }
+  .stack-diagram-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+    width: 100%;
+    padding-top: var(--s-3);
   }
-  .stack-diagram svg {
-    min-width: 720px;
-  }
-  .stack-diagram::after {
-    content: "scroll →";
-    display: block;
-    font-family: var(--ui);
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-top: var(--s-3);
-    text-align: right;
-    padding-right: var(--s-3);
+  .stack-diagram-mobile .sd-m-flow + .sd-m-card {
+    margin-top: 0;
   }
 }
 
@@ -1361,7 +1439,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
           supplements are after that. Each one logs to your health tracker
           (Garmin, Whoop, Oura, Amazfit, Apple Watch) via openwearables.io.
         </figcaption>
-        <svg viewBox="0 0 840 450" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true" focusable="false">
+        <svg class="stack-diagram-svg" viewBox="0 0 840 450" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true" focusable="false">
           <g class="sd-node sd-node-live">
             <rect x="0" y="0" width="240" height="100" rx="3" />
             <text class="sd-eyebrow sd-accent" x="20" y="28">01 &middot; LIVE NOW</text>
@@ -1403,6 +1481,41 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
             <text class="sd-sub" x="420" y="426" text-anchor="middle">peptide, sauna, ice bath sessions log to your wearable's journal</text>
           </g>
         </svg>
+
+        <!-- Mobile stack — shown below 720px in place of the SVG. -->
+        <div class="stack-diagram-mobile" aria-hidden="true">
+          <div class="sd-m-card sd-m-live">
+            <div class="sd-m-eyebrow accent">01 &middot; LIVE NOW</div>
+            <div class="sd-m-title">Peptides</div>
+            <div class="sd-m-sub">consult + supply</div>
+          </div>
+          <div class="sd-m-card">
+            <div class="sd-m-eyebrow muted">02 &middot; NEXT</div>
+            <div class="sd-m-title muted">Recovery</div>
+            <div class="sd-m-sub">sauna &middot; cold plunge &middot; red light</div>
+          </div>
+          <div class="sd-m-card">
+            <div class="sd-m-eyebrow muted">03 &middot; AFTER</div>
+            <div class="sd-m-title muted">Supplements</div>
+            <div class="sd-m-sub">curated, doctor-recommendable</div>
+          </div>
+
+          <div class="sd-m-flow">all run on one platform</div>
+
+          <div class="sd-m-card sd-m-hub">
+            <div class="sd-m-eyebrow accent">DOCTOR-GATED &middot; ONE PLATFORM</div>
+            <div class="sd-m-title">lifelongpep<span class="dot">.</span></div>
+            <div class="sd-m-sub">consult, supply, track &mdash; cut shown on the line item</div>
+          </div>
+
+          <div class="sd-m-flow">logs to your wearable</div>
+
+          <div class="sd-m-card sd-m-wearable">
+            <div class="sd-m-eyebrow muted">YOUR HEALTH TRACKER &middot; VIA OPENWEARABLES.IO</div>
+            <div class="sd-m-title">Garmin &middot; Whoop &middot; Oura &middot; Amazfit &middot; Apple Watch</div>
+            <div class="sd-m-sub">peptide, sauna, ice bath sessions log to your wearable's journal</div>
+          </div>
+        </div>
       </figure>
   </section>
 
