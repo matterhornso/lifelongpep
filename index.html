@@ -1022,6 +1022,9 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
 }
 .integration-features li strong { color: var(--accent); font-weight: 500; }
 
+.signup-form.issues-form { margin-top: var(--s-5); }
+.issues-fineprint { margin-top: var(--s-2); }
+
 .wearable-list {
   list-style: none;
   display: flex;
@@ -1204,7 +1207,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
   .issue-card { padding: var(--s-5); }
   .stance { padding: var(--s-7) 0; }
   .signup-form { flex-direction: column; align-items: stretch; }
-  .signup-form .input-wrap { min-width: 0; }
+  .signup-form .input-wrap { min-width: 0; flex: 0 0 auto; }
   .signup-form .btn { width: 100%; }
   .trust-row { gap: var(--s-5); }
   body { font-size: 17px; }
@@ -1248,6 +1251,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
     <a href="#whats-next">What's next</a>
     <a href="#wearables">Wearables</a>
     <a href="#pricing">Pricing</a>
+    <a href="#issues">Issues</a>
     <a href="#faq">FAQ</a>
     <a href="#contact">Contact</a>
   </nav>
@@ -1640,6 +1644,58 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
 
 <main class="shell">
 
+  <!-- ============ ISSUES & SOCIAL ============ -->
+  <section class="section" id="issues" aria-labelledby="issues-title">
+    <div class="section-label">Updates &middot; free</div>
+    <h2 class="section-title" id="issues-title" data-pretext="issues-title">
+      Plain-language <em>issues</em> on what peptides actually do.
+    </h2>
+    <p class="section-lede">
+      What's prescribed, what's not, what the research actually says &mdash; one short
+      read, sent when there's something worth saying. <strong>The first issue
+      ships this Friday.</strong>
+    </p>
+
+    <div class="integration-grid">
+      <div class="integration-text">
+        <h3 class="integration-h3">Subscribe.</h3>
+        <p class="integration-body">
+          Same inbox runs the consults; this is a separate list. Free, one-click
+          unsubscribe. The first issue covers what peptides are, what the doctor
+          consult does and doesn't, and what an honest eight-week outcome looks
+          like &mdash; no hype, no &ldquo;biohack your stack.&rdquo;
+        </p>
+        <form class="signup-form issues-form" novalidate>
+          <div class="input-wrap">
+            <input class="input" type="email" name="email" placeholder="you@domain.com" autocomplete="email" required aria-label="Your email address">
+          </div>
+          <button class="btn btn-primary" type="submit">
+            Send me the first issue
+            <span class="arrow" aria-hidden="true">&rarr;</span>
+          </button>
+        </form>
+        <p class="fineprint issues-fineprint">
+          Different list from the booking waitlist. Sign up for both if you want both.
+        </p>
+      </div>
+
+      <ul class="wearable-list" aria-label="Where to find us">
+        <li>
+          <span class="w-name">Issues</span>
+          <span class="w-data">first one Friday &middot; email &middot; free</span>
+        </li>
+        <li>
+          <span class="w-name">YouTube</span>
+          <span class="w-data">long-form conversations with doctors &middot; coming soon</span>
+        </li>
+        <li>
+          <span class="w-name">Instagram</span>
+          <span class="w-data">short visual explainers &middot; coming soon</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
   <!-- ============ FAQ ============ -->
   <section class="section" id="faq" aria-labelledby="faq-title">
     <div class="section-label">Common questions</div>
@@ -1776,6 +1832,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
           <li><a href="#flow">How a consult works</a></li>
           <li><a href="#whats-next">What's next</a></li>
           <li><a href="#wearables">Wearable integration</a></li>
+          <li><a href="#issues">Issues &amp; updates</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -1983,6 +2040,74 @@ document.querySelectorAll('.signup-form.waitlist-form').forEach(form => {
       const body = encodeURIComponent(`Hi,\n\nI'd like to join the lifelongpep waitlist.\n\nEmail: ${email}\n\nThanks.`)
       window.location.href = `mailto:hello@lifelongpep.com?subject=${subject}&body=${body}`
       btn.textContent = 'Join the waitlist'
+      btn.disabled = false
+    }
+  })
+})
+
+// ----- Issues subscription form -----
+// Same formsubmit.co inbox as the waitlist; different _subject so we can sort.
+// Separate localStorage key so the two forms lock independently.
+const ISSUES_ENDPOINT = 'https://formsubmit.co/ajax/hello@lifelongpep.com'
+const ISSUES_KEY = 'lifelongpep_issues_v1'
+
+function markIssuesSubscribedUI(form) {
+  const btn = form.querySelector('button[type="submit"]')
+  const input = form.querySelector('input[type="email"]')
+  if (input) {
+    input.value = ''
+    input.disabled = true
+    input.placeholder = 'You\'re subscribed.'
+  }
+  if (btn) {
+    btn.textContent = 'Thanks — first issue Friday.'
+    btn.disabled = true
+    btn.style.opacity = '0.7'
+    btn.style.cursor = 'default'
+  }
+}
+
+document.querySelectorAll('.signup-form.issues-form').forEach(form => {
+  if (localStorage.getItem(ISSUES_KEY)) markIssuesSubscribedUI(form)
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    const input = form.querySelector('input[type="email"]')
+    const btn = form.querySelector('button[type="submit"]')
+    if (!input || !btn) return
+    if (!input.value || !input.checkValidity()) {
+      flashError(input, 'Please enter a valid email')
+      return
+    }
+
+    const email = input.value.trim()
+    btn.textContent = 'Subscribing…'
+    btn.disabled = true
+
+    try {
+      const res = await fetch(ISSUES_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          email,
+          _subject: 'lifelongpep issues subscribe',
+          _captcha: 'false',
+          _template: 'table',
+          source: window.location.href
+        })
+      })
+      if (!res.ok) throw new Error('submit failed')
+      localStorage.setItem(ISSUES_KEY, JSON.stringify({ email, ts: Date.now() }))
+      markIssuesSubscribedUI(form)
+    } catch (err) {
+      console.warn('Issues subscription failed; falling back to mailto.', err)
+      const subject = encodeURIComponent('Subscribe to lifelongpep issues')
+      const body = encodeURIComponent(`Hi,\n\nI'd like to subscribe to the lifelongpep peptide issues.\n\nEmail: ${email}\n\nThanks.`)
+      window.location.href = `mailto:hello@lifelongpep.com?subject=${subject}&body=${body}`
+      btn.textContent = 'Send me the first issue'
       btn.disabled = false
     }
   })
