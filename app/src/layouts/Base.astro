@@ -7,10 +7,76 @@ interface Props {
   title: string;
   description?: string;
   currentNav?: "book" | "doctors" | "recovery" | "about";
+  /** Path on book.lifelongpep.fit, e.g. "/doctors". Defaults to current request pathname. */
+  canonicalPath?: string;
+  /** Pre-serialized JSON-LD object(s) to inject into the page. */
+  jsonLd?: object | object[];
+  /** og:type override. Default "website". */
+  ogType?: string;
+  /** When true, emits `noindex,nofollow` (for per-booking confirmation pages, etc.) */
+  noIndex?: boolean;
 }
 
-const { title, description, currentNav } = Astro.props;
+const {
+  title,
+  description = "Book a 30-minute longevity consult or a recovery session in Bangalore. Doctor-gated. Transparent 10% cut shown on every line item.",
+  currentNav,
+  canonicalPath,
+  jsonLd,
+  ogType = "website",
+  noIndex = false,
+} = Astro.props;
+
+const siteUrl = import.meta.env.SITE_URL || "https://book.lifelongpep.fit";
+const landingUrl = import.meta.env.LANDING_URL || "https://lifelongpep.fit";
 const fullTitle = title === "lifelongpep" ? title : `${title} · lifelongpep`;
+const path = canonicalPath ?? Astro.url.pathname;
+const canonical = new URL(path, siteUrl).toString();
+const ogImage = new URL("/og.png", siteUrl).toString();
+
+// Default JSON-LD: Organization + WebSite. Pages can pass extra entities via jsonLd prop.
+const baseGraph = [
+  {
+    "@type": ["MedicalBusiness", "LocalBusiness"],
+    "@id": `${landingUrl}/#org`,
+    name: "lifelongpep",
+    url: landingUrl,
+    logo: `${landingUrl}/apple-touch-icon.png`,
+    image: `${landingUrl}/og.png`,
+    description:
+      "Doctor-gated longevity marketplace. 30-minute consults, peptide prescriptions through licensed compounding pharmacies, and recovery sessions (sauna, steam, cryotherapy, red light, salt bath). Bangalore, India.",
+    email: "hello@lifelongpep.fit",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Bengaluru",
+      addressRegion: "Karnataka",
+      addressCountry: "IN",
+    },
+    areaServed: [{ "@type": "City", name: "Bengaluru" }],
+    medicalSpecialty: [
+      "SportsMedicine",
+      "Endocrinology",
+      "InternalMedicine",
+      "Geriatrics",
+      "FamilyMedicine",
+    ],
+    priceRange: "₹₹",
+    currenciesAccepted: "INR",
+    paymentAccepted: "Credit Card, UPI, Net Banking, Debit Card",
+    sameAs: ["https://github.com/matterhornso/lifelongpep"],
+  },
+  {
+    "@type": "WebSite",
+    "@id": `${siteUrl}/#website`,
+    url: siteUrl,
+    name: "lifelongpep · booking",
+    publisher: { "@id": `${landingUrl}/#org` },
+    inLanguage: "en",
+  },
+];
+
+const extra = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
+const ldGraph = { "@context": "https://schema.org", "@graph": [...baseGraph, ...extra] };
 ---
 
 <!doctype html>
@@ -19,14 +85,46 @@ const fullTitle = title === "lifelongpep" ? title : `${title} · lifelongpep`;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
+
     <title>{fullTitle}</title>
-    {description && <meta name="description" content={description} />}
+    <meta name="description" content={description} />
+
+    <link rel="canonical" href={canonical} />
+    <meta
+      name="robots"
+      content={noIndex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1"}
+    />
+
+    <meta name="theme-color" content="#5C2E2E" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="lifelongpep" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={`${title} — lifelongpep`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="2400" />
+    <meta property="og:image:height" content="1260" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content="lifelongpep — Longevity, supervised. Bangalore, launching 2026." />
+    <meta property="og:locale" content="en_IN" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`${title} — lifelongpep`} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content="lifelongpep — Longevity, supervised. Bangalore, launching 2026." />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap"
       rel="stylesheet"
     />
+
+    <script type="application/ld+json" set:html={JSON.stringify(ldGraph)} />
   </head>
   <body>
     <Topbar currentNav={currentNav} />

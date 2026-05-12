@@ -48,12 +48,44 @@ if (rows.length === 0) {
 const cutPercent = Number(import.meta.env.CUT_PERCENT ?? 10);
 
 const typeLabels = Object.keys(RECOVERY_LABELS) as RecoveryType[];
+
+const itemListJsonLd = {
+  "@type": "ItemList",
+  "@id": "https://book.lifelongpep.fit/recovery#list",
+  name: "Recovery sessions — Bangalore",
+  numberOfItems: rows.length,
+  itemListElement: rows.map((r, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    item: {
+      "@type": "Service",
+      serviceType: RECOVERY_LABELS[r.type],
+      provider: {
+        "@type": "LocalBusiness",
+        name: r.provider?.display_name ?? "Provider",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: r.provider?.neighborhood ?? "Bengaluru",
+          addressRegion: "Karnataka",
+          addressCountry: "IN",
+        },
+      },
+      offers: {
+        "@type": "Offer",
+        price: r.price_inr,
+        priceCurrency: "INR",
+        availability: "https://schema.org/InStock",
+      },
+    },
+  })),
+};
 ---
 
 <Base
   title="Recovery"
-  description="Book a recovery session — sauna, steam, cryotherapy, red light, salt bath. Bangalore."
+  description="Book a recovery session in Bangalore — sauna, steam, cryotherapy, red light therapy, salt bath. Doctor-recommended sessions flagged. Transparent 10% cut on every line item."
   currentNav="recovery"
+  jsonLd={itemListJsonLd}
 >
   <section class="section">
     <div class="wrap">

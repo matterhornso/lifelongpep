@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" fill="#F4F0E8"/>
+  <text x="32" y="46"
+        font-family="'Instrument Serif', Georgia, serif"
+        font-size="44" font-weight="400"
+        text-anchor="middle"
+        fill="#1A1A1A">l<tspan font-style="italic" fill="#5C2E2E">p</tspan><tspan fill="#5C2E2E">.</tspan></text>
+</svg>

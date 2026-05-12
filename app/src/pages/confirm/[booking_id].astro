@@ -66,7 +66,7 @@ const status = booking?.status ?? "pending_payment";
 const confirmed = status === "confirmed";
 ---
 
-<Base title="Confirmation" currentNav="book">
+<Base title="Confirmation" currentNav="book" noIndex={true}>
   <section class="section">
     <div class="wrap" style="max-width: 720px;">
       <p class="label">{confirmed ? "Confirmed" : "Pending confirmation"}</p>

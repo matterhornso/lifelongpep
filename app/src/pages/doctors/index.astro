@@ -22,12 +22,52 @@ try {
 }
 
 const neighborhoods = ["Indiranagar", "Koramangala", "HSR", "Whitefield", "Jayanagar"];
+
+const consultJsonLd = {
+  "@type": "MedicalProcedure",
+  "@id": "https://book.lifelongpep.fit/doctors#consult",
+  name: "Longevity consult",
+  description:
+    "30-minute consult with a longevity doctor (video or in-person) across five Bangalore neighborhoods. If peptides fit your case, the doctor writes the prescription and we ship through licensed compounding pharmacies.",
+  procedureType: "MedicalProcedureType",
+  offers: {
+    "@type": "Offer",
+    price: CONSULT_FEE_INR,
+    priceCurrency: "INR",
+    availability: "https://schema.org/InStock",
+    url: "https://book.lifelongpep.fit/doctors",
+    eligibleRegion: { "@type": "City", name: "Bengaluru" },
+  },
+};
+
+const itemListJsonLd = {
+  "@type": "ItemList",
+  "@id": "https://book.lifelongpep.fit/doctors#list",
+  name: "Longevity doctors — Bangalore",
+  numberOfItems: doctors.length,
+  itemListElement: doctors.map((d, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    item: {
+      "@type": "Physician",
+      medicalSpecialty: d.specialty,
+      areaServed: { "@type": "City", name: "Bengaluru" },
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: d.neighborhood,
+        addressRegion: "Karnataka",
+        addressCountry: "IN",
+      },
+    },
+  })),
+};
 ---
 
 <Base
   title="Consult a doctor"
-  description="Book a 30-minute longevity consult with a doctor in Bangalore."
+  description="Book a 30-minute longevity consult with a doctor in Bangalore — ₹2,500 flat, video or in-person. Specialties: sports medicine, endocrinology, internal medicine, geriatrics, family medicine."
   currentNav="doctors"
+  jsonLd={[consultJsonLd, itemListJsonLd]}
 >
   <section class="section">
     <div class="wrap">
