@@ -1849,7 +1849,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
     </p>
 
     <div class="contact-block">
-      <a class="contact-email" href="mailto:hello@lifelongpep.com">hello@lifelongpep.com</a>
+      <a class="contact-email" href="mailto:hello@lifelongpep.fit">hello@lifelongpep.fit</a>
       <p class="contact-meta">
         <strong>Reply within one business day.</strong>
         For booking issues, include your consult slot. For doctor onboarding,
@@ -1915,13 +1915,13 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
         <ul>
           <li><a href="#pricing">Pricing</a></li>
           <li><a href="#faq">FAQ</a></li>
-          <li><a href="mailto:hello@lifelongpep.com?subject=Legal%20and%20licensing%20question">Legal &amp; licensing</a></li>
+          <li><a href="mailto:hello@lifelongpep.fit?subject=Legal%20and%20licensing%20question">Legal &amp; licensing</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <div class="title">Contact</div>
         <ul>
-          <li><a href="mailto:hello@lifelongpep.com">hello@lifelongpep.com</a></li>
+          <li><a href="mailto:hello@lifelongpep.fit">hello@lifelongpep.fit</a></li>
           <li><a href="https://github.com/matterhornso/lifelongpep">Source on GitHub</a></li>
         </ul>
       </div>
@@ -2043,9 +2043,9 @@ setLabel()
 
 // ----- Waitlist form -----
 // Posts to formsubmit.co (no-signup form forwarder). First submission triggers
-// an activation email to hello@lifelongpep.com — confirm it once and all
+// an activation email to hello@lifelongpep.fit — confirm it once and all
 // future submissions get forwarded as plain emails.
-const WAITLIST_ENDPOINT = 'https://formsubmit.co/ajax/hello@lifelongpep.com'
+const WAITLIST_ENDPOINT = 'https://formsubmit.co/ajax/hello@lifelongpep.fit'
 const WAITLIST_KEY = 'lifelongpep_waitlist_v1'
 
 function markWaitlistedUI(form) {
@@ -2113,7 +2113,7 @@ document.querySelectorAll('.signup-form.waitlist-form').forEach(form => {
       // Fallback: open the user's mail client with a pre-filled email.
       const subject = encodeURIComponent('Join lifelongpep waitlist')
       const body = encodeURIComponent(`Hi,\n\nI'd like to join the lifelongpep waitlist.\n\nEmail: ${email}\n\nThanks.`)
-      window.location.href = `mailto:hello@lifelongpep.com?subject=${subject}&body=${body}`
+      window.location.href = `mailto:hello@lifelongpep.fit?subject=${subject}&body=${body}`
       btn.textContent = 'Join the waitlist'
       btn.disabled = false
     }
@@ -2123,7 +2123,7 @@ document.querySelectorAll('.signup-form.waitlist-form').forEach(form => {
 // ----- Issues subscription form -----
 // Same formsubmit.co inbox as the waitlist; different _subject so we can sort.
 // Separate localStorage key so the two forms lock independently.
-const ISSUES_ENDPOINT = 'https://formsubmit.co/ajax/hello@lifelongpep.com'
+const ISSUES_ENDPOINT = 'https://formsubmit.co/ajax/hello@lifelongpep.fit'
 const ISSUES_KEY = 'lifelongpep_issues_v1'
 
 function markIssuesSubscribedUI(form) {
@@ -2181,7 +2181,7 @@ document.querySelectorAll('.signup-form.issues-form').forEach(form => {
       console.warn('Issues subscription failed; falling back to mailto.', err)
       const subject = encodeURIComponent('Subscribe to lifelongpep issues')
       const body = encodeURIComponent(`Hi,\n\nI'd like to subscribe to the lifelongpep peptide issues.\n\nEmail: ${email}\n\nThanks.`)
-      window.location.href = `mailto:hello@lifelongpep.com?subject=${subject}&body=${body}`
+      window.location.href = `mailto:hello@lifelongpep.fit?subject=${subject}&body=${body}`
       btn.textContent = 'Send me the first issue'
       btn.disabled = false
     }
