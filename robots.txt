@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Be polite — the booking app will set its own crawl rules at book.lifelongpep.fit.
+Sitemap: https://lifelongpep.fit/sitemap.xml
