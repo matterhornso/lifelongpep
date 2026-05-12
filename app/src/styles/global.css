@@ -10,8 +10,8 @@
   --ink: #0f172a;
   --muted: #64748b;
   --hairline: rgba(15, 23, 42, 0.1);
-  --accent: #0891b2;
-  --accent-soft: rgba(8, 145, 178, 0.08);
+  --accent: #1e40af;
+  --accent-soft: rgba(30, 64, 175, 0.08);
   --success: #16a34a;
   --warning: #d97706;
   --error: #dc2626;
@@ -50,8 +50,8 @@
     --ink: #f1f5f9;
     --muted: #94a3b8;
     --hairline: rgba(241, 245, 249, 0.12);
-    --accent: #22d3ee;
-    --accent-soft: rgba(34, 211, 238, 0.14);
+    --accent: #60a5fa;
+    --accent-soft: rgba(96, 165, 250, 0.14);
     --success: #4ade80;
     --warning: #fbbf24;
     --error: #f87171;
@@ -239,8 +239,8 @@ a:hover {
 }
 
 .btn-primary:hover {
-  background: #0e7490;
-  border-color: #0e7490;
+  background: #1e3a8a;
+  border-color: #1e3a8a;
   color: #ffffff;
 }
 
