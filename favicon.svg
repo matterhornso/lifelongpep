@@ -1,8 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <rect width="64" height="64" fill="#F4F0E8"/>
-  <text x="32" y="46"
-        font-family="'Instrument Serif', Georgia, serif"
-        font-size="44" font-weight="400"
+  <rect width="64" height="64" fill="#FFFFFF"/>
+  <text x="32" y="44"
+        font-family="Inter, system-ui, sans-serif"
+        font-size="40" font-weight="700"
+        letter-spacing="-1.5"
         text-anchor="middle"
-        fill="#1A1A1A">l<tspan font-style="italic" fill="#5C2E2E">p</tspan><tspan fill="#5C2E2E">.</tspan></text>
+        fill="#0F172A">l<tspan fill="#0891B2">p</tspan><tspan fill="#0891B2">.</tspan></text>
 </svg>
