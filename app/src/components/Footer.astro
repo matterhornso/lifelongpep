@@ -1,0 +1,18 @@
+---
+const landingUrl = import.meta.env.LANDING_URL || "https://lifelongpep.fit";
+---
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <div>
+      <a class="brand" href="/">lifelong<em>pep</em></a>
+      <div class="muted" style="margin-top: 4px;">Longevity, supervised.</div>
+    </div>
+    <div class="flex gap-6">
+      <a href="/doctors">Consult</a>
+      <a href="/recovery">Recovery</a>
+      <a href={landingUrl}>Home</a>
+      <a href="mailto:hello@lifelongpep.fit">hello@lifelongpep.fit</a>
+    </div>
+  </div>
+</footer>

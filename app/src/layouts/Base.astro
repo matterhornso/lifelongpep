@@ -1,0 +1,38 @@
+---
+import "../styles/global.css";
+import Topbar from "../components/Topbar.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  currentNav?: "book" | "doctors" | "recovery" | "about";
+}
+
+const { title, description, currentNav } = Astro.props;
+const fullTitle = title === "lifelongpep" ? title : `${title} · lifelongpep`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>{fullTitle}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <Topbar currentNav={currentNav} />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
