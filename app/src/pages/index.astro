@@ -1,0 +1,78 @@
+---
+import Base from "../layouts/Base.astro";
+import { CONSULT_FEE_INR } from "../lib/types.ts";
+const cutPercent = import.meta.env.CUT_PERCENT || "TBD";
+---
+
+<Base title="Book — lifelongpep" description="Book a longevity consult or a recovery session. Bangalore." currentNav="book">
+  <section class="section">
+    <div class="wrap">
+      <p class="label">Bangalore · Booking</p>
+      <h1 style="margin-top: 24px;">Two ways to <em>start</em>.</h1>
+      <p class="lede" style="margin-top: 24px;">
+        Book a 30-minute consult with a longevity doctor, or book a recovery session — sauna,
+        steam, cryotherapy, red light, salt bath. Pricing shown end-to-end. We take a transparent cut.
+      </p>
+    </div>
+  </section>
+
+  <section class="section hairline-top">
+    <div class="wrap">
+      <div class="cards-grid">
+        <a class="card card-link" href="/doctors">
+          <p class="label">Step 1 · the consult</p>
+          <h3 style="margin-top: 16px;">See a doctor.</h3>
+          <p style="margin-top: 12px;">
+            30 minutes, video or in-person across five Bangalore neighborhoods.
+            If peptides fit your case, the doctor writes the prescription. Free to cancel before the slot.
+          </p>
+          <ul class="line-items" style="margin-top: 24px;">
+            <li>
+              <span class="label-l">Consult</span>
+              <span class="value">₹{CONSULT_FEE_INR.toLocaleString("en-IN")} flat</span>
+            </li>
+            <li>
+              <span class="label-l">Our cut</span>
+              <span class="value">Included</span>
+            </li>
+          </ul>
+          <p class="ui" style="margin-top: 24px; color: var(--accent); font-size: 15px;">
+            Pick a slot →
+          </p>
+        </a>
+
+        <a class="card card-link" href="/recovery">
+          <p class="label">Recovery · standalone or doctor-recommended</p>
+          <h3 style="margin-top: 16px;">Book a session.</h3>
+          <p style="margin-top: 12px;">
+            Sauna, steam, cryotherapy, red light, salt bath. Bangalore providers we've vetted.
+            Sessions flagged as doctor-recommended carry a small line-itemized cut so you see exactly what we take.
+          </p>
+          <ul class="line-items" style="margin-top: 24px;">
+            <li>
+              <span class="label-l">Session</span>
+              <span class="value">Varies</span>
+            </li>
+            <li>
+              <span class="label-l">Our cut</span>
+              <span class="value">{cutPercent}%</span>
+            </li>
+          </ul>
+          <p class="ui" style="margin-top: 24px; color: var(--accent); font-size: 15px;">
+            See what's available →
+          </p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hairline-top">
+    <div class="wrap">
+      <p class="label">Trust</p>
+      <p class="lede" style="margin-top: 16px;">
+        Trust is the first priority, not access. Doctors prescribe. Licensed pharmacies dispense.
+        We handle the booking, the supply chain, and the wearable log.
+      </p>
+    </div>
+  </section>
+</Base>

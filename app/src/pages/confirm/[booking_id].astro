@@ -1,0 +1,120 @@
+---
+import Base from "../../layouts/Base.astro";
+import { supabaseAnon } from "../../lib/supabase.ts";
+
+const { booking_id } = Astro.params;
+
+let booking: {
+  id: string;
+  kind: string;
+  status: string;
+  total_inr: number;
+  consult_mode: string | null;
+  slot_id: string | null;
+} | null = null;
+let slot: { starts_at: string; ends_at: string } | null = null;
+let doctorNeighborhood: string | null = null;
+
+try {
+  const { data: b } = await supabaseAnon
+    .from("bookings")
+    .select("id, kind, status, total_inr, consult_mode, slot_id, doctor_id")
+    .eq("id", booking_id)
+    .single();
+  if (b) {
+    booking = b as typeof booking;
+    if (b.slot_id) {
+      const { data: s } = await supabaseAnon
+        .from("slots")
+        .select("starts_at, ends_at")
+        .eq("id", b.slot_id)
+        .single();
+      slot = s as typeof slot;
+    }
+    if (b.doctor_id) {
+      const { data: d } = await supabaseAnon
+        .from("doctors")
+        .select("neighborhood")
+        .eq("id", b.doctor_id)
+        .single();
+      doctorNeighborhood = d?.neighborhood ?? null;
+    }
+  }
+} catch {
+  // env not set
+}
+
+const when = slot
+  ? new Date(slot.starts_at).toLocaleString("en-IN", {
+      timeZone: "Asia/Kolkata",
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      hour: "numeric",
+      minute: "2-digit",
+    })
+  : null;
+
+const status = booking?.status ?? "pending_payment";
+const confirmed = status === "confirmed";
+---
+
+<Base title="Confirmation" currentNav="book">
+  <section class="section">
+    <div class="wrap" style="max-width: 720px;">
+      <p class="label">{confirmed ? "Confirmed" : "Pending confirmation"}</p>
+      <h1 style="margin-top: 24px;">
+        {confirmed ? <>You're <em>booked</em>.</> : <>Almost <em>there</em>.</>}
+      </h1>
+      <p class="lede" style="margin-top: 24px;">
+        {confirmed && when && (
+          <>
+            Your consult is on <strong>{when} IST</strong>
+            {booking?.consult_mode === "video"
+              ? " — video. Join link emailed."
+              : doctorNeighborhood
+                ? ` — in person at our ${doctorNeighborhood} practice.`
+                : "."}
+            {" "}
+            We've emailed a calendar invite. Free to cancel any time before the slot — reply to that email.
+          </>
+        )}
+        {!confirmed && (
+          <>
+            We received the payment trigger and are awaiting confirmation from Razorpay. This usually
+            takes a few seconds — refresh the page in a moment, or check your email for confirmation.
+          </>
+        )}
+      </p>
+
+      {booking && (
+        <ul class="line-items" style="margin-top: 48px;">
+          <li>
+            <span class="label-l">Booking ID</span>
+            <span class="value">{booking.id.slice(0, 8)}…</span>
+          </li>
+          <li>
+            <span class="label-l">Amount</span>
+            <span class="value">₹{booking.total_inr.toLocaleString("en-IN")}</span>
+          </li>
+          <li>
+            <span class="label-l">Status</span>
+            <span class="value">{booking.status}</span>
+          </li>
+        </ul>
+      )}
+
+      {!booking && (
+        <p class="notice" style="margin-top: 32px;">
+          Booking <code>{booking_id}</code> not found, or Supabase isn't configured. If you completed payment,
+          email <a href="mailto:hello@lifelongpep.fit">hello@lifelongpep.fit</a> with this URL and we'll
+          reconcile.
+        </p>
+      )}
+
+      <p style="margin-top: 32px;">
+        <a class="btn btn-secondary" href="/">Back to booking</a>
+      </p>
+    </div>
+  </section>
+</Base>

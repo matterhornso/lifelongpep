@@ -1,0 +1,73 @@
+---
+import Base from "../../layouts/Base.astro";
+import DoctorCard from "../../components/DoctorCard.astro";
+import { FALLBACK_DOCTORS } from "../../lib/fallback-data.ts";
+import { supabaseAnon } from "../../lib/supabase.ts";
+import type { Doctor } from "../../lib/types.ts";
+import { CONSULT_FEE_INR } from "../../lib/types.ts";
+
+let doctors: Doctor[] = FALLBACK_DOCTORS;
+let usingFallback = true;
+
+try {
+  const { data, error } = await supabaseAnon
+    .from("doctors")
+    .select("id, specialty, neighborhood, years_post_md, modes, availability, bio_short");
+  if (!error && data && data.length > 0) {
+    doctors = data as unknown as Doctor[];
+    usingFallback = false;
+  }
+} catch {
+  // env not configured — fall back silently
+}
+
+const neighborhoods = ["Indiranagar", "Koramangala", "HSR", "Whitefield", "Jayanagar"];
+---
+
+<Base
+  title="Consult a doctor"
+  description="Book a 30-minute longevity consult with a doctor in Bangalore."
+  currentNav="doctors"
+>
+  <section class="section">
+    <div class="wrap">
+      <p class="label">Bangalore · Consult</p>
+      <h1 style="margin-top: 24px;">A doctor, <em>30 minutes</em>, ₹{CONSULT_FEE_INR.toLocaleString("en-IN")}.</h1>
+      <p class="lede" style="margin-top: 24px;">
+        Video or in-person. If peptides fit your case, the doctor writes the prescription and we ship through
+        licensed compounding pharmacies. The fee is flat — what you see here is what you pay.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-tight hairline-top">
+    <div class="wrap">
+      <p class="label">Doctors available across</p>
+      <div class="ui" style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 12px;">
+        {neighborhoods.map((n) => (
+          <span class="badge">{n}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section hairline-top">
+    <div class="wrap">
+      <h2 style="margin-bottom: 32px;">Pick a doctor.</h2>
+      <div class="cards-grid">
+        {doctors.map((d) => <DoctorCard doctor={d} />)}
+      </div>
+      {usingFallback && (
+        <p class="notice" style="margin-top: 32px;">
+          Showing seed data. Supabase is not configured in this environment, so the doctor list is the static
+          fallback from <code>app/src/lib/fallback-data.ts</code>. Once Supabase env vars are set,
+          this page reads from the live <code>doctors</code> table.
+        </p>
+      )}
+      <p class="muted ui" style="margin-top: 32px; font-size: 14px;">
+        Cards show specialty + neighborhood + years post-MD. We don't show names on the catalog — round-robin
+        matching with editor override happens after you pick a slot.
+      </p>
+    </div>
+  </section>
+</Base>

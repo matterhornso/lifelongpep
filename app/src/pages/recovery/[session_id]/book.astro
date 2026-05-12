@@ -1,0 +1,123 @@
+---
+import Base from "../../../layouts/Base.astro";
+import SlotPicker from "../../../components/SlotPicker.tsx";
+import { FALLBACK_RECOVERY, placeholderSlots } from "../../../lib/fallback-data.ts";
+import { supabaseAnon } from "../../../lib/supabase.ts";
+import { RECOVERY_LABELS } from "../../../lib/types.ts";
+import type { RecoveryType } from "../../../lib/types.ts";
+
+const { session_id } = Astro.params;
+
+interface SessionRow {
+  id: string;
+  type: RecoveryType;
+  duration_min: number;
+  price_inr: number;
+  doctor_recommended: boolean;
+  provider: { display_name: string; neighborhood: string } | null;
+}
+
+let session: SessionRow | null = null;
+let slots: Array<{ id: string; starts_at: string; ends_at: string; booked: boolean }> = [];
+let usingFallback = true;
+
+try {
+  const { data } = await supabaseAnon
+    .from("recovery_sessions")
+    .select(
+      "id, type, duration_min, price_inr, doctor_recommended, provider:recovery_providers (display_name, neighborhood)",
+    )
+    .eq("id", session_id)
+    .single();
+  if (data) {
+    session = data as unknown as SessionRow;
+    usingFallback = false;
+    const { data: sr } = await supabaseAnon
+      .from("slots")
+      .select("id, starts_at, ends_at, booked")
+      .eq("recovery_session_id", session_id)
+      .gt("starts_at", new Date().toISOString())
+      .order("starts_at", { ascending: true })
+      .limit(200);
+    slots = (sr as typeof slots) ?? [];
+  }
+} catch {
+  // fall back
+}
+
+if (!session) {
+  for (const p of FALLBACK_RECOVERY) {
+    const s = p.sessions.find((x) => x.id === session_id);
+    if (s) {
+      session = {
+        id: s.id,
+        type: s.type,
+        duration_min: s.duration_min,
+        price_inr: s.price_inr,
+        doctor_recommended: s.doctor_recommended,
+        provider: { display_name: p.display_name, neighborhood: p.neighborhood },
+      };
+      break;
+    }
+  }
+}
+
+if (!session) {
+  return Astro.redirect("/recovery");
+}
+
+if (slots.length === 0) {
+  slots = placeholderSlots({
+    ownerId: session.id,
+    startHour: 7,
+    endHour: 21,
+    intervalMin: session.duration_min,
+  });
+}
+
+const cutPercent = Number(import.meta.env.CUT_PERCENT ?? 15);
+const cutInr = Math.round((session.price_inr * cutPercent) / 100);
+const razorpayKey = import.meta.env.PUBLIC_RAZORPAY_KEY_ID;
+---
+
+<Base
+  title={`Book ${RECOVERY_LABELS[session.type]} — ${session.provider?.display_name ?? ""}`}
+  currentNav="recovery"
+>
+  <section class="section">
+    <div class="wrap">
+      <p class="label"><a href="/recovery" style="color: inherit;">← All recovery sessions</a></p>
+      <h1 style="margin-top: 24px;">
+        <em>{RECOVERY_LABELS[session.type]}</em> · {session.duration_min} min.
+      </h1>
+      <p class="lede" style="margin-top: 24px;">
+        {session.provider?.display_name}, {session.provider?.neighborhood}.
+        {session.doctor_recommended && " Doctor-recommended at lifelongpep."}
+      </p>
+    </div>
+  </section>
+
+  <section class="section hairline-top">
+    <div class="wrap">
+      <div style="display: grid; grid-template-columns: minmax(0,1fr); gap: 48px; max-width: 720px;">
+        <SlotPicker
+          client:load
+          slots={slots}
+          endpoint="/api/payments/recovery-order"
+          resourceId={session.id}
+          resourceKind="recovery"
+          amountInr={session.price_inr}
+          cutInr={cutInr}
+          razorpayKey={razorpayKey}
+        />
+      </div>
+
+      {usingFallback && (
+        <p class="notice" style="margin-top: 48px; max-width: 720px;">
+          Showing placeholder slots — Supabase isn't configured locally. Once env vars are set and the
+          <code>slots</code> table has rows for this session, the picker reads live availability.
+        </p>
+      )}
+    </div>
+  </section>
+</Base>
