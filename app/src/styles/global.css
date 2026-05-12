@@ -1,20 +1,20 @@
 /* Design system tokens — mirrors DESIGN.md exactly.
    Source of truth: ~/lifelongpep/DESIGN.md
-   Do not deviate without explicit founder approval. */
+   Clinical pale palette + Inter, locked 2026-05-12. */
 
 :root {
   /* Light */
-  --bg: #f4f0e8;
+  --bg: #ffffff;
   --surface: #ffffff;
-  --surface-2: #ede7da;
-  --ink: #1a1a1a;
-  --muted: #5a554a;
-  --hairline: rgba(26, 26, 26, 0.1);
-  --accent: #5c2e2e;
-  --accent-soft: #5c2e2e14;
-  --success: #3f6b3f;
-  --warning: #a06a2c;
-  --error: #8c2a2a;
+  --surface-2: #ffffff;
+  --ink: #0f172a;
+  --muted: #64748b;
+  --hairline: rgba(15, 23, 42, 0.1);
+  --accent: #0891b2;
+  --accent-soft: rgba(8, 145, 178, 0.08);
+  --success: #16a34a;
+  --warning: #d97706;
+  --error: #dc2626;
 
   /* Spacing scale */
   --s-1: 4px;
@@ -28,10 +28,10 @@
   --s-24: 96px;
   --s-32: 128px;
 
-  /* Typography */
-  --f-display: "Instrument Serif", Georgia, serif;
-  --f-body: "Source Serif 4", Georgia, serif;
-  --f-ui: "Instrument Sans", -apple-system, sans-serif;
+  /* Typography — single sans, Inter */
+  --f-display: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --f-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --f-ui: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   /* Radius */
   --r-input: 2px;
@@ -44,17 +44,17 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #1a1814;
-    --surface: #252220;
-    --surface-2: #2f2a26;
-    --ink: #f0ebe0;
-    --muted: #aca396;
-    --hairline: rgba(240, 235, 224, 0.12);
-    --accent: #b85959;
-    --accent-soft: rgba(184, 89, 89, 0.12);
-    --success: #79a479;
-    --warning: #c99063;
-    --error: #c76060;
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --surface-2: #1e293b;
+    --ink: #f1f5f9;
+    --muted: #94a3b8;
+    --hairline: rgba(241, 245, 249, 0.12);
+    --accent: #22d3ee;
+    --accent-soft: rgba(34, 211, 238, 0.14);
+    --success: #4ade80;
+    --warning: #fbbf24;
+    --error: #f87171;
   }
 }
 
@@ -72,9 +72,9 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--f-body);
-  font-size: 19px;
+  font-size: 17px;
   line-height: 1.6;
-  font-feature-settings: "kern" 1, "liga" 1;
+  font-feature-settings: "kern" 1, "liga" 1, "cv11" 1;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -84,34 +84,58 @@ h2,
 h3,
 h4 {
   font-family: var(--f-display);
-  font-weight: 400;
-  letter-spacing: -0.025em;
+  font-weight: 700;
+  letter-spacing: -0.03em;
   line-height: 1.05;
   margin: 0;
+  color: var(--ink);
 }
 
 h1 {
-  font-size: clamp(48px, 8vw, 96px);
-  line-height: 0.95;
+  font-size: clamp(44px, 7vw, 80px);
+  line-height: 1.0;
+  letter-spacing: -0.035em;
 }
 
 h2 {
-  font-size: clamp(36px, 5vw, 56px);
+  font-size: clamp(32px, 4.5vw, 48px);
 }
 
 h3 {
-  font-size: clamp(28px, 3vw, 36px);
+  font-size: clamp(22px, 2.5vw, 28px);
   line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 h4 {
-  font-size: clamp(22px, 2vw, 28px);
+  font-size: clamp(18px, 1.8vw, 22px);
   line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.015em;
 }
 
 em,
 i {
   font-style: italic;
+}
+
+/* Accent words inside any heading: cyan, not italic. */
+h1 em,
+h2 em,
+h3 em,
+h4 em,
+.hero h1 em,
+.section-title em {
+  color: var(--accent);
+  font-style: normal;
+  font-weight: inherit;
+}
+
+/* Lede italic stays italic but muted (subtle emphasis in body copy). */
+.lede em {
+  font-style: italic;
+  color: var(--muted);
 }
 
 p {
@@ -139,24 +163,22 @@ a:hover {
 .label {
   font-family: var(--f-ui);
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.10em;
   color: var(--muted);
 }
 
 .lede {
   font-family: var(--f-body);
-  font-style: italic;
-  font-weight: 300;
-  font-size: 22px;
-  line-height: 1.45;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.5;
   max-width: var(--measure);
   color: var(--ink);
 }
 
 .tnum {
-  font-family: var(--f-ui);
   font-variant-numeric: tabular-nums;
 }
 
@@ -190,14 +212,13 @@ a:hover {
   border: 1px solid var(--hairline);
   border-radius: var(--r-card);
   padding: var(--s-6);
-  /* NO shadows. */
 }
 
 /* Buttons */
 .btn {
   font-family: var(--f-ui);
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 600;
   padding: 12px 20px;
   border: 1px solid transparent;
   border-radius: var(--r-card);
@@ -208,18 +229,19 @@ a:hover {
   gap: 8px;
   line-height: 1;
   transition: background 100ms ease-out, color 100ms ease-out;
+  letter-spacing: -0.005em;
 }
 
 .btn-primary {
   background: var(--accent);
-  color: #fff8ed;
+  color: #ffffff;
   border-color: var(--accent);
 }
 
 .btn-primary:hover {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--bg);
+  background: #0e7490;
+  border-color: #0e7490;
+  color: #ffffff;
 }
 
 .btn-secondary {
@@ -254,6 +276,7 @@ a:hover {
 .input:focus {
   outline: none;
   border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
 /* Topbar */
@@ -275,15 +298,16 @@ a:hover {
 
 .brand {
   font-family: var(--f-display);
-  font-size: 22px;
-  font-weight: 400;
+  font-size: 20px;
+  font-weight: 600;
   color: var(--ink);
   text-decoration: none;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 .brand em {
   color: var(--accent);
+  font-style: normal;
 }
 
 .topbar-nav {
@@ -292,6 +316,7 @@ a:hover {
   gap: var(--s-6);
   font-family: var(--f-ui);
   font-size: 14px;
+  font-weight: 500;
 }
 
 .topbar-nav a {
@@ -367,7 +392,6 @@ a:hover {
   gap: var(--s-4);
 }
 
-/* Hover affordance on cards used as links */
 .card-link {
   text-decoration: none;
   color: inherit;
@@ -425,10 +449,11 @@ a:hover {
 .line-items .value {
   font-variant-numeric: tabular-nums;
   color: var(--ink);
+  font-weight: 500;
 }
 
 .line-items li.total {
-  font-weight: 600;
+  font-weight: 700;
 }
 
 /* Slot picker — used by React island */
@@ -441,6 +466,7 @@ a:hover {
 .slot {
   font-family: var(--f-ui);
   font-size: 14px;
+  font-weight: 500;
   font-variant-numeric: tabular-nums;
   padding: 10px 8px;
   border: 1px solid var(--hairline);
@@ -460,7 +486,7 @@ a:hover {
 .slot[aria-pressed="true"] {
   background: var(--accent);
   border-color: var(--accent);
-  color: #fff8ed;
+  color: #ffffff;
 }
 
 .slot:disabled {
@@ -481,6 +507,7 @@ a:hover {
 .day-tab {
   font-family: var(--f-ui);
   font-size: 14px;
+  font-weight: 500;
   background: none;
   border: none;
   padding: var(--s-3) var(--s-4);
@@ -503,6 +530,7 @@ a:hover {
   overflow: hidden;
   font-family: var(--f-ui);
   font-size: 14px;
+  font-weight: 500;
 }
 
 .toggle button {
@@ -527,9 +555,9 @@ a:hover {
 .badge {
   font-family: var(--f-ui);
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   padding: 4px 8px;
   border: 1px solid var(--hairline);
   border-radius: var(--r-card);
@@ -540,6 +568,7 @@ a:hover {
 .badge-rec {
   border-color: var(--accent);
   color: var(--accent);
+  background: var(--accent-soft);
 }
 
 /* Notice strip */
@@ -556,7 +585,7 @@ a:hover {
 /* Mobile adjustments */
 @media (max-width: 720px) {
   body {
-    font-size: 18px;
+    font-size: 16px;
   }
   .section {
     padding-block: var(--s-12);
