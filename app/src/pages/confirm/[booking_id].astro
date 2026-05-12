@@ -2,17 +2,24 @@
 import Base from "../../layouts/Base.astro";
 import { supabaseAnon } from "../../lib/supabase.ts";
 
-const { booking_id } = Astro.params;
-
-let booking: {
+interface BookingRow {
   id: string;
   kind: string;
   status: string;
   total_inr: number;
   consult_mode: string | null;
   slot_id: string | null;
-} | null = null;
-let slot: { starts_at: string; ends_at: string } | null = null;
+  doctor_id: string | null;
+}
+interface SlotRow {
+  starts_at: string;
+  ends_at: string;
+}
+
+const { booking_id } = Astro.params;
+
+let booking: BookingRow | null = null;
+let slot: SlotRow | null = null;
 let doctorNeighborhood: string | null = null;
 
 try {
@@ -22,22 +29,22 @@ try {
     .eq("id", booking_id)
     .single();
   if (b) {
-    booking = b as typeof booking;
-    if (b.slot_id) {
+    booking = b as unknown as BookingRow;
+    if (booking.slot_id) {
       const { data: s } = await supabaseAnon
         .from("slots")
         .select("starts_at, ends_at")
-        .eq("id", b.slot_id)
+        .eq("id", booking.slot_id)
         .single();
-      slot = s as typeof slot;
+      slot = (s as unknown as SlotRow) ?? null;
     }
-    if (b.doctor_id) {
+    if (booking.doctor_id) {
       const { data: d } = await supabaseAnon
         .from("doctors")
         .select("neighborhood")
-        .eq("id", b.doctor_id)
+        .eq("id", booking.doctor_id)
         .single();
-      doctorNeighborhood = d?.neighborhood ?? null;
+      doctorNeighborhood = (d as { neighborhood?: string } | null)?.neighborhood ?? null;
     }
   }
 } catch {
