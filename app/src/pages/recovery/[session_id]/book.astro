@@ -75,7 +75,7 @@ if (slots.length === 0) {
   });
 }
 
-const cutPercent = Number(import.meta.env.CUT_PERCENT ?? 15);
+const cutPercent = Number(import.meta.env.CUT_PERCENT ?? 10);
 const cutInr = Math.round((session.price_inr * cutPercent) / 100);
 const razorpayKey = import.meta.env.PUBLIC_RAZORPAY_KEY_ID;
 ---

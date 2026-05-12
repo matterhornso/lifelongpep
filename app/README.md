@@ -111,7 +111,7 @@ Anti-patterns the design system forbids — review `DESIGN.md` before adding new
 
 ## Open items for the founder (before going live)
 
-- Fix the cut percentage (currently `CUT_PERCENT=15` in `.env.example` — change to whatever you've decided).
+- ~~Fix the cut percentage~~ — set to **10%** (2026-05-12). Change `CUT_PERCENT` in Vercel env if you ever revisit.
 - Replace seed doctors with real onboarded doctors (`display_name` is internal-only, never rendered).
 - Replace seed recovery providers with real Bangalore partnerships (Indiranagar Recovery Studio, Koramangala Cryo Lab, HSR Heat & Light are placeholders).
 - Razorpay live-mode KYC.

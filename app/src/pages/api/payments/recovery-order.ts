@@ -41,7 +41,7 @@ export const POST: APIRoute = async ({ request }) => {
     return Response.json({ error: "Session not found" }, { status: 404 });
   }
 
-  const cutPercent = Number(import.meta.env.CUT_PERCENT ?? 15);
+  const cutPercent = Number(import.meta.env.CUT_PERCENT ?? 10);
   const totalInr: number = session.price_inr;
   const cutInr = Math.round((totalInr * cutPercent) / 100);
 

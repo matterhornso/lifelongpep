@@ -193,7 +193,7 @@ In-session reality: scaffold + schema + doctor flow + recovery list are achievab
 ## Three risk callouts
 
 1. **No real Razorpay test keys yet.** The integration is scaffolded and will compile, but until the founder provisions test-mode keys and sets `PUBLIC_RAZORPAY_KEY_ID` / `RAZORPAY_KEY_SECRET` / `RAZORPAY_WEBHOOK_SECRET`, the order endpoint will throw at runtime. Same for Supabase URL/keys.
-2. **Cut percentage is unset.** The founder hasn't fixed the number. Recovery booking line items render `{CUT_PERCENT}%` from env (default 15 in `.env.example`) — change it before live.
+2. **Cut percentage is 10%** (fixed 2026-05-12). Recovery booking line items render the cut both as percentage on the catalog and as ₹ on each booking page. Driven by `CUT_PERCENT` env var (default 10).
 3. **Seed data is fake.** The five doctors and three recovery providers in `app/supabase/seed/0001_seed.sql` are placeholders. Real doctor onboarding + real Bangalore provider partnerships are out of scope here; replace seed before live launch.
 
 ## Decisions log
@@ -204,3 +204,4 @@ In-session reality: scaffold + schema + doctor flow + recovery list are achievab
 | 2026-05-12 | Subdomain `book.lifelongpep.fit`, landing untouched | Constraint from founder: do not touch index.html except for one Book-now link |
 | 2026-05-12 | Skip 8-dossier research; one DECISIONS.md instead | Optimizes for shipping in this session over re-deriving justifications |
 | 2026-05-12 | Guest checkout (email only), no magic-link auth in v1 | Lowest friction. Magic-link added when "My consults" page is built |
+| 2026-05-12 | Cut on recovery + peptides: **10%** | Founder pick. Below typical marketplace fees (15-25%) to make the line-item disclosure feel earned, not extracted |
