@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /confirm/
+
+# Booking detail pages (slot pickers) are crawlable; the confirmation pages are scoped to one booking and should not be indexed.
+
+Sitemap: https://book.lifelongpep.fit/sitemap.xml

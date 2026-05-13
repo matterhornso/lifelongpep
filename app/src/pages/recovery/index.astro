@@ -1,0 +1,147 @@
+---
+import Base from "../../layouts/Base.astro";
+import RecoveryCard from "../../components/RecoveryCard.astro";
+import { FALLBACK_RECOVERY } from "../../lib/fallback-data.ts";
+import { supabaseAnon } from "../../lib/supabase.ts";
+import { RECOVERY_LABELS } from "../../lib/types.ts";
+import type { RecoveryType } from "../../lib/types.ts";
+
+interface Row {
+  id: string;
+  type: RecoveryType;
+  duration_min: number;
+  price_inr: number;
+  doctor_recommended: boolean;
+  provider: { display_name: string; neighborhood: string } | null;
+}
+
+let rows: Row[] = [];
+let usingFallback = true;
+
+try {
+  const { data, error } = await supabaseAnon
+    .from("recovery_sessions")
+    .select(
+      "id, type, duration_min, price_inr, doctor_recommended, provider:recovery_providers (display_name, neighborhood)",
+    );
+  if (!error && data && data.length > 0) {
+    rows = data as unknown as Row[];
+    usingFallback = false;
+  }
+} catch {
+  // fall back
+}
+
+if (rows.length === 0) {
+  rows = FALLBACK_RECOVERY.flatMap((p) =>
+    p.sessions.map((s) => ({
+      id: s.id,
+      type: s.type,
+      duration_min: s.duration_min,
+      price_inr: s.price_inr,
+      doctor_recommended: s.doctor_recommended,
+      provider: { display_name: p.display_name, neighborhood: p.neighborhood },
+    })),
+  );
+}
+
+const cutPercent = Number(import.meta.env.CUT_PERCENT ?? 10);
+
+const typeLabels = Object.keys(RECOVERY_LABELS) as RecoveryType[];
+
+const itemListJsonLd = {
+  "@type": "ItemList",
+  "@id": "https://book.lifelongpep.fit/recovery#list",
+  name: "Recovery sessions — Bangalore",
+  numberOfItems: rows.length,
+  itemListElement: rows.map((r, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    item: {
+      "@type": "Service",
+      serviceType: RECOVERY_LABELS[r.type],
+      provider: {
+        "@type": "LocalBusiness",
+        name: r.provider?.display_name ?? "Provider",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: r.provider?.neighborhood ?? "Bengaluru",
+          addressRegion: "Karnataka",
+          addressCountry: "IN",
+        },
+      },
+      offers: {
+        "@type": "Offer",
+        price: r.price_inr,
+        priceCurrency: "INR",
+        availability: "https://schema.org/InStock",
+      },
+    },
+  })),
+};
+---
+
+<Base
+  title="Recovery"
+  description="Book a recovery session in Bangalore — sauna, steam, cryotherapy, red light therapy, salt bath. Doctor-recommended sessions flagged. Transparent 10% cut on every line item."
+  currentNav="recovery"
+  jsonLd={itemListJsonLd}
+>
+  <section class="section">
+    <div class="wrap">
+      <p class="label">Bangalore · Recovery</p>
+      <h1 style="margin-top: 24px;">Sauna, cryo, red light, <em>salt</em>.</h1>
+      <p class="lede" style="margin-top: 24px;">
+        Recovery sessions at vetted Bangalore providers. We take a {cutPercent}% cut and show it on every
+        line item before you pay. Doctor-recommended sessions are flagged.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-tight hairline-top">
+    <div class="wrap">
+      <p class="label">What's available</p>
+      <div class="ui" style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 12px;">
+        {typeLabels.map((t) => (
+          <span class="badge">{RECOVERY_LABELS[t]}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section hairline-top">
+    <div class="wrap">
+      <h2 style="margin-bottom: 32px;">Pick a session.</h2>
+      <div class="cards-grid">
+        {rows.map((r) => {
+          const cutInr = Math.round((r.price_inr * cutPercent) / 100);
+          return (
+            <RecoveryCard
+              session_id={r.id}
+              provider_name={r.provider?.display_name ?? "Provider"}
+              neighborhood={r.provider?.neighborhood ?? ""}
+              type={r.type}
+              duration_min={r.duration_min}
+              price_inr={r.price_inr}
+              cut_inr={cutInr}
+              doctor_recommended={r.doctor_recommended}
+            />
+          );
+        })}
+      </div>
+
+      {usingFallback && (
+        <p class="notice" style="margin-top: 32px;">
+          Showing seed data. Real Bangalore provider partnerships are pending — replace
+          <code>FALLBACK_RECOVERY</code> in <code>app/src/lib/fallback-data.ts</code> or seed the
+          <code>recovery_providers</code> table.
+        </p>
+      )}
+
+      <p class="muted ui" style="margin-top: 32px; font-size: 14px;">
+        Cut percentage is configured via <code>CUT_PERCENT</code> in env (currently {cutPercent}%) —
+        the founder hasn't fixed the number yet.
+      </p>
+    </div>
+  </section>
+</Base>

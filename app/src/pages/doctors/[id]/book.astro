@@ -1,0 +1,106 @@
+---
+import Base from "../../../layouts/Base.astro";
+import SlotPicker from "../../../components/SlotPicker.tsx";
+import { FALLBACK_DOCTORS, placeholderSlots } from "../../../lib/fallback-data.ts";
+import { supabaseAnon } from "../../../lib/supabase.ts";
+import type { Doctor } from "../../../lib/types.ts";
+import { CONSULT_FEE_INR } from "../../../lib/types.ts";
+
+const { id } = Astro.params;
+
+let doctor: Doctor | undefined = FALLBACK_DOCTORS.find((d) => d.id === id);
+let slots: Array<{ id: string; starts_at: string; ends_at: string; booked: boolean }> = [];
+let usingFallback = true;
+
+try {
+  const { data: drow } = await supabaseAnon
+    .from("doctors")
+    .select("id, specialty, neighborhood, years_post_md, modes, availability, bio_short")
+    .eq("id", id)
+    .single();
+  if (drow) {
+    doctor = drow as unknown as Doctor;
+    usingFallback = false;
+    const { data: sr } = await supabaseAnon
+      .from("slots")
+      .select("id, starts_at, ends_at, booked, reserved_until")
+      .eq("doctor_id", id)
+      .gt("starts_at", new Date().toISOString())
+      .order("starts_at", { ascending: true })
+      .limit(200);
+    // A live reservation (TTL not expired) blocks the slot from a parallel
+    // customer the same way a confirmed booking does.
+    const now = Date.now();
+    slots = ((sr as Array<{
+      id: string;
+      starts_at: string;
+      ends_at: string;
+      booked: boolean;
+      reserved_until: string | null;
+    }>) ?? []).map((s) => ({
+      id: s.id,
+      starts_at: s.starts_at,
+      ends_at: s.ends_at,
+      booked:
+        s.booked ||
+        (s.reserved_until != null && Date.parse(s.reserved_until) > now),
+    }));
+  }
+} catch {
+  // fall back
+}
+
+if (!doctor) {
+  return Astro.redirect("/doctors");
+}
+
+if (slots.length === 0) {
+  slots = placeholderSlots({ ownerId: doctor.id });
+}
+
+const razorpayKey = import.meta.env.PUBLIC_RAZORPAY_KEY_ID;
+---
+
+<Base
+  title={`Book — ${doctor.specialty}, ${doctor.neighborhood}`}
+  description={`Pick a slot for a 30-minute longevity consult.`}
+  currentNav="doctors"
+>
+  <section class="section">
+    <div class="wrap">
+      <p class="label"><a href="/doctors" style="color: inherit;">← All doctors</a></p>
+      <h1 style="margin-top: 24px;">
+        <em>{doctor.specialty}</em>, {doctor.neighborhood}.
+      </h1>
+      <p class="lede" style="margin-top: 24px;">
+        {doctor.bio_short} A 30-minute consult, ₹{CONSULT_FEE_INR.toLocaleString("en-IN")} flat. Free to cancel
+        before the slot.
+      </p>
+    </div>
+  </section>
+
+  <section class="section hairline-top">
+    <div class="wrap">
+      <div style="display: grid; grid-template-columns: minmax(0,1fr); gap: 48px; max-width: 720px;">
+        <SlotPicker
+          client:load
+          slots={slots}
+          modes={doctor.modes}
+          endpoint="/api/payments/consult-order"
+          resourceId={doctor.id}
+          resourceKind="consult"
+          amountInr={CONSULT_FEE_INR}
+          cutInr={0}
+          razorpayKey={razorpayKey}
+        />
+      </div>
+
+      {usingFallback && (
+        <p class="notice" style="margin-top: 48px; max-width: 720px;">
+          Showing placeholder slots — Supabase isn't configured locally. Once env vars are set and the
+          <code>slots</code> table has rows for this doctor, the picker reads live availability.
+        </p>
+      )}
+    </div>
+  </section>
+</Base>

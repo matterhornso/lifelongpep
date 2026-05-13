@@ -1,0 +1,50 @@
+---
+import { RECOVERY_LABELS } from "../lib/types.ts";
+import type { RecoveryType } from "../lib/types.ts";
+
+interface Props {
+  session_id: string;
+  provider_name: string;
+  neighborhood: string;
+  type: RecoveryType;
+  duration_min: number;
+  price_inr: number;
+  cut_inr: number;
+  doctor_recommended: boolean;
+}
+
+const {
+  session_id,
+  provider_name,
+  neighborhood,
+  type,
+  duration_min,
+  price_inr,
+  cut_inr,
+  doctor_recommended,
+} = Astro.props;
+---
+
+<a class="card card-link" href={`/recovery/${session_id}/book`}>
+  <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;">
+    <p class="label">{neighborhood}</p>
+    {doctor_recommended && <span class="badge badge-rec">Doctor-recommended</span>}
+  </div>
+  <h3 style="margin-top: 8px;">{RECOVERY_LABELS[type]}</h3>
+  <p class="ui muted" style="margin-top: 8px; font-size: 14px;">
+    {provider_name} · {duration_min} min
+  </p>
+  <ul class="line-items" style="margin-top: 24px;">
+    <li>
+      <span class="label-l">Session</span>
+      <span class="value">₹{price_inr.toLocaleString("en-IN")}</span>
+    </li>
+    <li>
+      <span class="label-l">Our cut</span>
+      <span class="value">₹{cut_inr.toLocaleString("en-IN")}</span>
+    </li>
+  </ul>
+  <p class="ui" style="margin-top: 24px; color: var(--accent); font-size: 15px;">
+    Pick a slot →
+  </p>
+</a>

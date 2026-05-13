@@ -1,0 +1,18 @@
+---
+interface Props {
+  currentNav?: "book" | "doctors" | "recovery" | "about";
+}
+const { currentNav } = Astro.props;
+const landingUrl = import.meta.env.LANDING_URL || "https://lifelongpep.fit";
+---
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="/">lifelong<em>pep</em></a>
+    <nav class="topbar-nav" aria-label="Booking nav">
+      <a href="/doctors" aria-current={currentNav === "doctors" ? "page" : undefined}>Consult</a>
+      <a href="/recovery" aria-current={currentNav === "recovery" ? "page" : undefined}>Recovery</a>
+      <a href={landingUrl}>Home</a>
+    </nav>
+  </div>
+</header>

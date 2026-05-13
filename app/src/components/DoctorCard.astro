@@ -1,0 +1,41 @@
+---
+import type { Doctor } from "../lib/types.ts";
+
+interface Props {
+  doctor: Doctor;
+}
+const { doctor } = Astro.props;
+
+const availabilityLabel = {
+  live: "Booking",
+  soon: "Booking soon",
+  off: "Not accepting",
+}[doctor.availability];
+
+const modeLabel = doctor.modes
+  .map((m) => (m === "video" ? "Video" : "In person"))
+  .join(" · ");
+---
+
+<a
+  class="card card-link"
+  href={`/doctors/${doctor.id}/book`}
+  aria-disabled={doctor.availability === "off"}
+>
+  <p class="label">{doctor.specialty}</p>
+  <h3 style="margin-top: 8px;">
+    <em>{doctor.neighborhood}</em>
+  </h3>
+  <p class="ui muted" style="margin-top: 8px; font-size: 14px;">
+    {doctor.years_post_md} years post-MD · {modeLabel}
+  </p>
+  <p style="margin-top: 16px; font-size: 17px;">{doctor.bio_short}</p>
+  <p class="ui" style="margin-top: 24px; display: flex; align-items: center; gap: 8px;">
+    <span
+      class={`dot ${doctor.availability === "live" ? "dot-live" : doctor.availability === "soon" ? "dot-soon" : "dot-off"}`}
+    ></span>
+    <span class={doctor.availability === "live" ? "accent" : "muted"}>
+      {availabilityLabel}
+    </span>
+  </p>
+</a>
