@@ -32,6 +32,24 @@ export const POST: APIRoute = async ({ request }) => {
 
   const admin = supabaseAdmin();
 
+  // Optimistic slot reservation — see consult-order.ts for rationale.
+  const { data: reserved, error: reserveErr } = await admin.rpc("reserve_slot", {
+    p_slot_id: body.slot_id,
+    p_minutes: 10,
+  });
+  if (reserveErr) {
+    return Response.json(
+      { error: `Slot reservation failed: ${reserveErr.message}` },
+      { status: 500 },
+    );
+  }
+  if (!reserved || (Array.isArray(reserved) && reserved.length === 0)) {
+    return Response.json(
+      { error: "That slot was just taken. Pick another." },
+      { status: 409 },
+    );
+  }
+
   const { data: session, error: sErr } = await admin
     .from("recovery_sessions")
     .select("id, price_inr, doctor_recommended")

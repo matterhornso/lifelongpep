@@ -11,9 +11,20 @@ interface RazorpayEvent {
   };
 }
 
+const HANDLED_EVENTS = new Set([
+  "payment.captured",
+  "payment.authorized",
+  "payment.failed",
+]);
+
 export const POST: APIRoute = async ({ request }) => {
   const sig = request.headers.get("x-razorpay-signature");
   if (!sig) return new Response("missing signature", { status: 400 });
+
+  // Razorpay sets x-razorpay-event-id per delivery attempt; retries reuse the
+  // same id, which is exactly the idempotency key we want.
+  const eventId = request.headers.get("x-razorpay-event-id");
+  if (!eventId) return new Response("missing event id", { status: 400 });
 
   const raw = await request.text();
   let ok = false;
@@ -31,37 +42,91 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response("invalid json", { status: 400 });
   }
 
-  if (evt.event !== "payment.captured" && evt.event !== "payment.authorized") {
+  if (!HANDLED_EVENTS.has(evt.event)) {
     return Response.json({ ok: true, ignored: evt.event });
   }
 
   const payment = evt.payload.payment.entity;
   const admin = supabaseAdmin();
 
-  // Find booking by order_id
+  // Tombstone insert. PK on event_id; second-delivery retry trips the unique
+  // violation and we short-circuit before re-running side effects (email).
+  const { error: dedupErr } = await admin
+    .from("processed_webhook_events")
+    .insert({
+      event_id: eventId,
+      event_type: evt.event,
+      order_id: payment.order_id,
+      payment_id: payment.id,
+    });
+  if (dedupErr) {
+    if (dedupErr.code === "23505") {
+      return Response.json({ ok: true, duplicate: true });
+    }
+    return new Response(`failed to record event: ${dedupErr.message}`, { status: 500 });
+  }
+
   const { data: booking } = await admin
     .from("bookings")
-    .select("id, kind, slot_id, customer_id, consult_mode, doctor_id, recovery_session_id, total_inr")
+    .select(
+      "id, kind, slot_id, customer_id, consult_mode, doctor_id, recovery_session_id, total_inr, status",
+    )
     .eq("razorpay_order_id", payment.order_id)
     .single();
   if (!booking) {
     return new Response("booking not found for order", { status: 404 });
   }
 
-  await admin
+  if (evt.event === "payment.failed") {
+    await admin
+      .from("bookings")
+      .update({ status: "cancelled", razorpay_payment_id: payment.id })
+      .eq("id", booking.id);
+    await admin
+      .from("payments")
+      .update({ status: payment.status, razorpay_payment_id: payment.id, raw_payload: evt })
+      .eq("razorpay_order_id", payment.order_id);
+    if (booking.slot_id) {
+      await admin.rpc("clear_slot_reservation", { p_slot_id: booking.slot_id });
+    }
+    return Response.json({ ok: true, event: evt.event });
+  }
+
+  // payment.captured / payment.authorized: confirm the booking. The partial
+  // unique index bookings_one_confirmed_per_slot is the backstop — if another
+  // booking on this slot already won, this UPDATE fails with 23505 and we
+  // cancel + flag for manual refund instead of confirming both.
+  const { error: confirmErr } = await admin
     .from("bookings")
-    .update({
-      status: "confirmed",
-      razorpay_payment_id: payment.id,
-    })
+    .update({ status: "confirmed", razorpay_payment_id: payment.id })
     .eq("id", booking.id);
+  if (confirmErr) {
+    if (confirmErr.code === "23505") {
+      await admin
+        .from("bookings")
+        .update({
+          status: "cancelled",
+          razorpay_payment_id: payment.id,
+          notes: "concurrent slot collision — manual refund required",
+        })
+        .eq("id", booking.id);
+      await admin
+        .from("payments")
+        .update({ status: payment.status, razorpay_payment_id: payment.id, raw_payload: evt })
+        .eq("razorpay_order_id", payment.order_id);
+      console.error(
+        `slot collision: booking=${booking.id} slot=${booking.slot_id} order=${payment.order_id} — refund pending`,
+      );
+      return Response.json({ ok: true, collision: true });
+    }
+    return new Response(`booking confirm failed: ${confirmErr.message}`, { status: 500 });
+  }
 
   await admin
     .from("payments")
     .update({ status: payment.status, razorpay_payment_id: payment.id, raw_payload: evt })
     .eq("razorpay_order_id", payment.order_id);
 
-  // Mark slot as booked
   if (booking.slot_id) {
     await admin
       .from("slots")
@@ -69,7 +134,6 @@ export const POST: APIRoute = async ({ request }) => {
       .eq("id", booking.slot_id);
   }
 
-  // Send confirmation email + .ics (consult bookings only — recovery confirmation is a follow-up)
   if (booking.kind === "consult" && booking.slot_id) {
     try {
       const { data: slot } = await admin
@@ -108,7 +172,9 @@ export const POST: APIRoute = async ({ request }) => {
         });
       }
     } catch (e) {
-      // Email failure should not bounce the webhook; log and proceed.
+      // Email failure should not bounce the webhook; the dedup tombstone is
+      // already committed, so a Razorpay retry won't resend either. Reconcile
+      // missing emails out-of-band.
       console.error("email send failed", (e as Error).message);
     }
   }

@@ -45,6 +45,26 @@ export const POST: APIRoute = async ({ request }) => {
   // Look up or create the customer + booking. If Supabase isn't configured this throws — caller sees 500.
   const admin = supabaseAdmin();
 
+  // Optimistic slot reservation. Atomic UPDATE in the RPC: a concurrent caller
+  // on the same slot gets zero rows back and we return 409 before any of the
+  // booking/customer/order work happens.
+  const { data: reserved, error: reserveErr } = await admin.rpc("reserve_slot", {
+    p_slot_id: body.slot_id,
+    p_minutes: 10,
+  });
+  if (reserveErr) {
+    return Response.json(
+      { error: `Slot reservation failed: ${reserveErr.message}` },
+      { status: 500 },
+    );
+  }
+  if (!reserved || (Array.isArray(reserved) && reserved.length === 0)) {
+    return Response.json(
+      { error: "That slot was just taken. Pick another." },
+      { status: 409 },
+    );
+  }
+
   const { data: cust, error: custErr } = await admin
     .from("customers")
     .upsert(

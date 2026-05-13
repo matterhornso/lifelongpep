@@ -23,12 +23,28 @@ try {
     usingFallback = false;
     const { data: sr } = await supabaseAnon
       .from("slots")
-      .select("id, starts_at, ends_at, booked")
+      .select("id, starts_at, ends_at, booked, reserved_until")
       .eq("doctor_id", id)
       .gt("starts_at", new Date().toISOString())
       .order("starts_at", { ascending: true })
       .limit(200);
-    slots = (sr as typeof slots) ?? [];
+    // A live reservation (TTL not expired) blocks the slot from a parallel
+    // customer the same way a confirmed booking does.
+    const now = Date.now();
+    slots = ((sr as Array<{
+      id: string;
+      starts_at: string;
+      ends_at: string;
+      booked: boolean;
+      reserved_until: string | null;
+    }>) ?? []).map((s) => ({
+      id: s.id,
+      starts_at: s.starts_at,
+      ends_at: s.ends_at,
+      booked:
+        s.booked ||
+        (s.reserved_until != null && Date.parse(s.reserved_until) > now),
+    }));
   }
 } catch {
   // fall back
