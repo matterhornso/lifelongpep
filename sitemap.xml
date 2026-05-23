@@ -4,42 +4,10 @@
   <url>
     <loc>https://lifelongpep.fit/</loc>
     <lastmod>2026-05-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
     <image:image>
       <image:loc>https://lifelongpep.fit/og.png</image:loc>
       <image:title>lifelongpep — Longevity, supervised.</image:title>
-      <image:caption>Doctor-gated longevity marketplace, Bangalore.</image:caption>
+      <image:caption>Doctor-gated longevity marketplace.</image:caption>
     </image:image>
-  </url>
-  <url>
-    <loc>https://lifelongpep.fit/#how</loc>
-    <lastmod>2026-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://lifelongpep.fit/#whats-next</loc>
-    <lastmod>2026-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://lifelongpep.fit/#wearables</loc>
-    <lastmod>2026-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://lifelongpep.fit/#pricing</loc>
-    <lastmod>2026-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://lifelongpep.fit/#faq</loc>
-    <lastmod>2026-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
 </urlset>

@@ -1,0 +1,124 @@
+# lifelongpep — Full Content
+
+> Longevity, supervised.
+
+**URL:** https://lifelongpep.fit/
+**Location:** Bengaluru, Karnataka, India
+**Contact:** hello@lifelongpep.fit
+**Status:** Pre-launch, waitlist mode (booking opens soon)
+**Last updated:** 2026-05-23
+
+---
+
+## What is lifelongpep?
+
+lifelongpep is a doctor-gated longevity marketplace. Users book a consult with a longevity doctor; if peptides are prescribed, lifelongpep handles the supply through licensed compounding pharmacies; users can connect their Garmin, Whoop, Oura, Amazfit, or Apple Watch via the openwearables.io API to log peptide consumption and recovery sessions to their wearable's journal.
+
+The platform operates on pricing transparency: a flat fee on the consult (₹2,500) and a percentage on each peptide or recovery purchase, shown on the line item before any purchase is made.
+
+---
+
+## Core product: three moves
+
+### 1. Consult
+
+Book time with a doctor who works in longevity and recovery — peptides, hormones, sleep, stress — not generic primary care. 30 minutes, video or in-person. The consult costs ₹2,500 (refundable if cancelled before the session).
+
+### 2. Get the peptides
+
+If your doctor prescribes peptides, lifelongpep ships them through its supply chain via licensed compounding pharmacies. One bundled price is shown after your consult before you buy. There is no hidden markup; the platform's cut appears as a named line item.
+
+### 3. Track on your wearable
+
+lifelongpep uses the openwearables.io API to log peptide dosing days — and, as the platform expands, sauna, ice bath, and other recovery sessions — into your Garmin, Whoop, Oura, Amazfit, or Apple Watch journal. Wearable data stays on your device and within your wearable account. None of these devices are medical devices; this is a personal-tracking convenience, not a clinical input.
+
+---
+
+## How a consult works: four steps
+
+1. **Pick a slot.** Choose a longevity doctor and a time. Pay the ₹2,500 consult fee. Cancelled before the consult: not charged.
+2. **Talk for 30 minutes.** Video or in-person depending on your city. Bring your goals, bloodwork, and wearable history if available.
+3. **Receive what's prescribed.** If peptides are prescribed, lifelongpep ships through licensed compounding pharmacies. One bundled price; the platform cut is shown before purchase.
+4. **Track on your wearable.** Connect Garmin, Whoop, Oura, Amazfit, or Apple Watch. Dosing days log to your wearable's journal via openwearables.io. Share with your doctor at follow-up if you want to.
+
+---
+
+## Roadmap
+
+| Stage | What | Status |
+|-------|------|--------|
+| 01 | Peptide consults and supply | Live now |
+| 02 | Recovery bookings: sauna, steam, salt baths, cold plunge, red light therapy | Next |
+| 03 | Supplements: magnesium, omega-3, NAD+ precursors, creatine — curated, doctor-recommendable | After that |
+
+Peptides are step one because they are the question people ask first. The platform is built so the same flow handles recovery experiences and supplements once added.
+
+---
+
+## Pricing
+
+| Item | Price |
+|------|-------|
+| Doctor consult | ₹2,500 flat (30 minutes, video or in-person, refundable if cancelled before) |
+| Peptide prescription | Varies by protocol; shown after consult, before purchase |
+| Platform cut | A transparent percentage on each transaction; displayed on the line item |
+
+You only pay for the consult upfront. If peptides are prescribed, the price is shown after the consult and you decide whether to proceed. The platform wins when you stay — not when you pay more.
+
+---
+
+## Wearable integration
+
+lifelongpep connects through openwearables.io — an open-source, unified health-data API — so peptide and recovery sessions log to whichever wearable you already wear. No new device. No data lock-in.
+
+openwearables.io is the unified health-data layer used for both reading and writing. The integration is open-source and auditable; the codebase is on GitHub (github.com/the-momentum/open-wearables). Wearable data stays on your device and inside your wearable's own account — lifelongpep orchestrates the log, not the storage.
+
+### Supported wearables
+
+| Device | Data logged |
+|--------|-------------|
+| Garmin | HRV, sleep, workouts, body battery |
+| Whoop | Recovery score, strain, sleep |
+| Oura | Readiness, sleep stages, HRV |
+| Amazfit | Activity, sleep, stress |
+| Apple Watch | All of the above via Apple Health |
+
+---
+
+## Legal and compliance
+
+**Is lifelongpep legal?** Yes. The doctor prescribes independently under India's National Medical Commission 2023 RMP regulations. Where a prescription leads to a peptide purchase, dispensing is handled by licensed compounding pharmacies that fulfill against a valid prescription. lifelongpep is the booking and orchestration layer; it does not operate as a pharmacy.
+
+**What if the doctor doesn't prescribe peptides?** That is fine and often the correct answer. The consult covers goals, history, and what is appropriate — sometimes that is lifestyle changes, a different intervention, or no peptides at all. Users are paying for the doctor's judgement, not for a guaranteed prescription.
+
+**Refund policy:** Cancel before the consult and no charge is made. If the consult happens but the user does not proceed to a peptide purchase, the only cost is the consult fee. Peptide purchases have a separate return policy posted with each line item before purchase — pharmacy returns on prescription medications are limited by law.
+
+---
+
+## Frequently asked questions
+
+**How does the wearable integration work?**
+lifelongpep uses the openwearables.io API to log peptide consumption — and, when recovery bookings are added, sauna, ice bath, salt bath, cold plunge, and red light therapy sessions — into Garmin, Whoop, Oura, Amazfit, or Apple Watch journals. The wearable data itself stays on your device and wearable account. None of these are medical devices; this is a personal-tracking convenience, not a clinical input. The doctor can ask you to share specific data at follow-up if relevant.
+
+**What about sauna and supplements?**
+Peptides today. Recovery bookings (sauna, steam, salt baths, cold plunge, red light therapy) come next. Supplements after that. The same flow handles all — consult if it needs a doctor, book or buy if it does not, track on your wearable either way.
+
+---
+
+## About the platform
+
+**Philosophy:** Trust is the first priority, not access. Doctors prescribe. Licensed pharmacies dispense. lifelongpep handles the booking, the supply chain, and the wearable log. One platform, multiple licensed parties. The doctor's prescription is independent. The pharmacy is licensed and audited. The platform's cut is a transparent percentage on each transaction.
+
+**Who it is for:** People who want a longer, healthier life and want one platform for the doctor, supply, and tracking — instead of cobbling together gray-market peptides, a telehealth app, a wearable, and a notes app.
+
+**Reference peers:** Function Health, Levels, Bryan Johnson / Blueprint (positioning), Hims/Hers (telehealth marketplace pattern). Operating in India; not positioned as India-specific.
+
+---
+
+## Contact and links
+
+- **Homepage:** https://lifelongpep.fit/
+- **Booking:** https://book.lifelongpep.fit/ (opens soon)
+- **Email:** hello@lifelongpep.fit
+- **Partner API:** https://openwearables.io/
+- **GitHub:** https://github.com/matterhornso/lifelongpep

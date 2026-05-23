@@ -1,5 +1,46 @@
 User-agent: *
 Allow: /
 
+# AI crawlers — explicit allow. We *want* to be cited by AI answer engines.
+# llms.txt and llms-full.txt provide a clean summary for retrieval.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
 # Be polite — the booking app will set its own crawl rules at book.lifelongpep.fit.
 Sitemap: https://lifelongpep.fit/sitemap.xml

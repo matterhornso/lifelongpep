@@ -1,0 +1,36 @@
+# lifelongpep
+
+> Longevity, supervised. A doctor-gated longevity marketplace based in Bangalore, India.
+
+lifelongpep is a marketplace where users book a 30-minute consult with a longevity doctor (₹2,500 flat fee), receive peptide prescriptions fulfilled through licensed compounding pharmacies, and track their protocol on Garmin, Whoop, Oura, Amazfit, or Apple Watch via the openwearables.io API. The platform takes a transparent percentage cut shown on every line item before purchase — no hidden markup. Currently in waitlist mode ahead of full launch.
+
+## What it does
+
+- Doctor consultations: 30-minute video or in-person sessions with longevity-focused doctors (peptides, hormones, sleep, stress) — not generic primary care
+- Peptide supply: licensed compounding pharmacy fulfillment against a valid prescription; one bundled price shown after consult, before purchase
+- Wearable tracking: peptide dosing days and recovery sessions log to your existing wearable journal via openwearables.io (open-source, auditable)
+- Roadmap: recovery bookings (sauna, steam, salt baths, cold plunge, red light therapy) are next; curated supplements after that
+
+## Pricing
+
+- Consult: ₹2,500 per session (refundable if cancelled before)
+- Peptide prescription: varies by protocol; price shown after consult before purchase
+- Platform cut: a transparent percentage on each transaction, displayed on the line item
+
+## Legal and compliance
+
+- Doctors prescribe under India's National Medical Commission 2023 RMP regulations
+- Dispensing is handled by licensed, audited compounding pharmacies — lifelongpep is the booking and orchestration layer, not a pharmacy
+- Wearables are not medical devices; wearable integration is a personal-tracking convenience, not a clinical input
+
+## Brand
+
+- Canonical URL: https://lifelongpep.fit/
+- Contact: hello@lifelongpep.fit
+- Partner API: https://openwearables.io/
+- GitHub: https://github.com/matterhornso/lifelongpep
+
+## Key pages
+
+- Homepage / full product description: https://lifelongpep.fit/
+- Booking (opens soon): https://book.lifelongpep.fit/
