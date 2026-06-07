@@ -1,10 +1,14 @@
 # lifelongpep — landing page
 
-Doctor-gated longevity marketplace. Currently in waitlist mode.
+Doctor-gated longevity marketplace for India. Currently pre-launch and in waitlist mode.
 
 ## What's here
 
-- `index.html` — the landing page.
+- `index.html` — the main landing page.
+- `peptide-consult-india/` — SEO landing page for supervised peptide consult demand.
+- `longevity-doctor-india/` — SEO landing page for longevity doctor consult demand.
+- `issues/` — educational content index and issue pages.
+- `marketing/` — marketing plan, keyword map, content calendar, messaging, and analytics plan.
 - `pretext.js` — `@chenglou/pretext` vendored for client-side text reflow.
 
 ## Running locally
@@ -26,13 +30,13 @@ Then open `http://localhost:8765/`.
 ## Waitlist form
 
 The waitlist form posts to [formsubmit.co](https://formsubmit.co/) which forwards
-submissions to `hello@lifelongpep.com`. The first submission triggers an
+submissions to `hello@lifelongpep.fit`. The first submission triggers an
 activation email — confirm it once and all subsequent submissions are forwarded
 as plain emails.
 
 ## Custom domain
 
-Add a `CNAME` file with the apex domain (e.g. `lifelongpep.com`) and configure
+Add a `CNAME` file with the apex domain (currently `lifelongpep.fit`) and configure
 the DNS A records to point to GitHub Pages.
 
 ## Stack

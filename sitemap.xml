@@ -3,11 +3,27 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/0.9">
   <url>
     <loc>https://lifelongpep.fit/</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-06-07</lastmod>
     <image:image>
       <image:loc>https://lifelongpep.fit/og.png</image:loc>
       <image:title>lifelongpep — Longevity, supervised.</image:title>
       <image:caption>Doctor-gated longevity marketplace.</image:caption>
     </image:image>
+  </url>
+  <url>
+    <loc>https://lifelongpep.fit/peptide-consult-india/</loc>
+    <lastmod>2026-06-07</lastmod>
+  </url>
+  <url>
+    <loc>https://lifelongpep.fit/longevity-doctor-india/</loc>
+    <lastmod>2026-06-07</lastmod>
+  </url>
+  <url>
+    <loc>https://lifelongpep.fit/issues/</loc>
+    <lastmod>2026-06-07</lastmod>
+  </url>
+  <url>
+    <loc>https://lifelongpep.fit/issues/what-peptides-can-and-cannot-do/</loc>
+    <lastmod>2026-06-07</lastmod>
   </url>
 </urlset>
