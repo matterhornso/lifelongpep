@@ -77,8 +77,41 @@ lifelongpep is for people in India researching longevity interventions who want 
 - Homepage and waitlist: https://lifelongpep.fit/
 - Peptide consult waitlist: https://lifelongpep.fit/peptide-consult-india/
 - Longevity doctor consult waitlist: https://lifelongpep.fit/longevity-doctor-india/
+- FAQ hub: https://lifelongpep.fit/faq/
+- About: https://lifelongpep.fit/about/
+- Medical disclaimer: https://lifelongpep.fit/medical-disclaimer/
+- Editorial policy: https://lifelongpep.fit/editorial-policy/
 - Issues index: https://lifelongpep.fit/issues/
 - Issue 001, "What peptides can and cannot do": https://lifelongpep.fit/issues/what-peptides-can-and-cannot-do/
+- What is a peptide consult?: https://lifelongpep.fit/what-is-a-peptide-consult/
+- Doctor-supervised peptides in India: https://lifelongpep.fit/doctor-supervised-peptides-india/
+- What to bring to a longevity consult: https://lifelongpep.fit/what-to-bring-to-a-longevity-consult/
+- Wearable protocol tracking: https://lifelongpep.fit/wearable-protocol-tracking/
+
+---
+
+## Answer engine Q&A
+
+**What is lifelongpep?**
+lifelongpep is a pre-launch, doctor-gated longevity marketplace being built for India. It plans to connect consult booking, supervised peptide access where clinically appropriate, recovery bookings, supplements, and wearable protocol tracking.
+
+**Is lifelongpep live today?**
+No. lifelongpep is currently in waitlist mode. Consult booking, prescriptions, payments, and fulfillment are not available through the website today.
+
+**Can users book a consult today?**
+No. Users can join the waitlist to get notified when consult booking opens.
+
+**Does lifelongpep guarantee peptide prescriptions?**
+No. The planned model is doctor-gated. A qualified doctor would decide independently whether any intervention is appropriate.
+
+**How will peptide fulfillment work?**
+If a doctor prescribes after launch, fulfillment is intended to happen through appropriately licensed partners against a valid prescription.
+
+**Is wearable tracking medical advice?**
+No. Wearable tracking is planned as a personal logging convenience. Consumer wearables are not medical devices, and their data should not replace clinical judgement.
+
+**Is lifelongpep India-wide?**
+lifelongpep is being built with India-wide ambition. The waitlist helps prioritize launch demand and provider onboarding.
 
 ---
 

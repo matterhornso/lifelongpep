@@ -34,6 +34,41 @@
 - peptide research plain language
 - recovery tracking wearables
 
+### /faq/
+
+- lifelongpep FAQ
+- is lifelongpep live
+- lifelongpep peptide consult
+- lifelongpep waitlist
+
+### /what-is-a-peptide-consult/
+
+- what is a peptide consult
+- peptide consult meaning
+- peptide doctor consult
+- peptide prescription consult
+
+### /doctor-supervised-peptides-india/
+
+- doctor supervised peptides India
+- supervised peptide access India
+- peptide doctor India
+- safe peptide access India
+
+### /what-to-bring-to-a-longevity-consult/
+
+- what to bring to a longevity consult
+- longevity consult checklist
+- prepare for longevity doctor
+- bloodwork for longevity consult
+
+### /wearable-protocol-tracking/
+
+- wearable protocol tracking
+- recovery tracking wearables
+- peptide tracking wearable
+- Garmin Whoop Oura protocol tracking
+
 ## Content clusters
 
 ### Peptides

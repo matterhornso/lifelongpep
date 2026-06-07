@@ -8,6 +8,10 @@ Doctor-gated longevity marketplace for India. Currently pre-launch and in waitli
 - `peptide-consult-india/` — SEO landing page for supervised peptide consult demand.
 - `longevity-doctor-india/` — SEO landing page for longevity doctor consult demand.
 - `issues/` — educational content index and issue pages.
+- `faq/`, `about/`, `medical-disclaimer/`, `editorial-policy/` — trust and AEO pages.
+- `what-is-a-peptide-consult/`, `doctor-supervised-peptides-india/`,
+  `what-to-bring-to-a-longevity-consult/`, `wearable-protocol-tracking/` —
+  SEO/AEO educational pages.
 - `marketing/` — marketing plan, keyword map, content calendar, messaging, and analytics plan.
 - `pretext.js` — `@chenglou/pretext` vendored for client-side text reflow.
 

@@ -13,6 +13,7 @@ Repurpose:
 ## Issue 002
 
 Title: What happens inside a longevity consult
+Related page: `/what-to-bring-to-a-longevity-consult/`
 
 Outline:
 - Goals and history
@@ -35,6 +36,7 @@ Outline:
 ## Issue 004
 
 Title: Why recovery tracking matters more than motivation
+Related page: `/wearable-protocol-tracking/`
 
 Outline:
 - Recovery is a behavior, not a mood
@@ -48,3 +50,14 @@ Outline:
 - Wednesday: educational carousel
 - Friday: issue or short note
 - Monthly: partner outreach batch
+
+## Published evergreen pages
+
+- `/faq/`
+- `/about/`
+- `/medical-disclaimer/`
+- `/editorial-policy/`
+- `/what-is-a-peptide-consult/`
+- `/doctor-supervised-peptides-india/`
+- `/what-to-bring-to-a-longevity-consult/`
+- `/wearable-protocol-tracking/`
