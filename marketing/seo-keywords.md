@@ -69,6 +69,46 @@
 - peptide tracking wearable
 - Garmin Whoop Oura protocol tracking
 
+### /peptides-vs-supplements/
+
+- peptides vs supplements
+- are peptides supplements
+- peptide supplement difference
+- peptide therapy vs supplements
+
+### /longevity-doctor-vs-general-physician/
+
+- longevity doctor vs general physician
+- longevity doctor vs primary care
+- preventive health doctor vs GP
+- health optimization doctor
+
+### /bloodwork-for-longevity-consult/
+
+- bloodwork for longevity consult
+- longevity blood tests
+- what labs for longevity doctor
+- bloodwork health optimization
+
+### /recovery-tracking-sauna-cold-plunge-red-light/
+
+- recovery tracking sauna
+- cold plunge tracking
+- red light therapy tracking
+- recovery protocol tracking
+
+### /doctor-onboarding/
+
+- longevity doctor onboarding India
+- doctor partner longevity platform
+- preventive health doctor marketplace
+
+### /partner-interest/
+
+- recovery partner longevity platform
+- diagnostics partner longevity
+- wellness partner India
+
 ## Content clusters
 
 ### Peptides

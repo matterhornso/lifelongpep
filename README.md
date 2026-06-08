@@ -12,6 +12,11 @@ Doctor-gated longevity marketplace for India. Currently pre-launch and in waitli
 - `what-is-a-peptide-consult/`, `doctor-supervised-peptides-india/`,
   `what-to-bring-to-a-longevity-consult/`, `wearable-protocol-tracking/` —
   SEO/AEO educational pages.
+- `peptides-vs-supplements/`, `longevity-doctor-vs-general-physician/`,
+  `bloodwork-for-longevity-consult/`, `recovery-tracking-sauna-cold-plunge-red-light/` —
+  additional SEO/AEO educational pages.
+- `doctor-onboarding/`, `partner-interest/`, `thank-you/` — conversion and partner-routing pages.
+- `distribution/` — founder LinkedIn drafts, outreach emails, and prospect-list template.
 - `marketing/` — marketing plan, keyword map, content calendar, messaging, and analytics plan.
 - `pretext.js` — `@chenglou/pretext` vendored for client-side text reflow.
 

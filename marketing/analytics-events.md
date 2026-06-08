@@ -23,6 +23,7 @@ Add `lifelongpep.fit` in Plausible, then create custom event goals matching the 
 - `External Openwearables Click`: user clicks openwearables.io
 - `Waitlist Mailto Fallback`: waitlist form failed and opened mail client fallback
 - `Issues Mailto Fallback`: issues form failed and opened mail client fallback
+- `Thank You View`: user lands on the intent-specific thank-you page
 
 ## Useful properties
 
@@ -30,6 +31,7 @@ Add `lifelongpep.fit` in Plausible, then create custom event goals matching the 
 - `cta_text`
 - `source_url`
 - `intent`: waitlist, issues, doctor, partner, press
+- `intent`: early-consult, researching-peptides, doctor, partner, issues
 - `utm_source`
 - `utm_medium`
 - `utm_campaign`
@@ -43,3 +45,15 @@ Add `lifelongpep.fit` in Plausible, then create custom event goals matching the 
 - Top SEO landing page
 - Contact clicks by intent
 - Search Console queries and average position
+
+## Implemented form routing
+
+The homepage waitlist form now captures optional intent:
+
+- early consult access
+- researching peptides
+- doctor
+- recovery, diagnostics, or fulfillment partner
+- educational issues
+
+Successful submissions redirect to `/thank-you/?intent=...` for cleaner conversion tracking.

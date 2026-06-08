@@ -61,3 +61,15 @@ Outline:
 - `/doctor-supervised-peptides-india/`
 - `/what-to-bring-to-a-longevity-consult/`
 - `/wearable-protocol-tracking/`
+- `/peptides-vs-supplements/`
+- `/longevity-doctor-vs-general-physician/`
+- `/bloodwork-for-longevity-consult/`
+- `/recovery-tracking-sauna-cold-plunge-red-light/`
+- `/doctor-onboarding/`
+- `/partner-interest/`
+
+## Distribution assets
+
+- `/distribution/linkedin-posts.md`
+- `/distribution/outreach-emails.md`
+- `/distribution/prospect-list-template.md`

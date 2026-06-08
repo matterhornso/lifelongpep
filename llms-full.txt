@@ -87,6 +87,12 @@ lifelongpep is for people in India researching longevity interventions who want 
 - Doctor-supervised peptides in India: https://lifelongpep.fit/doctor-supervised-peptides-india/
 - What to bring to a longevity consult: https://lifelongpep.fit/what-to-bring-to-a-longevity-consult/
 - Wearable protocol tracking: https://lifelongpep.fit/wearable-protocol-tracking/
+- Peptides vs supplements: https://lifelongpep.fit/peptides-vs-supplements/
+- Longevity doctor vs general physician: https://lifelongpep.fit/longevity-doctor-vs-general-physician/
+- Bloodwork for a longevity consult: https://lifelongpep.fit/bloodwork-for-longevity-consult/
+- Recovery tracking for sauna, cold plunge, and red light: https://lifelongpep.fit/recovery-tracking-sauna-cold-plunge-red-light/
+- Doctor onboarding: https://lifelongpep.fit/doctor-onboarding/
+- Partner interest: https://lifelongpep.fit/partner-interest/
 
 ---
 
@@ -112,6 +118,21 @@ No. Wearable tracking is planned as a personal logging convenience. Consumer wea
 
 **Is lifelongpep India-wide?**
 lifelongpep is being built with India-wide ambition. The waitlist helps prioritize launch demand and provider onboarding.
+
+**Are peptides and supplements the same thing?**
+No. Supplements are usually consumer products with quality, dose, interaction, and fit questions. Peptides are medical-adjacent interventions that should start with doctor supervision.
+
+**What bloodwork should someone bring to a longevity consult?**
+Users should bring recent routine bloodwork or doctor-ordered panels if available, plus medication and supplement context. lifelongpep does not advise users to order or interpret labs from the website.
+
+**How does recovery tracking fit into lifelongpep?**
+Recovery tracking is planned as a personal logging layer for sauna, cold plunge, red light therapy, steam, salt baths, and related recovery sessions. It is not medical monitoring.
+
+**How can doctors contact lifelongpep?**
+Doctors interested in onboarding can use https://lifelongpep.fit/doctor-onboarding/ or email hello@lifelongpep.fit.
+
+**How can partners contact lifelongpep?**
+Recovery, diagnostics, fulfillment, and wellness partners can use https://lifelongpep.fit/partner-interest/ or email hello@lifelongpep.fit.
 
 ---
 

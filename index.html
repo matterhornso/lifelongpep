@@ -524,6 +524,35 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
 }
 .input:focus { outline: none; border-color: var(--accent); }
 .input::placeholder { color: var(--muted); }
+.intent-select {
+  flex: 1 1 240px;
+  min-width: 220px;
+}
+.intent-select select {
+  appearance: none;
+  font-family: var(--ui);
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--r-input);
+  padding: 13px 38px 13px 14px;
+  width: 100%;
+  min-height: 44px;
+  cursor: pointer;
+}
+.intent-select::after {
+  content: "";
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 1px solid var(--muted);
+  border-bottom: 1px solid var(--muted);
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
 
 .btn {
   font-family: var(--ui);
@@ -1592,7 +1621,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
     <a href="#contact">Contact</a>
   </nav>
   <div class="right">
-    <a href="#contact" class="ui" style="color: var(--muted); text-decoration: none; font-size: 13px;">Partners</a>
+    <a href="/partner-interest/" class="ui" style="color: var(--muted); text-decoration: none; font-size: 13px;">Partners</a>
     <a href="#book" class="btn btn-primary" style="padding: 7px 14px; font-size: 13px; min-height: 32px;">Get early access</a>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">Dark</button>
   </div>
@@ -1616,6 +1645,15 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
     <form class="signup-form waitlist-form" id="book" novalidate>
       <div class="input-wrap">
         <input class="input" type="email" name="email" placeholder="you@domain.com" autocomplete="email" required aria-label="Your email address">
+      </div>
+      <div class="input-wrap intent-select">
+        <select name="intent" aria-label="What are you interested in?">
+          <option value="early-consult">I want early consult access</option>
+          <option value="researching-peptides">I'm researching peptides</option>
+          <option value="doctor">I'm a doctor</option>
+          <option value="partner">I'm a recovery, diagnostics, or fulfillment partner</option>
+          <option value="issues">I want the educational issues</option>
+        </select>
       </div>
       <button class="btn btn-primary" type="submit">
         Get early access
@@ -1667,7 +1705,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
         </div>
         <span class="route-cta">Read issues &rarr;</span>
       </a>
-      <a class="audience-route" href="mailto:hello@lifelongpep.fit?subject=Doctor%20partner%20interest">
+      <a class="audience-route" href="/doctor-onboarding/">
         <div>
           <div class="label">For doctors</div>
           <h3>Help shape the provider network.</h3>
@@ -1675,7 +1713,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
         </div>
         <span class="route-cta">Contact us &rarr;</span>
       </a>
-      <a class="audience-route" href="mailto:hello@lifelongpep.fit?subject=Recovery%20or%20fulfillment%20partner%20interest">
+      <a class="audience-route" href="/partner-interest/">
         <div>
           <div class="label">For partners</div>
           <h3>Build the trusted supply side.</h3>
@@ -2183,6 +2221,15 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
       <div class="input-wrap">
         <input class="input" type="email" name="email" placeholder="you@domain.com" autocomplete="email" required aria-label="Your email address">
       </div>
+      <div class="input-wrap intent-select">
+        <select name="intent" aria-label="What are you interested in?">
+          <option value="early-consult">I want early consult access</option>
+          <option value="researching-peptides">I'm researching peptides</option>
+          <option value="doctor">I'm a doctor</option>
+          <option value="partner">I'm a recovery, diagnostics, or fulfillment partner</option>
+          <option value="issues">I want the educational issues</option>
+        </select>
+      </div>
       <button class="btn btn-primary" type="submit">
         Get early access
         <span class="arrow" aria-hidden="true">→</span>
@@ -2222,7 +2269,10 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
           <li><a href="/peptide-consult-india/">Peptide consults</a></li>
           <li><a href="/longevity-doctor-india/">Longevity doctors</a></li>
           <li><a href="/what-is-a-peptide-consult/">What is a peptide consult?</a></li>
+          <li><a href="/peptides-vs-supplements/">Peptides vs supplements</a></li>
+          <li><a href="/bloodwork-for-longevity-consult/">Bloodwork for consults</a></li>
           <li><a href="/wearable-protocol-tracking/">Wearable protocol tracking</a></li>
+          <li><a href="/recovery-tracking-sauna-cold-plunge-red-light/">Recovery tracking</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -2234,6 +2284,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
           <li><a href="#faq">FAQ</a></li>
           <li><a href="/medical-disclaimer/">Medical disclaimer</a></li>
           <li><a href="/editorial-policy/">Editorial policy</a></li>
+          <li><a href="/longevity-doctor-vs-general-physician/">Longevity vs primary care</a></li>
           <li><a href="mailto:hello@lifelongpep.fit?subject=Legal%20and%20licensing%20question">Legal &amp; licensing</a></li>
         </ul>
       </div>
@@ -2241,6 +2292,8 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
         <div class="title">Contact</div>
         <ul>
           <li><a href="mailto:hello@lifelongpep.fit">hello@lifelongpep.fit</a></li>
+          <li><a href="/doctor-onboarding/">Doctor onboarding</a></li>
+          <li><a href="/partner-interest/">Partner interest</a></li>
           <li><a href="https://github.com/matterhornso/lifelongpep">Source on GitHub</a></li>
         </ul>
       </div>
@@ -2372,6 +2425,26 @@ setLabel()
 // future submissions get forwarded as plain emails.
 const WAITLIST_ENDPOINT = 'https://formsubmit.co/ajax/hello@lifelongpep.fit'
 const WAITLIST_KEY = 'lifelongpep_waitlist_v1'
+const intentLabels = {
+  'early-consult': 'early consult access',
+  'researching-peptides': 'researching peptides',
+  'doctor': 'doctor',
+  'partner': 'recovery/diagnostics/fulfillment partner',
+  'issues': 'educational issues'
+}
+
+function getUtmParams() {
+  const params = new URLSearchParams(window.location.search)
+  const out = {}
+  ;['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(key => {
+    if (params.has(key)) out[key] = params.get(key)
+  })
+  return out
+}
+
+function thankYouUrl(intent) {
+  return `/thank-you/?intent=${encodeURIComponent(intent || 'early-consult')}`
+}
 
 function markWaitlistedUI(form) {
   const btn = form.querySelector('button[type="submit"]')
@@ -2412,6 +2485,9 @@ document.querySelectorAll('.signup-form.waitlist-form').forEach(form => {
     }
 
     const email = input.value.trim()
+    const intent = form.querySelector('select[name="intent"]')?.value || 'early-consult'
+    const intentLabel = intentLabels[intent] || intent
+    const source = form.id === 'book' ? 'hero' : 'final_cta'
     btn.textContent = 'Adding you…'
     btn.disabled = true
 
@@ -2424,23 +2500,28 @@ document.querySelectorAll('.signup-form.waitlist-form').forEach(form => {
         },
         body: JSON.stringify({
           email,
-          _subject: 'lifelongpep waitlist signup',
+          intent,
+          intent_label: intentLabel,
+          _subject: `lifelongpep waitlist signup — ${intentLabel}`,
           _captcha: 'false',
           _template: 'table',
-          source: window.location.href
+          source: window.location.href,
+          landing_path: window.location.pathname,
+          ...getUtmParams()
         })
       })
       if (!res.ok) throw new Error('submit failed')
-      localStorage.setItem(WAITLIST_KEY, JSON.stringify({ email, ts: Date.now() }))
-      track('Waitlist Signup', { source: form.id === 'book' ? 'hero' : 'final_cta' })
+      localStorage.setItem(WAITLIST_KEY, JSON.stringify({ email, intent, ts: Date.now() }))
+      track('Waitlist Signup', { source, intent })
       markWaitlistedUI(form)
+      window.location.href = thankYouUrl(intent)
     } catch (err) {
       console.warn('Waitlist submission failed; falling back to mailto.', err)
       // Fallback: open the user's mail client with a pre-filled email.
-      const subject = encodeURIComponent('Join lifelongpep waitlist')
-      const body = encodeURIComponent(`Hi,\n\nI'd like to join the lifelongpep waitlist.\n\nEmail: ${email}\n\nThanks.`)
+      const subject = encodeURIComponent(`Join lifelongpep waitlist — ${intentLabel}`)
+      const body = encodeURIComponent(`Hi,\n\nI'd like to join the lifelongpep waitlist.\n\nEmail: ${email}\nIntent: ${intentLabel}\nSource: ${window.location.href}\n\nThanks.`)
       window.location.href = `mailto:hello@lifelongpep.fit?subject=${subject}&body=${body}`
-      track('Waitlist Mailto Fallback', { source: form.id === 'book' ? 'hero' : 'final_cta' })
+      track('Waitlist Mailto Fallback', { source, intent })
       btn.textContent = 'Join the waitlist'
       btn.disabled = false
     }
@@ -2505,6 +2586,7 @@ document.querySelectorAll('.signup-form.issues-form').forEach(form => {
       localStorage.setItem(ISSUES_KEY, JSON.stringify({ email, ts: Date.now() }))
       track('Issues Subscribe', { source: 'issues_section' })
       markIssuesSubscribedUI(form)
+      window.location.href = thankYouUrl('issues')
     } catch (err) {
       console.warn('Issues subscription failed; falling back to mailto.', err)
       const subject = encodeURIComponent('Subscribe to lifelongpep issues')

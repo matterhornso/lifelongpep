@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank you — lifelongpep</title>
+<meta name="description" content="Thank you for joining the lifelongpep pre-launch waitlist.">
+<link rel="canonical" href="https://lifelongpep.fit/thank-you/">
+<meta name="robots" content="noindex, follow">
+<script defer data-domain="lifelongpep.fit" src="https://plausible.io/js/script.js"></script>
+<script>window.plausible=window.plausible||function(){;(window.plausible.q=window.plausible.q||[]).push(arguments)}</script>
+<style>
+:root { --bg:#fff; --ink:#0f172a; --muted:#64748b; --accent:#1e40af; --line:rgba(15,23,42,.12); --soft:rgba(30,64,175,.08); }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; font-size:18px; line-height:1.65; }
+a { color:var(--accent); text-underline-offset:3px; }
+.shell { max-width:860px; margin:0 auto; padding:0 24px; }
+header { border-bottom:1px solid var(--line); padding:18px 0; }
+nav { display:flex; justify-content:space-between; align-items:center; font-size:14px; }
+.brand { color:var(--ink); text-decoration:none; font-weight:700; font-size:20px; }
+main { padding:80px 0; }
+.eyebrow { color:var(--accent); text-transform:uppercase; letter-spacing:.14em; font-size:12px; font-weight:700; }
+h1 { font-size:clamp(44px,8vw,78px); line-height:1; letter-spacing:-.035em; margin:18px 0 24px; }
+.lede { font-size:22px; color:var(--muted); max-width:62ch; }
+.next { background:var(--soft); border-left:3px solid var(--accent); padding:18px 20px; margin:28px 0; }
+.links { display:flex; flex-wrap:wrap; gap:14px; margin-top:28px; }
+.btn { display:inline-flex; min-height:44px; align-items:center; justify-content:center; padding:12px 18px; border:1px solid var(--accent); border-radius:4px; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; }
+.btn.secondary { background:transparent; color:var(--accent); }
+footer { border-top:1px solid var(--line); padding:36px 0; color:var(--muted); font-size:14px; }
+</style>
+</head>
+<body>
+<header><div class="shell"><nav><a class="brand" href="/">lifelongpep.</a><a href="/issues/">Read issues</a></nav></div></header>
+<main class="shell">
+  <div class="eyebrow">You're on the list</div>
+  <h1 id="title">Thank you.</h1>
+  <p class="lede" id="lede">We have your interest recorded. lifelongpep is pre-launch, and we will use the waitlist to prioritize launch communication.</p>
+  <div class="next" id="next">Next: read the first issue or reply to the confirmation email with anything specific you want us to know.</div>
+  <div class="links">
+    <a class="btn" href="/issues/what-peptides-can-and-cannot-do/">Read issue 001</a>
+    <a class="btn secondary" href="/faq/">Read the FAQ</a>
+    <a class="btn secondary" href="mailto:hello@lifelongpep.fit">Contact us</a>
+  </div>
+</main>
+<footer><div class="shell">No medical advice, prescriptions, or payments happen through this website today.</div></footer>
+<script>
+const copy = {
+  'early-consult': ['Early consult access noted.', 'We will let you know when doctor-gated consult booking opens.'],
+  'researching-peptides': ['Peptide research interest noted.', 'Start with issue 001, then watch for plain-language notes on supervision, risk, and evidence.'],
+  'doctor': ['Doctor interest noted.', 'Email hello@lifelongpep.fit with your registration details and a one-line note on your practice if you want to talk sooner.'],
+  'partner': ['Partner interest noted.', 'Email hello@lifelongpep.fit with your service type, location coverage, and operating model.'],
+  'issues': ['Issue subscription noted.', 'We will send educational notes on peptides, recovery, wearables, and doctor-gated longevity.']
+}
+const intent = new URLSearchParams(location.search).get('intent') || 'early-consult'
+const selected = copy[intent] || copy['early-consult']
+document.getElementById('title').textContent = selected[0]
+document.getElementById('next').textContent = selected[1]
+if (typeof window.plausible === 'function') {
+  window.plausible('Thank You View', { props: { intent: intent, page: location.pathname } })
+}
+</script>
+</body>
+</html>

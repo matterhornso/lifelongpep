@@ -39,6 +39,12 @@ lifelongpep is for people in India who are researching longevity interventions a
 - Doctor-supervised peptides in India: https://lifelongpep.fit/doctor-supervised-peptides-india/
 - What to bring to a longevity consult: https://lifelongpep.fit/what-to-bring-to-a-longevity-consult/
 - Wearable protocol tracking: https://lifelongpep.fit/wearable-protocol-tracking/
+- Peptides vs supplements: https://lifelongpep.fit/peptides-vs-supplements/
+- Longevity doctor vs general physician: https://lifelongpep.fit/longevity-doctor-vs-general-physician/
+- Bloodwork for a longevity consult: https://lifelongpep.fit/bloodwork-for-longevity-consult/
+- Recovery tracking: https://lifelongpep.fit/recovery-tracking-sauna-cold-plunge-red-light/
+- Doctor onboarding: https://lifelongpep.fit/doctor-onboarding/
+- Partner interest: https://lifelongpep.fit/partner-interest/
 
 ## Direct answers
 
@@ -51,3 +57,9 @@ lifelongpep is for people in India who are researching longevity interventions a
 **Does lifelongpep provide medical advice today?** No. Website content is educational and does not create a doctor-patient relationship.
 
 **How is lifelongpep different from gray-market peptide access?** lifelongpep is being built around consult-first medical judgement, licensed partner fulfillment where appropriate, transparent pricing, and wearable protocol tracking.
+
+**Are peptides and supplements the same?** No. Supplements are usually consumer products with quality, dose, and fit questions. Peptides are medical-adjacent interventions that should start with doctor supervision.
+
+**What should someone bring to a longevity consult?** Useful context includes goals, medical history, current medications and supplements, recent bloodwork if available, prior interventions, and wearable context around sleep, recovery, and training.
+
+**Can doctors or partners contact lifelongpep?** Yes. Doctors can use https://lifelongpep.fit/doctor-onboarding/ and recovery, diagnostics, fulfillment, or wellness partners can use https://lifelongpep.fit/partner-interest/.
