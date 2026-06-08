@@ -24,6 +24,7 @@ Add `lifelongpep.fit` in Plausible, then create custom event goals matching the 
 - `Waitlist Mailto Fallback`: waitlist form failed and opened mail client fallback
 - `Issues Mailto Fallback`: issues form failed and opened mail client fallback
 - `Thank You View`: user lands on the intent-specific thank-you page
+- `404 View`: user lands on the GitHub Pages 404 page
 
 ## Useful properties
 
