@@ -1,24 +1,32 @@
 # Analytics Event Plan
 
-## Recommended setup
+## Current setup
 
-Use privacy-friendly analytics such as Plausible or Fathom before running paid traffic. Add Search Console as soon as the new pages are deployed.
+Plausible Analytics is installed on public pages with:
+
+```html
+<script defer data-domain="lifelongpep.fit" src="https://plausible.io/js/script.js"></script>
+```
+
+This uses Plausible Cloud. The open-source `plausible/analytics` repository is the server product for self-hosting and would require separate infrastructure.
+
+Add `lifelongpep.fit` in Plausible, then create custom event goals matching the names below.
 
 ## Core events
 
-- `waitlist_submit`: user submits an early-access form
-- `issues_subscribe`: user submits the issue subscription form
-- `cta_click`: user clicks a primary CTA
-- `contact_click`: user clicks the contact email
-- `partner_click`: user clicks a doctor or partner mailto link
-- `pricing_view`: user scrolls or navigates to pricing
-- `issues_view`: user opens the issues index
-- `issue_read`: user opens an issue page
-- `external_openwearables_click`: user clicks openwearables.io
+- `Waitlist Signup`: successful waitlist form submission
+- `Issues Subscribe`: successful issues form submission
+- `Waitlist CTA Click`: user clicks a waitlist CTA from any tracked page
+- `Doctor Partner Click`: user clicks doctor partner interest
+- `Partner Click`: user clicks recovery or fulfillment partner interest
+- `Contact Click`: user clicks the general contact email
+- `External Openwearables Click`: user clicks openwearables.io
+- `Waitlist Mailto Fallback`: waitlist form failed and opened mail client fallback
+- `Issues Mailto Fallback`: issues form failed and opened mail client fallback
 
 ## Useful properties
 
-- `page_path`
+- `page`
 - `cta_text`
 - `source_url`
 - `intent`: waitlist, issues, doctor, partner, press

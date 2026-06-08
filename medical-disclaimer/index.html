@@ -7,6 +7,8 @@
 <meta name="description" content="Medical disclaimer for lifelongpep, a pre-launch doctor-gated longevity marketplace being built for India.">
 <link rel="canonical" href="https://lifelongpep.fit/medical-disclaimer/">
 <meta name="robots" content="index, follow">
+<script defer data-domain="lifelongpep.fit" src="https://plausible.io/js/script.js"></script>
+<script>window.plausible=window.plausible||function(){;(window.plausible.q=window.plausible.q||[]).push(arguments)}</script>
 <style>
 :root { --bg:#fff; --ink:#0f172a; --muted:#64748b; --accent:#1e40af; --line:rgba(15,23,42,.12); --soft:rgba(30,64,175,.08); }
 * { box-sizing:border-box; }
@@ -51,5 +53,15 @@ footer { border-top:1px solid var(--line); padding:36px 0; color:var(--muted); f
   <p>Consumer wearables are not medical devices. Planned wearable logging is intended as a personal tracking convenience, not a diagnostic input or clinical monitor.</p>
 </main>
 <footer><div class="shell">Contact <a href="mailto:hello@lifelongpep.fit">hello@lifelongpep.fit</a>.</div></footer>
+<script>
+document.addEventListener('click', function (event) {
+  var link = event.target.closest('a')
+  if (!link || typeof window.plausible !== 'function') return
+  var href = link.getAttribute('href') || ''
+  var text = link.textContent.trim().replace(/\s+/g, ' ').slice(0, 80)
+  if (href === '/#book') window.plausible('Waitlist CTA Click', { props: { page: location.pathname, text: text } })
+  if (href.indexOf('mailto:hello@lifelongpep.fit') === 0) window.plausible('Contact Click', { props: { page: location.pathname, text: text } })
+})
+</script>
 </body>
 </html>

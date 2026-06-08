@@ -17,6 +17,14 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
+<!-- Analytics -->
+<script defer data-domain="lifelongpep.fit" src="https://plausible.io/js/script.js"></script>
+<script>
+  window.plausible = window.plausible || function () {
+    ;(window.plausible.q = window.plausible.q || []).push(arguments)
+  }
+</script>
+
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="lifelongpep">
@@ -2247,6 +2255,12 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
 <script type="module">
 import { prepare, layout } from './pretext.js'
 
+function track(eventName, props = {}) {
+  if (typeof window.plausible === 'function') {
+    window.plausible(eventName, { props: { page: window.location.pathname, ...props } })
+  }
+}
+
 // ----- Pretext orchestration -----
 // Track elements with [data-pretext] and one-time prepare() each. Then
 // layout() on every resize and content edit. This is the canonical
@@ -2418,6 +2432,7 @@ document.querySelectorAll('.signup-form.waitlist-form').forEach(form => {
       })
       if (!res.ok) throw new Error('submit failed')
       localStorage.setItem(WAITLIST_KEY, JSON.stringify({ email, ts: Date.now() }))
+      track('Waitlist Signup', { source: form.id === 'book' ? 'hero' : 'final_cta' })
       markWaitlistedUI(form)
     } catch (err) {
       console.warn('Waitlist submission failed; falling back to mailto.', err)
@@ -2425,6 +2440,7 @@ document.querySelectorAll('.signup-form.waitlist-form').forEach(form => {
       const subject = encodeURIComponent('Join lifelongpep waitlist')
       const body = encodeURIComponent(`Hi,\n\nI'd like to join the lifelongpep waitlist.\n\nEmail: ${email}\n\nThanks.`)
       window.location.href = `mailto:hello@lifelongpep.fit?subject=${subject}&body=${body}`
+      track('Waitlist Mailto Fallback', { source: form.id === 'book' ? 'hero' : 'final_cta' })
       btn.textContent = 'Join the waitlist'
       btn.disabled = false
     }
@@ -2487,16 +2503,40 @@ document.querySelectorAll('.signup-form.issues-form').forEach(form => {
       })
       if (!res.ok) throw new Error('submit failed')
       localStorage.setItem(ISSUES_KEY, JSON.stringify({ email, ts: Date.now() }))
+      track('Issues Subscribe', { source: 'issues_section' })
       markIssuesSubscribedUI(form)
     } catch (err) {
       console.warn('Issues subscription failed; falling back to mailto.', err)
       const subject = encodeURIComponent('Subscribe to lifelongpep issues')
       const body = encodeURIComponent(`Hi,\n\nI'd like to subscribe to the lifelongpep peptide issues.\n\nEmail: ${email}\n\nThanks.`)
       window.location.href = `mailto:hello@lifelongpep.fit?subject=${subject}&body=${body}`
+      track('Issues Mailto Fallback', { source: 'issues_section' })
       btn.textContent = 'Send me the first issue'
       btn.disabled = false
     }
   })
+})
+
+document.addEventListener('click', (event) => {
+  const link = event.target.closest('a')
+  if (!link) return
+  const href = link.getAttribute('href') || ''
+  const text = link.textContent.trim().replace(/\s+/g, ' ').slice(0, 80)
+
+  if (href.startsWith('mailto:hello@lifelongpep.fit')) {
+    const subject = new URL(href, window.location.href).searchParams.get('subject') || 'general'
+    if (subject.includes('Doctor')) {
+      track('Doctor Partner Click', { text })
+    } else if (subject.includes('Recovery') || subject.includes('fulfillment')) {
+      track('Partner Click', { text })
+    } else {
+      track('Contact Click', { text })
+    }
+  } else if (href.includes('openwearables.io')) {
+    track('External Openwearables Click', { text })
+  } else if (href === '#book' || href === '/#book') {
+    track('Waitlist CTA Click', { text })
+  }
 })
 </script>
 
