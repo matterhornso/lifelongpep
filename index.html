@@ -1157,6 +1157,40 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
   color: var(--ink);
   background: var(--surface);
 }
+.agent-command-grid {
+  display: grid;
+  gap: var(--s-3);
+}
+.agent-command {
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  background: var(--surface-2);
+  padding: var(--s-4);
+}
+.agent-command .command-label {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-3);
+  align-items: center;
+  color: var(--muted);
+  font-family: var(--ui);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: var(--s-2);
+}
+.agent-command code {
+  display: block;
+  color: var(--ink);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  white-space: normal;
+  word-break: break-word;
+}
+.agent-command .planned {
+  color: var(--accent);
+}
 
 /* ============ STANCE ============ */
 .stance {
@@ -1825,12 +1859,12 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
           </div>
           <div class="input-wrap intent-select">
             <select name="intent" aria-label="What are you interested in?">
-          <option value="glp1-readiness">I'm exploring GLP-1 readiness</option>
-          <option value="early-consult">I want early consult access</option>
-          <option value="issues">I want the educational issues</option>
-          <option value="doctor">I'm a doctor</option>
-          <option value="partner">I'm a recovery, diagnostics, or fulfillment partner</option>
-          <option value="agent">I'm building or using an agent</option>
+              <option value="glp1-readiness">I'm exploring GLP-1 readiness</option>
+              <option value="early-consult">I want early consult access</option>
+              <option value="issues">I want the educational issues</option>
+              <option value="doctor">I'm a doctor</option>
+              <option value="partner">I'm a recovery, diagnostics, or fulfillment partner</option>
+              <option value="agent">I'm building or using an agent</option>
             </select>
           </div>
           <button class="btn btn-primary" type="submit">
@@ -1854,6 +1888,20 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
           <span class="endpoint-pill">CLI</span>
           <span class="endpoint-pill">API</span>
           <span class="endpoint-pill">AI consult layer</span>
+        </div>
+        <div class="agent-command-grid" aria-label="Planned agent examples">
+          <div class="agent-command">
+            <div class="command-label"><span>MCP</span><span class="planned">planned</span></div>
+            <code>lifelongpep.prepare_consult({ goal: "GLP-1 readiness", mode: "education" })</code>
+          </div>
+          <div class="agent-command">
+            <div class="command-label"><span>CLI</span><span class="planned">planned</span></div>
+            <code>lifelongpep consult prepare --goal glp1-readiness --handoff doctor</code>
+          </div>
+          <div class="agent-command">
+            <div class="command-label"><span>API</span><span class="planned">planned</span></div>
+            <code>POST /v1/consult-intents { "intent": "glp1-readiness" }</code>
+          </div>
         </div>
         <ul class="agent-list">
           <li><strong>Prepare a consult.</strong> Collect user goals, history, metabolic context, and readiness questions before a doctor visit.</li>
