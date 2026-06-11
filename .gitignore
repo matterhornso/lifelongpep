@@ -2,6 +2,7 @@
 *.log
 *.pid
 node_modules/
+app/
 .vercel/
 .netlify/
 .gstack/
