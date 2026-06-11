@@ -524,6 +524,19 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
 }
 .input:focus { outline: none; border-color: var(--accent); }
 .input::placeholder { color: var(--muted); }
+.reset-waitlist {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--accent);
+  font-family: var(--ui);
+  font-size: 13px;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.reset-waitlist:hover { color: var(--ink); }
 .intent-select {
   flex: 1 1 240px;
   min-width: 220px;
@@ -2672,6 +2685,7 @@ function thankYouUrl(intent) {
 function markWaitlistedUI(form) {
   const btn = form.querySelector('button[type="submit"]')
   const input = form.querySelector('input[type="email"]')
+  if (form.querySelector('.reset-waitlist')) return
   if (input) {
     input.value = ''
     input.disabled = true
@@ -2683,6 +2697,15 @@ function markWaitlistedUI(form) {
     btn.style.opacity = '0.7'
     btn.style.cursor = 'default'
   }
+  const reset = document.createElement('button')
+  reset.type = 'button'
+  reset.className = 'reset-waitlist'
+  reset.textContent = 'Use another email'
+  reset.addEventListener('click', () => {
+    localStorage.removeItem(WAITLIST_KEY)
+    window.location.reload()
+  })
+  form.insertAdjacentElement('afterend', reset)
 }
 
 function flashError(input, msg) {
