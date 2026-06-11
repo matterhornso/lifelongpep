@@ -2693,6 +2693,21 @@ function flashError(input, msg) {
   if (msg) input.setAttribute('data-error', msg)
 }
 
+async function assertFormSubmitSuccess(res) {
+  let payload = null
+  try {
+    payload = await res.clone().json()
+  } catch (err) {
+    // FormSubmit usually returns JSON for ajax requests, but keep plain 2xx
+    // responses valid in case their response shape changes.
+  }
+  if (!res.ok) throw new Error('submit failed')
+  if (payload && String(payload.success).toLowerCase() === 'false') {
+    throw new Error(payload.message || 'FormSubmit rejected the submission')
+  }
+  return payload
+}
+
 document.querySelectorAll('.signup-form.waitlist-form').forEach(form => {
   // If they already signed up on this device, lock the form on load.
   if (localStorage.getItem(WAITLIST_KEY)) markWaitlistedUI(form)
@@ -2733,17 +2748,14 @@ document.querySelectorAll('.signup-form.waitlist-form').forEach(form => {
           ...getUtmParams()
         })
       })
-      if (!res.ok) throw new Error('submit failed')
+      await assertFormSubmitSuccess(res)
       localStorage.setItem(WAITLIST_KEY, JSON.stringify({ email, intent, ts: Date.now() }))
       track('Waitlist Signup', { source, intent })
       markWaitlistedUI(form)
       window.location.href = thankYouUrl(intent)
     } catch (err) {
-      console.warn('Waitlist submission failed; falling back to mailto.', err)
-      // Fallback: open the user's mail client with a pre-filled email.
-      const subject = encodeURIComponent(`Join lifelongpep waitlist — ${intentLabel}`)
-      const body = encodeURIComponent(`Hi,\n\nI'd like to join the lifelongpep waitlist.\n\nEmail: ${email}\nIntent: ${intentLabel}\nSource: ${window.location.href}\n\nThanks.`)
-      window.location.href = `mailto:hello@lifelongpep.fit?subject=${subject}&body=${body}`
+      console.warn('Waitlist submission failed.', err)
+      alert('The waitlist email is still being activated. Please try again after hello@lifelongpep.fit is receiving mail.')
       track('Waitlist Mailto Fallback', { source, intent })
       btn.textContent = 'Join the waitlist'
       btn.disabled = false
@@ -2805,16 +2817,14 @@ document.querySelectorAll('.signup-form.issues-form').forEach(form => {
           source: window.location.href
         })
       })
-      if (!res.ok) throw new Error('submit failed')
+      await assertFormSubmitSuccess(res)
       localStorage.setItem(ISSUES_KEY, JSON.stringify({ email, ts: Date.now() }))
       track('Issues Subscribe', { source: 'issues_section' })
       markIssuesSubscribedUI(form)
       window.location.href = thankYouUrl('issues')
     } catch (err) {
-      console.warn('Issues subscription failed; falling back to mailto.', err)
-      const subject = encodeURIComponent('Subscribe to lifelongpep issues')
-      const body = encodeURIComponent(`Hi,\n\nI'd like to subscribe to the lifelongpep peptide issues.\n\nEmail: ${email}\n\nThanks.`)
-      window.location.href = `mailto:hello@lifelongpep.fit?subject=${subject}&body=${body}`
+      console.warn('Issues subscription failed.', err)
+      alert('The issues email is still being activated. Please try again after hello@lifelongpep.fit is receiving mail.')
       track('Issues Mailto Fallback', { source: 'issues_section' })
       btn.textContent = 'Send me the first issue'
       btn.disabled = false
