@@ -29,9 +29,15 @@ lifelongpep is for people in India researching metabolic health, GLP-1 readiness
 
 - Homepage and waitlist: https://lifelongpep.fit/
 - GLP-1 readiness consult: https://lifelongpep.fit/glp-1-readiness-consult/
+- GLP-1 readiness checklist: https://lifelongpep.fit/glp-1-readiness-checklist/
+- Questions to ask before GLP-1: https://lifelongpep.fit/questions-to-ask-before-glp-1/
+- What happens after stopping GLP-1: https://lifelongpep.fit/what-happens-after-stopping-glp-1/
+- Mounjaro vs Wegovy vs generic semaglutide India: https://lifelongpep.fit/mounjaro-vs-wegovy-generic-semaglutide-india/
 - Metabolic longevity India: https://lifelongpep.fit/metabolic-longevity-india/
 - GLP-1 muscle-loss prevention: https://lifelongpep.fit/glp-1-muscle-loss-prevention/
 - GLP-1 vs peptides: https://lifelongpep.fit/glp-1-vs-peptides/
+- Doctor network: https://lifelongpep.fit/doctor-network/
+- Agent access: https://lifelongpep.fit/agent-access/
 - Peptide consult waitlist: https://lifelongpep.fit/peptide-consult-india/
 - Longevity doctor consult waitlist: https://lifelongpep.fit/longevity-doctor-india/
 - FAQ hub: https://lifelongpep.fit/faq/
@@ -66,6 +72,8 @@ lifelongpep is for people in India researching metabolic health, GLP-1 readiness
 **Are peptides and supplements the same?** No. Supplements are usually consumer products with quality, dose, and fit questions. Peptides are medical-adjacent interventions that should start with doctor supervision.
 
 **What should someone bring to a longevity consult?** Useful context includes goals, medical history, current medications and supplements, recent bloodwork if available, prior interventions, and wearable context around sleep, recovery, and training.
+
+**What should someone prepare before asking about GLP-1?** Useful preparation includes goals, diagnosis history, medication list, side-effect concerns, bloodwork context, protein and resistance-training plan, cost continuity, and stopping or maintenance questions.
 
 **Can doctors or partners contact lifelongpep?** Yes. Doctors can use https://lifelongpep.fit/doctor-onboarding/ and recovery, diagnostics, fulfillment, or wellness partners can use https://lifelongpep.fit/partner-interest/.
 

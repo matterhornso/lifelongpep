@@ -19,6 +19,30 @@
 - GLP-1 prescription consult India
 - GLP-1 weight loss consult India
 
+### /glp-1-readiness-checklist/
+- GLP-1 readiness checklist
+- GLP-1 checklist India
+- before starting GLP-1
+- GLP-1 consult preparation
+
+### /questions-to-ask-before-glp-1/
+- questions to ask before GLP-1
+- GLP-1 doctor questions
+- what to ask before semaglutide
+- what to ask before Mounjaro
+
+### /what-happens-after-stopping-glp-1/
+- what happens after stopping GLP-1
+- GLP-1 weight regain
+- stopping semaglutide
+- GLP-1 maintenance plan
+
+### /mounjaro-vs-wegovy-generic-semaglutide-india/
+- Mounjaro vs Wegovy India
+- generic semaglutide India
+- semaglutide vs tirzepatide India
+- GLP-1 brands India
+
 ### /metabolic-longevity-india/
 - metabolic longevity India
 - metabolic health longevity India
@@ -36,6 +60,17 @@
 - is GLP-1 a peptide
 - GLP-1 metabolic therapy
 - peptide platform vs GLP-1 platform
+
+### /doctor-network/
+- GLP-1 doctor network India
+- metabolic longevity doctors India
+- doctor supervised GLP-1 India
+
+### /agent-access/
+- GLP-1 MCP
+- health agent API
+- metabolic health agent workflow
+- doctor booking API
 - wearable protocol tracking India
 
 ### /peptide-consult-india/

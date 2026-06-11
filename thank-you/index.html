@@ -26,6 +26,8 @@ h1 { font-size:clamp(44px,8vw,78px); line-height:1; letter-spacing:-.035em; marg
 .links { display:flex; flex-wrap:wrap; gap:14px; margin-top:28px; }
 .btn { display:inline-flex; min-height:44px; align-items:center; justify-content:center; padding:12px 18px; border:1px solid var(--accent); border-radius:4px; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; }
 .btn.secondary { background:transparent; color:var(--accent); }
+.intent-links { display:grid; gap:10px; margin-top:24px; padding:0; list-style:none; }
+.intent-links a { display:block; padding:12px 0; border-top:1px solid var(--line); text-decoration:none; }
 footer { border-top:1px solid var(--line); padding:36px 0; color:var(--muted); font-size:14px; }
 </style>
 </head>
@@ -37,10 +39,11 @@ footer { border-top:1px solid var(--line); padding:36px 0; color:var(--muted); f
   <p class="lede" id="lede">We have your interest recorded. lifelongpep is pre-launch, and we will use the waitlist to prioritize launch communication.</p>
   <div class="next" id="next">Next: read the first issue or reply to the confirmation email with anything specific you want us to know.</div>
   <div class="links">
-    <a class="btn" href="/issues/what-peptides-can-and-cannot-do/">Read issue 001</a>
+    <a class="btn" id="primary-link" href="/glp-1-readiness-checklist/">Open your checklist</a>
     <a class="btn secondary" href="/faq/">Read the FAQ</a>
     <a class="btn secondary" href="mailto:hello@lifelongpep.fit">Contact us</a>
   </div>
+  <ul class="intent-links" id="intent-links"></ul>
 </main>
 <footer><div class="shell">No medical advice, prescriptions, or payments happen through this website today.</div></footer>
 <script>
@@ -53,10 +56,25 @@ const copy = {
   'agent': ['Agent access interest noted.', 'We will share MCP, CLI, API, AI consult, and doctor booking access details when the agent workflow is ready.'],
   'issues': ['Issue subscription noted.', 'We will send educational notes on GLP-1 readiness, metabolic health, recovery, wearables, and doctor-gated longevity.']
 }
+const linkMap = {
+  'early-consult': [['GLP-1 readiness checklist', '/glp-1-readiness-checklist/'], ['Questions to ask before GLP-1', '/questions-to-ask-before-glp-1/']],
+  'glp1-readiness': [['GLP-1 readiness checklist', '/glp-1-readiness-checklist/'], ['Muscle-loss prevention', '/glp-1-muscle-loss-prevention/'], ['After stopping GLP-1', '/what-happens-after-stopping-glp-1/']],
+  'researching-peptides': [['GLP-1 vs peptides', '/glp-1-vs-peptides/'], ['Issue 001', '/issues/what-peptides-can-and-cannot-do/']],
+  'doctor': [['Doctor network standards', '/doctor-network/'], ['Doctor onboarding', '/doctor-onboarding/']],
+  'partner': [['Partner interest', '/partner-interest/'], ['Recovery tracking', '/recovery-tracking-sauna-cold-plunge-red-light/']],
+  'agent': [['Agent access', '/agent-access/'], ['Human and agent workflow', '/#agent-access']],
+  'issues': [['Issue 001', '/issues/what-peptides-can-and-cannot-do/'], ['GLP-1 readiness checklist', '/glp-1-readiness-checklist/']]
+}
 const intent = new URLSearchParams(location.search).get('intent') || 'early-consult'
 const selected = copy[intent] || copy['early-consult']
+const selectedLinks = linkMap[intent] || linkMap['early-consult']
 document.getElementById('title').textContent = selected[0]
 document.getElementById('next').textContent = selected[1]
+document.getElementById('primary-link').href = selectedLinks[0][1]
+document.getElementById('primary-link').textContent = selectedLinks[0][0]
+document.getElementById('intent-links').innerHTML = selectedLinks.slice(1).map(function (item) {
+  return '<li><a href="' + item[1] + '">' + item[0] + '</a></li>'
+}).join('')
 if (typeof window.plausible === 'function') {
   window.plausible('Thank You View', { props: { intent: intent, page: location.pathname } })
 }

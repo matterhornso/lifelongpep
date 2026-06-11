@@ -27,6 +27,12 @@ Add `lifelongpep.fit` in Plausible, then create custom event goals matching the 
 - `Thank You View`: user lands on the intent-specific thank-you page
 - `404 View`: user lands on the GitHub Pages 404 page
 
+## Conversion pages
+
+- `/thank-you/?intent=glp1-readiness`: point users to the GLP-1 readiness checklist, muscle-loss prevention, and stopping/maintenance pages.
+- `/thank-you/?intent=doctor`: point doctors to doctor network standards and onboarding.
+- `/thank-you/?intent=agent`: point agent builders to the dedicated agent access page.
+
 ## Useful properties
 
 - `page`
@@ -47,6 +53,7 @@ Add `lifelongpep.fit` in Plausible, then create custom event goals matching the 
 - Top SEO landing page
 - Contact clicks by intent
 - Search Console queries and average position
+- FormSubmit activation state
 
 ## Implemented form routing
 

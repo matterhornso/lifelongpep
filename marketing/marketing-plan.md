@@ -34,6 +34,7 @@ lifelongpep is a doctor-gated metabolic longevity platform being built for India
 - Build India-wide SEO pages for high-intent searches
 - Publish issues that educate without hype
 - Capture separate intent streams for waitlist, issues, doctors, and partners
+- Capture separate agent interest for MCP, CLI, API, AI consult, and doctor-booking workflows
 - Add analytics events before paid traffic
 
 ## Next campaigns
@@ -43,3 +44,13 @@ lifelongpep is a doctor-gated metabolic longevity platform being built for India
 - Partner outreach to doctors, recovery studios, diagnostics, and fulfillment operators
 - Search-focused educational articles
 - Launch announcement to waitlist once booking is ready
+
+## Immediate execution sequence
+
+1. Activate FormSubmit from `hello@lifelongpep.fit`.
+2. Request Search Console indexing for the GLP-1 readiness pages.
+3. Run 10 doctor conversations.
+4. Run 10 target-user conversations.
+5. Run 5 partner conversations.
+6. Run 5 agent-builder conversations.
+7. Turn repeated objections into the next SEO/AEO page.

@@ -62,6 +62,24 @@ Outline:
 - `/what-to-bring-to-a-longevity-consult/`
 - `/wearable-protocol-tracking/`
 - `/peptides-vs-supplements/`
+
+## GLP-1 readiness sequence
+
+Status: Published
+
+- `/glp-1-readiness-checklist/`
+- `/questions-to-ask-before-glp-1/`
+- `/glp-1-muscle-loss-prevention/`
+- `/what-happens-after-stopping-glp-1/`
+- `/mounjaro-vs-wegovy-generic-semaglutide-india/`
+
+Next pages to create from founder calls:
+
+- GLP-1 side effects: what to ask a doctor
+- Protein and resistance training during GLP-1
+- How to choose a metabolic health doctor
+- GLP-1 cost continuity in India
+- GLP-1 for people who already train
 - `/longevity-doctor-vs-general-physician/`
 - `/bloodwork-for-longevity-consult/`
 - `/recovery-tracking-sauna-cold-plunge-red-light/`

@@ -79,9 +79,15 @@ The website separates human and agent entry points. Humans can join the waitlist
 
 - Homepage and waitlist: https://lifelongpep.fit/
 - GLP-1 readiness consult: https://lifelongpep.fit/glp-1-readiness-consult/
+- GLP-1 readiness checklist: https://lifelongpep.fit/glp-1-readiness-checklist/
+- Questions to ask before GLP-1: https://lifelongpep.fit/questions-to-ask-before-glp-1/
+- What happens after stopping GLP-1: https://lifelongpep.fit/what-happens-after-stopping-glp-1/
+- Mounjaro vs Wegovy vs generic semaglutide India: https://lifelongpep.fit/mounjaro-vs-wegovy-generic-semaglutide-india/
 - Metabolic longevity India: https://lifelongpep.fit/metabolic-longevity-india/
 - GLP-1 muscle-loss prevention: https://lifelongpep.fit/glp-1-muscle-loss-prevention/
 - GLP-1 vs peptides: https://lifelongpep.fit/glp-1-vs-peptides/
+- Doctor network: https://lifelongpep.fit/doctor-network/
+- Agent access: https://lifelongpep.fit/agent-access/
 - Peptide consult waitlist: https://lifelongpep.fit/peptide-consult-india/
 - Longevity doctor consult waitlist: https://lifelongpep.fit/longevity-doctor-india/
 - FAQ hub: https://lifelongpep.fit/faq/
@@ -131,6 +137,9 @@ No. Supplements are usually consumer products with quality, dose, interaction, a
 
 **What bloodwork should someone bring to a longevity consult?**
 Users should bring recent routine bloodwork or doctor-ordered panels if available, plus medication and supplement context. lifelongpep does not advise users to order or interpret labs from the website.
+
+**What should someone prepare before asking about GLP-1?**
+Useful preparation includes goals, diagnosis history, medication list, side-effect concerns, bloodwork context, protein and resistance-training plan, cost continuity, and stopping or maintenance questions.
 
 **How does recovery tracking fit into lifelongpep?**
 Recovery tracking is planned as a personal logging layer for sauna, cold plunge, red light therapy, steam, salt baths, and related recovery sessions. It is not medical monitoring.

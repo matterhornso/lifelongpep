@@ -8,6 +8,10 @@ Doctor-gated metabolic longevity and GLP-1 readiness platform for India. Current
 - `glp-1-readiness-consult/`, `metabolic-longevity-india/`,
   `glp-1-muscle-loss-prevention/`, `glp-1-vs-peptides/` — first-lane
   GLP-1 readiness and metabolic longevity SEO/AEO pages.
+- `glp-1-readiness-checklist/`, `questions-to-ask-before-glp-1/`,
+  `what-happens-after-stopping-glp-1/`,
+  `mounjaro-vs-wegovy-generic-semaglutide-india/` — GLP-1 readiness
+  question-capture pages.
 - `peptide-consult-india/` — SEO landing page for supervised peptide consult demand.
 - `longevity-doctor-india/` — SEO landing page for longevity doctor consult demand.
 - `issues/` — educational content index and issue pages.
@@ -19,6 +23,7 @@ Doctor-gated metabolic longevity and GLP-1 readiness platform for India. Current
   `bloodwork-for-longevity-consult/`, `recovery-tracking-sauna-cold-plunge-red-light/` —
   additional SEO/AEO educational pages.
 - `doctor-onboarding/`, `partner-interest/`, `thank-you/` — conversion and partner-routing pages.
+- `doctor-network/` and `agent-access/` — trust and agent workflow pages.
 - The homepage includes a Human/Agent access section. Agent access is positioned as planned MCP, CLI, and API workflows for consult preparation, AI education, and doctor booking, using static command-card patterns inspired by `nolly-studio/cult-ui` without adding a React/Tailwind dependency.
 - `404.html` — GitHub Pages fallback page.
 - `distribution/` — founder LinkedIn drafts, outreach emails, and prospect-list template.
