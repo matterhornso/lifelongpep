@@ -1084,6 +1084,80 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
   color: var(--accent);
 }
 
+/* ============ HUMAN / AGENT ACCESS ============ */
+.access-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--hairline);
+  border-left: 1px solid var(--hairline);
+}
+.access-panel {
+  padding: var(--s-6);
+  border-right: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+}
+.access-panel .label {
+  font-family: var(--ui);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+}
+.access-panel h3 {
+  font-family: var(--display);
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+.access-panel p {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.55;
+}
+.agent-list {
+  list-style: none;
+  display: grid;
+  gap: var(--s-3);
+  margin: 0;
+  padding: 0;
+}
+.agent-list li {
+  border-top: 1px solid var(--hairline);
+  padding-top: var(--s-3);
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.agent-list strong {
+  color: var(--ink);
+  font-family: var(--ui);
+  font-weight: 600;
+}
+.endpoint-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+.endpoint-pill {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-family: var(--ui);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  background: var(--surface);
+}
+
 /* ============ STANCE ============ */
 .stance {
   border-top: 2px solid var(--ink);
@@ -1549,6 +1623,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
   .roadmap-item { grid-template-columns: 1fr; gap: var(--s-3); }
   .roadmap-item.live .roadmap-when::after { display: none; }
   .audience-routes { grid-template-columns: repeat(2, 1fr); }
+  .access-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 1080px) {
@@ -1612,6 +1687,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
 <header class="topbar" role="banner">
   <a href="/" class="brand" aria-label="lifelongpep, home">lifelongpep<span class="dot">.</span></a>
   <nav aria-label="Primary">
+    <a href="#agent-access">Agents</a>
     <a href="#how">How it works</a>
     <a href="#whats-next">What's next</a>
     <a href="#wearables">Wearables</a>
@@ -1651,6 +1727,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
           <option value="glp1-readiness">I'm exploring GLP-1 readiness</option>
           <option value="doctor">I'm a doctor</option>
           <option value="partner">I'm a recovery, diagnostics, or fulfillment partner</option>
+          <option value="agent">I'm building or using an agent</option>
           <option value="issues">I want the educational issues</option>
         </select>
       </div>
@@ -1720,6 +1797,73 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
         </div>
         <span class="route-cta">Start a conversation &rarr;</span>
       </a>
+    </div>
+  </section>
+
+  <!-- ============ HUMAN / AGENT ACCESS ============ -->
+  <section class="section" id="agent-access" aria-labelledby="agent-access-title">
+    <div class="section-label">Human or agent</div>
+    <h2 class="section-title" id="agent-access-title" data-pretext="agent-access-title">
+      Two ways into <em>the same workflow.</em>
+    </h2>
+    <p class="section-lede">
+      Humans can join the waitlist directly. Agents will be able to use the
+      planned lifelongpep MCP, CLI, or API to prepare a consult, talk to the AI
+      layer, and book doctor consultations once booking opens.
+    </p>
+
+    <div class="access-grid">
+      <article class="access-panel">
+        <div>
+          <div class="label">Human</div>
+          <h3>Join the consult waitlist.</h3>
+          <p>Use the form if you want early access to GLP-1 readiness and metabolic longevity consults when booking opens.</p>
+        </div>
+        <form class="signup-form waitlist-form" data-source="human_access" novalidate>
+          <div class="input-wrap">
+            <input class="input" type="email" name="email" placeholder="you@domain.com" autocomplete="email" required aria-label="Your email address">
+          </div>
+          <div class="input-wrap intent-select">
+            <select name="intent" aria-label="What are you interested in?">
+          <option value="glp1-readiness">I'm exploring GLP-1 readiness</option>
+          <option value="early-consult">I want early consult access</option>
+          <option value="issues">I want the educational issues</option>
+          <option value="doctor">I'm a doctor</option>
+          <option value="partner">I'm a recovery, diagnostics, or fulfillment partner</option>
+          <option value="agent">I'm building or using an agent</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" type="submit">
+            Join as a human
+            <span class="arrow" aria-hidden="true">&rarr;</span>
+          </button>
+        </form>
+        <p class="fineprint">
+          No medical advice, prescriptions, or payments happen through this form.
+        </p>
+      </article>
+
+      <article class="access-panel">
+        <div>
+          <div class="label">Agent</div>
+          <h3>Use MCP, CLI, or API.</h3>
+          <p>Agent access is planned for assistants, automations, and care-navigation workflows that need a structured way to interact with lifelongpep.</p>
+        </div>
+        <div class="endpoint-row" aria-label="Planned agent interfaces">
+          <span class="endpoint-pill">MCP</span>
+          <span class="endpoint-pill">CLI</span>
+          <span class="endpoint-pill">API</span>
+          <span class="endpoint-pill">AI consult layer</span>
+        </div>
+        <ul class="agent-list">
+          <li><strong>Prepare a consult.</strong> Collect user goals, history, metabolic context, and readiness questions before a doctor visit.</li>
+          <li><strong>Consult with AI.</strong> Use the planned AI layer for education, intake preparation, and next-step guidance, not diagnosis.</li>
+          <li><strong>Book doctor consultations.</strong> Request appointment options once the provider network and booking workflow are live.</li>
+        </ul>
+        <a class="btn btn-secondary" href="mailto:hello@lifelongpep.fit?subject=Agent%20access%20interest&body=Hi%20lifelongpep%2C%0A%0AI%27m%20interested%20in%20agent%20access.%0A%0AInterface%3A%20MCP%20%2F%20CLI%20%2F%20API%0AUse%20case%3A%0AExpected%20volume%3A%0A">
+          Request agent access
+        </a>
+      </article>
     </div>
   </section>
 
@@ -2229,6 +2373,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
           <option value="glp1-readiness">I'm exploring GLP-1 readiness</option>
           <option value="doctor">I'm a doctor</option>
           <option value="partner">I'm a recovery, diagnostics, or fulfillment partner</option>
+          <option value="agent">I'm building or using an agent</option>
           <option value="issues">I want the educational issues</option>
         </select>
       </div>
@@ -2269,6 +2414,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
           <li><a href="#wearables">Wearable integration</a></li>
           <li><a href="#issues">Issues &amp; updates</a></li>
           <li><a href="/glp-1-readiness-consult/">GLP-1 readiness consult</a></li>
+          <li><a href="#agent-access">Human and agent access</a></li>
           <li><a href="/metabolic-longevity-india/">Metabolic longevity</a></li>
           <li><a href="/glp-1-muscle-loss-prevention/">Muscle-loss prevention</a></li>
           <li><a href="/peptide-consult-india/">Peptide consults</a></li>
@@ -2436,6 +2582,7 @@ const intentLabels = {
   'researching-peptides': 'researching peptides',
   'doctor': 'doctor',
   'partner': 'recovery/diagnostics/fulfillment partner',
+  'agent': 'agent access',
   'issues': 'educational issues'
 }
 
@@ -2493,7 +2640,7 @@ document.querySelectorAll('.signup-form.waitlist-form').forEach(form => {
     const email = input.value.trim()
     const intent = form.querySelector('select[name="intent"]')?.value || 'early-consult'
     const intentLabel = intentLabels[intent] || intent
-    const source = form.id === 'book' ? 'hero' : 'final_cta'
+    const source = form.dataset.source || (form.id === 'book' ? 'hero' : 'final_cta')
     btn.textContent = 'Adding you…'
     btn.disabled = true
 
@@ -2617,6 +2764,8 @@ document.addEventListener('click', (event) => {
       track('Doctor Partner Click', { text })
     } else if (subject.includes('Recovery') || subject.includes('fulfillment')) {
       track('Partner Click', { text })
+    } else if (subject.includes('Agent')) {
+      track('Agent Access Click', { text })
     } else {
       track('Contact Click', { text })
     }

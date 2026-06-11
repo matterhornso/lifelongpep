@@ -19,6 +19,7 @@ Add `lifelongpep.fit` in Plausible, then create custom event goals matching the 
 - `Waitlist CTA Click`: user clicks a waitlist CTA from any tracked page
 - `Doctor Partner Click`: user clicks doctor partner interest
 - `Partner Click`: user clicks recovery or fulfillment partner interest
+- `Agent Access Click`: user clicks agent access interest
 - `Contact Click`: user clicks the general contact email
 - `External Openwearables Click`: user clicks openwearables.io
 - `Waitlist Mailto Fallback`: waitlist form failed and opened mail client fallback
@@ -31,8 +32,8 @@ Add `lifelongpep.fit` in Plausible, then create custom event goals matching the 
 - `page`
 - `cta_text`
 - `source_url`
-- `intent`: waitlist, issues, doctor, partner, press
-- `intent`: early-consult, glp1-readiness, researching-peptides, doctor, partner, issues
+- `intent`: waitlist, issues, doctor, partner, agent, press
+- `intent`: early-consult, glp1-readiness, researching-peptides, doctor, partner, agent, issues
 - `utm_source`
 - `utm_medium`
 - `utm_campaign`
@@ -56,6 +57,7 @@ The homepage waitlist form now captures optional intent:
 - researching peptides
 - doctor
 - recovery, diagnostics, or fulfillment partner
+- agent access
 - educational issues
 
 Successful submissions redirect to `/thank-you/?intent=...` for cleaner conversion tracking.

@@ -46,6 +46,7 @@ lifelongpep plans to use openwearables.io to log protocol and recovery sessions 
 | 02 | GLP-1 readiness consult booking and prescription workflow where clinically appropriate | Planned |
 | 03 | Recovery bookings: sauna, steam, salt baths, cold plunge, red light therapy | Planned |
 | 04 | Supplements: magnesium, omega-3, NAD+ precursors, creatine | Planned |
+| 05 | Agent access through MCP, CLI, and API interfaces | Planned |
 
 ---
 
@@ -69,6 +70,8 @@ lifelongpep is being built as a booking and orchestration layer, not a pharmacy.
 ## Who it is for
 
 lifelongpep is for people in India researching metabolic health, GLP-1 readiness, weight-loss maintenance, body composition, and longevity interventions who want supervision instead of gray-market access, prescription shortcuts, or fragmented tracking. It is also for doctors, fulfillment partners, recovery services, diagnostics services, and wellness operators interested in building a more accountable metabolic longevity ecosystem.
+
+The website separates human and agent entry points. Humans can join the waitlist through the form. Agents are planned to use MCP, CLI, or API interfaces for consult preparation, AI education, and doctor consultation booking once those workflows are live.
 
 ---
 
@@ -137,6 +140,9 @@ Doctors interested in onboarding can use https://lifelongpep.fit/doctor-onboardi
 
 **How can partners contact lifelongpep?**
 Recovery, diagnostics, fulfillment, and wellness partners can use https://lifelongpep.fit/partner-interest/ or email hello@lifelongpep.fit.
+
+**Can agents use lifelongpep?**
+Agent access is planned. The intended interfaces are MCP, CLI, and API workflows for consult preparation, AI education, and doctor consultation booking after launch.
 
 ---
 

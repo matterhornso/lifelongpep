@@ -19,6 +19,7 @@ lifelongpep is a pre-launch metabolic longevity platform being built for India. 
 - Recovery bookings: sauna, steam, salt baths, cold plunge, red light therapy
 - Supplements: curated, quality-checked, and doctor-recommendable where appropriate
 - Wearable tracking: planned protocol and recovery logs through openwearables.io for Garmin, Whoop, Oura, Amazfit, and Apple Watch
+- Agent access: planned MCP, CLI, and API interfaces for consult preparation, AI education, and doctor booking workflows after launch
 
 ## Positioning
 
@@ -67,3 +68,5 @@ lifelongpep is for people in India researching metabolic health, GLP-1 readiness
 **What should someone bring to a longevity consult?** Useful context includes goals, medical history, current medications and supplements, recent bloodwork if available, prior interventions, and wearable context around sleep, recovery, and training.
 
 **Can doctors or partners contact lifelongpep?** Yes. Doctors can use https://lifelongpep.fit/doctor-onboarding/ and recovery, diagnostics, fulfillment, or wellness partners can use https://lifelongpep.fit/partner-interest/.
+
+**Can agents use lifelongpep?** Agent access is planned. The homepage now separates human waitlist access from planned MCP, CLI, and API workflows for consult preparation, AI education, and doctor consultation booking once those systems are live.
