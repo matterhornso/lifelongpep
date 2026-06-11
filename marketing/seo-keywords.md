@@ -6,8 +6,36 @@
 
 - doctor gated longevity India
 - supervised longevity India
-- longevity marketplace India
-- peptide waitlist India
+- metabolic longevity India
+- GLP-1 readiness consult India
+- GLP-1 doctor consult India
+- GLP-1 muscle loss prevention
+- doctor supervised metabolic health India
+
+### /glp-1-readiness-consult/
+- GLP-1 readiness consult India
+- GLP-1 eligibility review India
+- GLP-1 doctor consult India
+- GLP-1 prescription consult India
+- GLP-1 weight loss consult India
+
+### /metabolic-longevity-india/
+- metabolic longevity India
+- metabolic health longevity India
+- doctor supervised metabolic health
+- longevity weight loss India
+
+### /glp-1-muscle-loss-prevention/
+- GLP-1 muscle loss prevention
+- GLP-1 protein resistance training
+- semaglutide muscle loss India
+- tirzepatide muscle loss India
+
+### /glp-1-vs-peptides/
+- GLP-1 vs peptides
+- is GLP-1 a peptide
+- GLP-1 metabolic therapy
+- peptide platform vs GLP-1 platform
 - wearable protocol tracking India
 
 ### /peptide-consult-india/

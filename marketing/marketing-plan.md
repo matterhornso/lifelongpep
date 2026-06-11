@@ -2,7 +2,7 @@
 
 ## Positioning
 
-lifelongpep is a doctor-gated longevity marketplace being built for India. The current website should sell trust, clarity, and early access rather than active booking. The core contrast is supervised, accountable longevity workflows versus gray-market peptides, fragmented recovery services, and self-directed tracking.
+lifelongpep is a doctor-gated metabolic longevity platform being built for India. The current website should sell trust, clarity, and GLP-1 readiness rather than active booking or prescription access. The core contrast is supervised metabolic health workflows versus gray-market drugs, prescription shortcuts, fragmented recovery services, and self-directed tracking.
 
 ## Current status
 
@@ -14,7 +14,7 @@ lifelongpep is a doctor-gated longevity marketplace being built for India. The c
 
 ## Primary audiences
 
-- People researching peptides who want medical supervision
+- People researching GLP-1 readiness, metabolic health, and weight-loss maintenance who want medical supervision
 - People seeking longevity or preventive health consults in India
 - Doctors in longevity, preventive medicine, endocrinology, sports medicine, and recovery
 - Licensed fulfillment, diagnostics, recovery, and wellness partners
@@ -39,7 +39,7 @@ lifelongpep is a doctor-gated longevity marketplace being built for India. The c
 ## Next campaigns
 
 - Founder-led LinkedIn posts about supervised longevity in India
-- Instagram carousels explaining peptide myths and consult workflows
+- Instagram carousels explaining GLP-1 readiness, muscle preservation, and consult workflows
 - Partner outreach to doctors, recovery studios, diagnostics, and fulfillment operators
 - Search-focused educational articles
 - Launch announcement to waitlist once booking is ready

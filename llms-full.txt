@@ -1,18 +1,18 @@
 # lifelongpep — Full Content
 
-> Doctor-gated longevity, launching in India.
+> Doctor-gated metabolic longevity and GLP-1 readiness, launching in India.
 
 **URL:** https://lifelongpep.fit/
 **Location:** India-wide ambition
 **Contact:** hello@lifelongpep.fit
 **Status:** Pre-launch, waitlist mode
-**Last updated:** 2026-06-07
+**Last updated:** 2026-06-11
 
 ---
 
 ## What is lifelongpep?
 
-lifelongpep is a pre-launch, doctor-gated longevity marketplace being built for India. The planned product connects longevity-focused consult booking, supervised peptide access through licensed partners where clinically appropriate, recovery bookings, supplements, and wearable protocol tracking.
+lifelongpep is a pre-launch, doctor-gated metabolic longevity platform being built for India. The planned product starts with GLP-1 readiness: consult prep, eligibility review, contraindication review, bloodwork context, muscle-loss prevention, recovery, supplements, and wearable protocol tracking.
 
 The service is not live yet. Consult booking, prescriptions, payments, and fulfillment are not available through the website today. The waitlist is being used to understand demand, prioritize launch communication, and support provider and partner onboarding.
 
@@ -26,11 +26,11 @@ Users leave their email to get notified when consult booking opens. No medical a
 
 ### 2. Book a consult when available
 
-When launched, users should be able to book time with a longevity-focused doctor. The consult is intended to cover goals, history, bloodwork where available, wearable context, sleep, stress, recovery, hormones, and whether any intervention is appropriate.
+When launched, users should be able to book time with a qualified doctor for metabolic longevity and GLP-1 readiness. The consult is intended to cover goals, history, bloodwork where available, wearable context, sleep, stress, recovery, body composition, current medications, contraindications, and whether any intervention is appropriate.
 
-### 3. Access only if appropriate
+### 3. Prescription therapy only if appropriate
 
-The planned model is doctor-gated. Peptide access is not guaranteed. If a qualified doctor independently prescribes after launch, fulfillment would happen through appropriately licensed partners against a valid prescription.
+The planned model is doctor-gated. GLP-1 access, peptide access, and any prescription are not guaranteed. If a qualified doctor independently prescribes after launch, fulfillment would happen through appropriately licensed partners against a valid prescription.
 
 ### 4. Track the protocol
 
@@ -42,8 +42,8 @@ lifelongpep plans to use openwearables.io to log protocol and recovery sessions 
 
 | Stage | What | Status |
 |-------|------|--------|
-| 01 | Consult waitlist, provider onboarding, partner workflows | In progress |
-| 02 | Doctor-gated consult booking and supervised peptide access | Planned |
+| 01 | Metabolic longevity waitlist, provider onboarding, partner workflows | In progress |
+| 02 | GLP-1 readiness consult booking and prescription workflow where clinically appropriate | Planned |
 | 03 | Recovery bookings: sauna, steam, salt baths, cold plunge, red light therapy | Planned |
 | 04 | Supplements: magnesium, omega-3, NAD+ precursors, creatine | Planned |
 
@@ -68,13 +68,17 @@ lifelongpep is being built as a booking and orchestration layer, not a pharmacy.
 
 ## Who it is for
 
-lifelongpep is for people in India researching longevity interventions who want supervision instead of gray-market peptide access, self-directed protocols, or fragmented tracking. It is also for doctors, fulfillment partners, recovery services, diagnostics services, and wellness operators interested in building a more accountable longevity ecosystem.
+lifelongpep is for people in India researching metabolic health, GLP-1 readiness, weight-loss maintenance, body composition, and longevity interventions who want supervision instead of gray-market access, prescription shortcuts, or fragmented tracking. It is also for doctors, fulfillment partners, recovery services, diagnostics services, and wellness operators interested in building a more accountable metabolic longevity ecosystem.
 
 ---
 
 ## Pages
 
 - Homepage and waitlist: https://lifelongpep.fit/
+- GLP-1 readiness consult: https://lifelongpep.fit/glp-1-readiness-consult/
+- Metabolic longevity India: https://lifelongpep.fit/metabolic-longevity-india/
+- GLP-1 muscle-loss prevention: https://lifelongpep.fit/glp-1-muscle-loss-prevention/
+- GLP-1 vs peptides: https://lifelongpep.fit/glp-1-vs-peptides/
 - Peptide consult waitlist: https://lifelongpep.fit/peptide-consult-india/
 - Longevity doctor consult waitlist: https://lifelongpep.fit/longevity-doctor-india/
 - FAQ hub: https://lifelongpep.fit/faq/
@@ -99,7 +103,7 @@ lifelongpep is for people in India researching longevity interventions who want 
 ## Answer engine Q&A
 
 **What is lifelongpep?**
-lifelongpep is a pre-launch, doctor-gated longevity marketplace being built for India. It plans to connect consult booking, supervised peptide access where clinically appropriate, recovery bookings, supplements, and wearable protocol tracking.
+lifelongpep is a pre-launch, doctor-gated metabolic longevity platform being built for India. It starts with GLP-1 readiness and plans to connect consult booking, prescription workflows where clinically appropriate, recovery bookings, supplements, and wearable protocol tracking.
 
 **Is lifelongpep live today?**
 No. lifelongpep is currently in waitlist mode. Consult booking, prescriptions, payments, and fulfillment are not available through the website today.
@@ -107,10 +111,10 @@ No. lifelongpep is currently in waitlist mode. Consult booking, prescriptions, p
 **Can users book a consult today?**
 No. Users can join the waitlist to get notified when consult booking opens.
 
-**Does lifelongpep guarantee peptide prescriptions?**
-No. The planned model is doctor-gated. A qualified doctor would decide independently whether any intervention is appropriate.
+**Does lifelongpep guarantee GLP-1 prescriptions?**
+No. The planned model is doctor-gated. A qualified doctor would decide independently whether GLP-1, another intervention, further testing, lifestyle changes, or no prescription is appropriate.
 
-**How will peptide fulfillment work?**
+**How will prescription fulfillment work?**
 If a doctor prescribes after launch, fulfillment is intended to happen through appropriately licensed partners against a valid prescription.
 
 **Is wearable tracking medical advice?**

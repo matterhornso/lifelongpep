@@ -3,83 +3,99 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/0.9">
   <url>
     <loc>https://lifelongpep.fit/</loc>
-    <lastmod>2026-06-08</lastmod>
+    <lastmod>2026-06-11</lastmod>
     <image:image>
       <image:loc>https://lifelongpep.fit/og.png</image:loc>
-      <image:title>lifelongpep — Doctor-gated longevity, launching in India.</image:title>
-      <image:caption>Pre-launch doctor-gated longevity marketplace for India.</image:caption>
+      <image:title>lifelongpep — Metabolic longevity and GLP-1 readiness in India.</image:title>
+      <image:caption>Pre-launch doctor-gated metabolic longevity platform for India.</image:caption>
     </image:image>
   </url>
   <url>
+    <loc>https://lifelongpep.fit/glp-1-readiness-consult/</loc>
+    <lastmod>2026-06-11</lastmod>
+  </url>
+  <url>
+    <loc>https://lifelongpep.fit/metabolic-longevity-india/</loc>
+    <lastmod>2026-06-11</lastmod>
+  </url>
+  <url>
+    <loc>https://lifelongpep.fit/glp-1-muscle-loss-prevention/</loc>
+    <lastmod>2026-06-11</lastmod>
+  </url>
+  <url>
+    <loc>https://lifelongpep.fit/glp-1-vs-peptides/</loc>
+    <lastmod>2026-06-11</lastmod>
+  </url>
+  <url>
     <loc>https://lifelongpep.fit/peptide-consult-india/</loc>
-    <lastmod>2026-06-08</lastmod>
+    <lastmod>2026-06-11</lastmod>
   </url>
   <url>
     <loc>https://lifelongpep.fit/longevity-doctor-india/</loc>
-    <lastmod>2026-06-08</lastmod>
+    <lastmod>2026-06-11</lastmod>
   </url>
   <url>
     <loc>https://lifelongpep.fit/issues/</loc>
-    <lastmod>2026-06-08</lastmod>
+    <lastmod>2026-06-11</lastmod>
   </url>
   <url>
     <loc>https://lifelongpep.fit/issues/what-peptides-can-and-cannot-do/</loc>
-    <lastmod>2026-06-08</lastmod>
+    <lastmod>2026-06-11</lastmod>
   </url>
   <url>
     <loc>https://lifelongpep.fit/faq/</loc>
-    <lastmod>2026-06-08</lastmod>
+    <lastmod>2026-06-11</lastmod>
   </url>
   <url>
     <loc>https://lifelongpep.fit/about/</loc>
-    <lastmod>2026-06-08</lastmod>
+    <lastmod>2026-06-11</lastmod>
   </url>
   <url>
     <loc>https://lifelongpep.fit/medical-disclaimer/</loc>
-    <lastmod>2026-06-08</lastmod>
+    <lastmod>2026-06-11</lastmod>
   </url>
   <url>
     <loc>https://lifelongpep.fit/editorial-policy/</loc>
-    <lastmod>2026-06-08</lastmod>
+    <lastmod>2026-06-11</lastmod>
   </url>
   <url>
     <loc>https://lifelongpep.fit/what-is-a-peptide-consult/</loc>
-    <lastmod>2026-06-08</lastmod>
+    <lastmod>2026-06-11</lastmod>
   </url>
   <url>
     <loc>https://lifelongpep.fit/doctor-supervised-peptides-india/</loc>
-    <lastmod>2026-06-08</lastmod>
+    <lastmod>2026-06-11</lastmod>
   </url>
   <url>
     <loc>https://lifelongpep.fit/what-to-bring-to-a-longevity-consult/</loc>
-    <lastmod>2026-06-08</lastmod>
+    <lastmod>2026-06-11</lastmod>
   </url>
   <url>
     <loc>https://lifelongpep.fit/wearable-protocol-tracking/</loc>
-    <lastmod>2026-06-08</lastmod>
+    <lastmod>2026-06-11</lastmod>
   </url>
   <url>
     <loc>https://lifelongpep.fit/peptides-vs-supplements/</loc>
-    <lastmod>2026-06-08</lastmod>
+    <lastmod>2026-06-11</lastmod>
   </url>
   <url>
     <loc>https://lifelongpep.fit/longevity-doctor-vs-general-physician/</loc>
-    <lastmod>2026-06-08</lastmod>
+    <lastmod>2026-06-11</lastmod>
   </url>
   <url>
     <loc>https://lifelongpep.fit/bloodwork-for-longevity-consult/</loc>
-    <lastmod>2026-06-08</lastmod>
+    <lastmod>2026-06-11</lastmod>
   </url>
   <url>
     <loc>https://lifelongpep.fit/recovery-tracking-sauna-cold-plunge-red-light/</loc>
-    <lastmod>2026-06-08</lastmod>
+    <lastmod>2026-06-11</lastmod>
   </url>
   <url>
     <loc>https://lifelongpep.fit/doctor-onboarding/</loc>
-    <lastmod>2026-06-08</lastmod>
+    <lastmod>2026-06-11</lastmod>
   </url>
   <url>
     <loc>https://lifelongpep.fit/partner-interest/</loc>
-    <lastmod>2026-06-08</lastmod>
+    <lastmod>2026-06-11</lastmod>
   </url>
 </urlset>

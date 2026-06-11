@@ -6,7 +6,7 @@ Subject: Doctor partner interest: lifelongpep
 
 Hi {{name}},
 
-I'm building lifelongpep, a pre-launch doctor-gated longevity marketplace for India.
+I'm building lifelongpep, a pre-launch doctor-gated metabolic longevity platform for India, starting with GLP-1 readiness.
 
 The idea is simple: consult first, access only if medically appropriate, fulfillment through accountable partners where relevant, and protocol tracking that is clear enough to discuss at follow-up.
 
@@ -25,7 +25,7 @@ Subject: Recovery partner interest: lifelongpep
 
 Hi {{name}},
 
-I'm building lifelongpep, a pre-launch doctor-gated longevity marketplace for India.
+I'm building lifelongpep, a pre-launch doctor-gated metabolic longevity platform for India, starting with GLP-1 readiness.
 
 Recovery bookings are part of the roadmap: sauna, cold plunge, red light, steam, salt baths, and related services. The goal is to make recovery easier to book, pay for, and log, while keeping medical claims out of the parts that are not medical.
 
@@ -44,7 +44,7 @@ Subject: Partner interest: lifelongpep
 
 Hi {{name}},
 
-I'm building lifelongpep, a pre-launch doctor-gated longevity marketplace for India.
+I'm building lifelongpep, a pre-launch doctor-gated metabolic longevity platform for India, starting with GLP-1 readiness.
 
 The model separates medical judgement, partner workflows, pricing, and personal tracking. If a doctor prescribes after launch, fulfillment would need to happen through appropriately licensed partners against valid prescriptions. Diagnostics may also become important for consult context.
 

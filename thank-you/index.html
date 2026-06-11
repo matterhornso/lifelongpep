@@ -45,11 +45,12 @@ footer { border-top:1px solid var(--line); padding:36px 0; color:var(--muted); f
 <footer><div class="shell">No medical advice, prescriptions, or payments happen through this website today.</div></footer>
 <script>
 const copy = {
-  'early-consult': ['Early consult access noted.', 'We will let you know when doctor-gated consult booking opens.'],
+  'early-consult': ['Early consult access noted.', 'We will let you know when doctor-gated metabolic longevity consult booking opens.'],
+  'glp1-readiness': ['GLP-1 readiness interest noted.', 'We will send launch updates for the doctor-gated GLP-1 readiness workflow. No prescriptions or payments happen through the waitlist.'],
   'researching-peptides': ['Peptide research interest noted.', 'Start with issue 001, then watch for plain-language notes on supervision, risk, and evidence.'],
   'doctor': ['Doctor interest noted.', 'Email hello@lifelongpep.fit with your registration details and a one-line note on your practice if you want to talk sooner.'],
   'partner': ['Partner interest noted.', 'Email hello@lifelongpep.fit with your service type, location coverage, and operating model.'],
-  'issues': ['Issue subscription noted.', 'We will send educational notes on peptides, recovery, wearables, and doctor-gated longevity.']
+  'issues': ['Issue subscription noted.', 'We will send educational notes on GLP-1 readiness, metabolic health, recovery, wearables, and doctor-gated longevity.']
 }
 const intent = new URLSearchParams(location.search).get('intent') || 'early-consult'
 const selected = copy[intent] || copy['early-consult']

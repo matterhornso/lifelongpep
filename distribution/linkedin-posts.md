@@ -2,9 +2,9 @@
 
 ## Post 1: Consult First
 
-Most peptide conversations start too late.
+Most GLP-1 conversations start too late.
 
-The first question should not be "which peptide?"
+The first question should not be "which drug?"
 
 It should be:
 

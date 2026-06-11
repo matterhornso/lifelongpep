@@ -32,7 +32,7 @@ Add `lifelongpep.fit` in Plausible, then create custom event goals matching the 
 - `cta_text`
 - `source_url`
 - `intent`: waitlist, issues, doctor, partner, press
-- `intent`: early-consult, researching-peptides, doctor, partner, issues
+- `intent`: early-consult, glp1-readiness, researching-peptides, doctor, partner, issues
 - `utm_source`
 - `utm_medium`
 - `utm_campaign`
@@ -52,6 +52,7 @@ Add `lifelongpep.fit` in Plausible, then create custom event goals matching the 
 The homepage waitlist form now captures optional intent:
 
 - early consult access
+- GLP-1 readiness
 - researching peptides
 - doctor
 - recovery, diagnostics, or fulfillment partner

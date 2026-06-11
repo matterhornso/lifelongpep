@@ -1,10 +1,13 @@
 # lifelongpep — landing page
 
-Doctor-gated longevity marketplace for India. Currently pre-launch and in waitlist mode.
+Doctor-gated metabolic longevity and GLP-1 readiness platform for India. Currently pre-launch and in waitlist mode.
 
 ## What's here
 
 - `index.html` — the main landing page.
+- `glp-1-readiness-consult/`, `metabolic-longevity-india/`,
+  `glp-1-muscle-loss-prevention/`, `glp-1-vs-peptides/` — first-lane
+  GLP-1 readiness and metabolic longevity SEO/AEO pages.
 - `peptide-consult-india/` — SEO landing page for supervised peptide consult demand.
 - `longevity-doctor-india/` — SEO landing page for longevity doctor consult demand.
 - `issues/` — educational content index and issue pages.

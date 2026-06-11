@@ -2,12 +2,12 @@
 
 ## Core message
 
-Doctor-gated longevity, launching in India.
+Doctor-gated metabolic longevity and GLP-1 readiness, launching in India.
 
 ## Supporting messages
 
-- Join the waitlist for supervised longevity consults.
-- Peptide access should start with medical judgement, not shortcuts.
+- Join the waitlist for metabolic longevity and GLP-1 readiness consults.
+- GLP-1 readiness should start with medical judgement, not shortcuts.
 - Consult first. Access only if appropriate. Track what happens.
 - Built for people who want clarity before intervention.
 - Pre-launch now; provider and partner network in progress.
@@ -30,12 +30,12 @@ Doctor-gated longevity, launching in India.
 - "doctors onboarded"
 - "pharmacies audited"
 - "guaranteed prescription"
-- "peptides today"
+- "GLP-1 access today"
 - "first 25 get founder pricing" unless the offer is confirmed
 
 ## LinkedIn post starters
 
-- Most peptide conversations start too late. The first question should not be "which peptide?" It should be "what problem are we solving?"
+- Most GLP-1 conversations start too late. The first question should not be "which drug?" It should be "what problem are we solving, what risks matter, and how do we protect muscle?"
 - India does not need a gray-market longevity boom. It needs accountable workflows: doctors, licensed partners, transparent pricing, and follow-up.
 - Wearables are not medical devices. But they can still make a protocol easier to remember, discuss, and audit.
 
