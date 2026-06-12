@@ -20,6 +20,7 @@ Add `lifelongpep.fit` in Plausible, then create custom event goals matching the 
 - `Doctor Partner Click`: user clicks doctor partner interest
 - `Partner Click`: user clicks recovery or fulfillment partner interest
 - `Agent Access Click`: user clicks agent access interest
+- `Agent Spec Open`: user opens agent manifest, OpenAPI draft, or MCP manifest
 - `Contact Click`: user clicks the general contact email
 - `External Openwearables Click`: user clicks openwearables.io
 - `Waitlist Mailto Fallback`: waitlist form failed and opened mail client fallback

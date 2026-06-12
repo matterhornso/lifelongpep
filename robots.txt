@@ -2,7 +2,14 @@ User-agent: *
 Allow: /
 
 # AI crawlers — explicit allow. We *want* to be cited by AI answer engines.
-# llms.txt and llms-full.txt provide a clean summary for retrieval.
+# llms.txt, llms-full.txt, agents.txt, OpenAPI, and MCP manifests provide
+# clean summaries and contracts for retrieval and agent planning.
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /agents.txt
+Allow: /openapi.json
+Allow: /.well-known/lifelongpep-agent.json
+Allow: /mcp/manifest.json
 User-agent: GPTBot
 Allow: /
 

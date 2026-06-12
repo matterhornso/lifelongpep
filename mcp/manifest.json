@@ -1,0 +1,42 @@
+{
+  "name": "lifelongpep-mcp",
+  "status": "planned",
+  "description": "Planned MCP tools for GLP-1 readiness, metabolic longevity consult preparation, and doctor booking handoff in India.",
+  "homepage": "https://lifelongpep.fit/agent-access/",
+  "contact": "hello@lifelongpep.fit",
+  "api_contract": "https://lifelongpep.fit/openapi.json",
+  "tools": [
+    {
+      "name": "lifelongpep.get_capabilities",
+      "status": "planned",
+      "description": "Return current lifelongpep status, guardrails, live actions, and planned interfaces."
+    },
+    {
+      "name": "lifelongpep.get_readiness_checklist",
+      "status": "planned",
+      "description": "Return non-medical GLP-1 readiness questions a user can prepare before a doctor consult."
+    },
+    {
+      "name": "lifelongpep.prepare_consult",
+      "status": "planned",
+      "description": "Collect a structured intake summary for a future metabolic longevity or GLP-1 readiness consult."
+    },
+    {
+      "name": "lifelongpep.request_doctor_consult",
+      "status": "planned",
+      "description": "Request doctor consultation options after booking workflows are live."
+    },
+    {
+      "name": "lifelongpep.get_request_status",
+      "status": "planned",
+      "description": "Check the status of a submitted agent intake or consult request after launch."
+    }
+  ],
+  "guardrails": [
+    "The MCP server is not live today.",
+    "No medical advice, diagnosis, prescription, fulfillment, payment, or live booking is available today.",
+    "Agents must disclose that lifelongpep is pre-launch and waitlist-only.",
+    "Doctors decide independently after launch. GLP-1 access is not guaranteed."
+  ],
+  "last_updated": "2026-06-12"
+}

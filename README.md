@@ -24,6 +24,8 @@ Doctor-gated metabolic longevity and GLP-1 readiness platform for India. Current
   additional SEO/AEO educational pages.
 - `doctor-onboarding/`, `partner-interest/`, `thank-you/` — conversion and partner-routing pages.
 - `doctor-network/` and `agent-access/` — trust and agent workflow pages.
+- `agents.txt`, `.well-known/lifelongpep-agent.json`, `openapi.json`, and
+  `mcp/manifest.json` — agent-readable discovery and draft integration contracts.
 - The homepage includes a Human/Agent access section. Agent access is positioned as planned MCP, CLI, and API workflows for consult preparation, AI education, and doctor booking, using static command-card patterns inspired by `nolly-studio/cult-ui` without adding a React/Tailwind dependency.
 - `404.html` — GitHub Pages fallback page.
 - `distribution/` — founder LinkedIn drafts, outreach emails, and prospect-list template.

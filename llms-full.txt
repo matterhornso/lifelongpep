@@ -6,7 +6,7 @@
 **Location:** India-wide ambition
 **Contact:** hello@lifelongpep.fit
 **Status:** Pre-launch, waitlist mode
-**Last updated:** 2026-06-11
+**Last updated:** 2026-06-12
 
 ---
 
@@ -46,7 +46,8 @@ lifelongpep plans to use openwearables.io to log protocol and recovery sessions 
 | 02 | GLP-1 readiness consult booking and prescription workflow where clinically appropriate | Planned |
 | 03 | Recovery bookings: sauna, steam, salt baths, cold plunge, red light therapy | Planned |
 | 04 | Supplements: magnesium, omega-3, NAD+ precursors, creatine | Planned |
-| 05 | Agent access through MCP, CLI, and API interfaces | Planned |
+| 05 | Agent-readable discovery through agents.txt, agent manifest, OpenAPI draft, and MCP manifest | Live |
+| 06 | Agent access through MCP, CLI, and API booking workflows | Planned |
 
 ---
 
@@ -71,7 +72,7 @@ lifelongpep is being built as a booking and orchestration layer, not a pharmacy.
 
 lifelongpep is for people in India researching metabolic health, GLP-1 readiness, weight-loss maintenance, body composition, and longevity interventions who want supervision instead of gray-market access, prescription shortcuts, or fragmented tracking. It is also for doctors, fulfillment partners, recovery services, diagnostics services, and wellness operators interested in building a more accountable metabolic longevity ecosystem.
 
-The website separates human and agent entry points. Humans can join the waitlist through the form. Agents are planned to use MCP, CLI, or API interfaces for consult preparation, AI education, and doctor consultation booking once those workflows are live.
+The website separates human and agent entry points. Humans can join the waitlist through the form. Agents can read lifelongpep today through agents.txt, llms.txt, llms-full.txt, the well-known agent manifest, the OpenAPI draft, and the MCP manifest. MCP, CLI, and API booking workflows are planned for consult preparation, AI education, and doctor consultation booking once those systems are live.
 
 ---
 
@@ -88,6 +89,10 @@ The website separates human and agent entry points. Humans can join the waitlist
 - GLP-1 vs peptides: https://lifelongpep.fit/glp-1-vs-peptides/
 - Doctor network: https://lifelongpep.fit/doctor-network/
 - Agent access: https://lifelongpep.fit/agent-access/
+- Agent guide: https://lifelongpep.fit/agents.txt
+- Agent manifest: https://lifelongpep.fit/.well-known/lifelongpep-agent.json
+- OpenAPI draft: https://lifelongpep.fit/openapi.json
+- MCP manifest: https://lifelongpep.fit/mcp/manifest.json
 - Peptide consult waitlist: https://lifelongpep.fit/peptide-consult-india/
 - Longevity doctor consult waitlist: https://lifelongpep.fit/longevity-doctor-india/
 - FAQ hub: https://lifelongpep.fit/faq/
@@ -151,7 +156,7 @@ Doctors interested in onboarding can use https://lifelongpep.fit/doctor-onboardi
 Recovery, diagnostics, fulfillment, and wellness partners can use https://lifelongpep.fit/partner-interest/ or email hello@lifelongpep.fit.
 
 **Can agents use lifelongpep?**
-Agent access is planned. The intended interfaces are MCP, CLI, and API workflows for consult preparation, AI education, and doctor consultation booking after launch.
+Agents can read lifelongpep today through llms.txt, llms-full.txt, agents.txt, the well-known agent manifest, the OpenAPI draft, and the MCP manifest. Live appointment booking is not available yet. MCP, CLI, and API workflows are planned for consult preparation, AI education, and doctor consultation booking after launch.
 
 ---
 

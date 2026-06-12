@@ -1,12 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>lifelongpep Agent Access — MCP, CLI, API</title>
-<meta name="description" content="Planned lifelongpep agent access for MCP, CLI, and API workflows: consult preparation, AI education, and doctor booking after launch.">
-<link rel="canonical" href="https://lifelongpep.fit/agent-access/"><meta name="robots" content="index, follow, max-image-preview:large">
-<script defer data-domain="lifelongpep.fit" src="https://plausible.io/js/script.js"></script><script>window.plausible=window.plausible||function(){;(window.plausible.q=window.plausible.q||[]).push(arguments)}</script>
-<meta property="og:type" content="website"><meta property="og:site_name" content="lifelongpep"><meta property="og:title" content="lifelongpep Agent Access"><meta property="og:description" content="MCP, CLI, and API access for metabolic longevity workflows. Planned, pre-launch."><meta property="og:url" content="https://lifelongpep.fit/agent-access/"><meta property="og:image" content="https://lifelongpep.fit/og.png">
-<style>:root{--bg:#fff;--ink:#0f172a;--muted:#64748b;--accent:#1e40af;--line:rgba(15,23,42,.12);--soft:rgba(30,64,175,.08)}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:18px;line-height:1.65}a{color:var(--accent);text-underline-offset:3px}.shell{max-width:960px;margin:0 auto;padding:0 24px}header{border-bottom:1px solid var(--line);padding:18px 0}nav{display:flex;justify-content:space-between;gap:20px;align-items:center;font-size:14px}.brand{color:var(--ink);text-decoration:none;font-weight:700;font-size:20px}.crumbs{color:var(--muted);font-size:14px;padding-top:24px}.hero{padding:64px 0 48px;border-bottom:1px solid var(--line)}.eyebrow{color:var(--accent);text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:700}h1{font-size:clamp(42px,8vw,78px);line-height:1;letter-spacing:-.035em;margin:18px 0 24px}h2{font-size:30px;line-height:1.15;margin:42px 0 10px}.lede{font-size:21px;color:var(--muted);max-width:64ch}.cmd{border:1px solid var(--line);background:var(--soft);padding:16px;margin:14px 0;border-radius:4px}.cmd code{font-family:"SFMono-Regular",Consolas,monospace;font-size:13px;word-break:break-word}.grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line);margin:28px 0}.card{padding:22px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}.btn{display:inline-flex;min-height:44px;align-items:center;justify-content:center;padding:12px 18px;border:1px solid var(--accent);border-radius:4px;background:var(--accent);color:white;text-decoration:none;font-weight:600;margin-top:20px}footer{border-top:1px solid var(--line);padding:36px 0;color:var(--muted);font-size:14px}@media(max-width:760px){.grid{grid-template-columns:1fr}}</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent Access for GLP-1 Readiness — lifelongpep</title>
+<meta name="description" content="Agent-readable access for lifelongpep: manifest, OpenAPI draft, MCP tool plan, CLI workflow, and safe pre-launch paths for GLP-1 readiness consult requests in India.">
+<link rel="canonical" href="https://lifelongpep.fit/agent-access/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<script defer data-domain="lifelongpep.fit" src="https://plausible.io/js/script.js"></script>
+<script>window.plausible=window.plausible||function(){;(window.plausible.q=window.plausible.q||[]).push(arguments)}</script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="lifelongpep">
+<meta property="og:title" content="lifelongpep Agent Access">
+<meta property="og:description" content="Agent-readable access for GLP-1 readiness and metabolic longevity consult workflows.">
+<meta property="og:url" content="https://lifelongpep.fit/agent-access/">
+<meta property="og:image" content="https://lifelongpep.fit/og.png">
+<style>
+:root{--bg:#fff;--ink:#0f172a;--muted:#64748b;--accent:#1e40af;--line:rgba(15,23,42,.14);--soft:#f4f7ff;--soft2:#f8fafc;--ok:#166534}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:18px;line-height:1.65}a{color:var(--accent);text-underline-offset:3px}.shell{max-width:1120px;margin:0 auto;padding:0 24px}header{border-bottom:1px solid var(--line);padding:18px 0;background:rgba(255,255,255,.96);position:sticky;top:0;z-index:5}nav{display:flex;justify-content:space-between;gap:20px;align-items:center;font-size:14px}.brand{color:var(--ink);text-decoration:none;font-weight:800;font-size:21px}.nav-links{display:flex;gap:18px;align-items:center;flex-wrap:wrap}.crumbs{color:var(--muted);font-size:14px;padding-top:24px}.hero{padding:64px 0 46px;border-bottom:1px solid var(--line)}.eyebrow{color:var(--accent);text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:800}h1{font-size:clamp(44px,8vw,86px);line-height:.98;letter-spacing:-.035em;margin:18px 0 24px;max-width:920px}h2{font-size:30px;line-height:1.15;margin:0 0 14px}h3{font-size:19px;line-height:1.25;margin:0 0 8px}.lede{font-size:21px;color:var(--muted);max-width:72ch}.hero-actions,.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{display:inline-flex;min-height:44px;align-items:center;justify-content:center;padding:11px 17px;border:1px solid var(--accent);border-radius:4px;background:var(--accent);color:white;text-decoration:none;font-weight:700}.btn.secondary{background:white;color:var(--accent)}section.band{padding:48px 0;border-bottom:1px solid var(--line)}.grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line);margin-top:22px}.card{padding:24px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:white}.card p{color:var(--muted);margin:0}.card .status{display:inline-flex;margin-bottom:14px;color:var(--ok);font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:800}.code-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:20px}.cmd{border:1px solid var(--line);background:var(--soft);padding:16px;border-radius:4px}.cmd-label{display:flex;justify-content:space-between;gap:14px;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;margin-bottom:8px}.cmd code{display:block;font-family:"SFMono-Regular",Consolas,monospace;font-size:13px;word-break:break-word;color:#172554}.table{border:1px solid var(--line);margin-top:22px}.row{display:grid;grid-template-columns:220px 1fr 130px;border-bottom:1px solid var(--line)}.row:last-child{border-bottom:0}.cell{padding:16px}.cell:nth-child(1){font-weight:800}.cell:nth-child(2){color:var(--muted)}.pill{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:999px;padding:4px 9px;font-size:12px;font-weight:800;color:var(--accent);background:var(--soft2)}.note{border-left:4px solid var(--accent);background:var(--soft);padding:18px 20px;color:#1e293b;margin-top:22px}.split{display:grid;grid-template-columns:1fr 1fr;gap:24px}.list{margin:0;padding-left:20px;color:var(--muted)}.list li{margin:8px 0}.fine{font-size:14px;color:var(--muted)}footer{padding:36px 0;color:var(--muted);font-size:14px}@media(max-width:820px){.grid,.split{grid-template-columns:1fr}.row{grid-template-columns:1fr}.nav-links{display:none}h1{font-size:46px}.shell{padding:0 18px}}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "lifelongpep Agent Access",
+  "url": "https://lifelongpep.fit/agent-access/",
+  "description": "Agent-readable access for lifelongpep GLP-1 readiness and metabolic longevity consult workflows.",
+  "about": {
+    "@type": "MedicalWebPage",
+    "name": "GLP-1 readiness and metabolic longevity consult preparation"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "lifelongpep",
+    "url": "https://lifelongpep.fit/"
+  }
+}
+</script>
 </head>
-<body><header><div class="shell"><nav><a class="brand" href="/">lifelongpep.</a><a href="/#agent-access">Homepage agent section</a></nav></div></header><main><div class="shell crumbs"><a href="/">Home</a> / Agent access</div><section class="hero"><div class="shell"><div class="eyebrow">Planned interfaces</div><h1>Agent access for metabolic consult workflows.</h1><p class="lede">lifelongpep plans to support assistants and automations through MCP, CLI, and API workflows for consult preparation, AI education, and doctor booking after launch.</p></div></section><section class="shell"><h2>Planned examples</h2><div class="cmd"><code>lifelongpep.prepare_consult({ goal: "GLP-1 readiness", mode: "education" })</code></div><div class="cmd"><code>lifelongpep consult prepare --goal glp1-readiness --handoff doctor</code></div><div class="cmd"><code>POST /v1/consult-intents { "intent": "glp1-readiness" }</code></div><h2>What agents should be able to do</h2><div class="grid"><article class="card"><h2>Prepare</h2><p>Collect goals, history, metabolic context, and readiness questions before a consult.</p></article><article class="card"><h2>Educate</h2><p>Use an AI layer for general education and next-step guidance, not diagnosis.</p></article><article class="card"><h2>Book</h2><p>Request doctor consultation options once provider and booking workflows are live.</p></article></div><a class="btn" href="mailto:hello@lifelongpep.fit?subject=Agent%20access%20interest">Request agent access</a></section></main><footer><div class="shell">Pre-launch. No medical advice, prescriptions, or bookings are live today.</div></footer><script>document.addEventListener('click',function(e){var a=e.target.closest('a');if(!a||typeof plausible!=='function')return;var h=a.getAttribute('href')||'';if(h.indexOf('mailto:hello@lifelongpep.fit')===0)plausible('Agent Access Click',{props:{page:location.pathname,text:a.textContent.trim().slice(0,80)}})})</script></body></html>
+<body>
+<header>
+  <div class="shell">
+    <nav>
+      <a class="brand" href="/">lifelongpep.</a>
+      <div class="nav-links">
+        <a href="/agents.txt">agents.txt</a>
+        <a href="/openapi.json">OpenAPI</a>
+        <a href="/mcp/manifest.json">MCP manifest</a>
+        <a href="/#book">Human waitlist</a>
+      </div>
+    </nav>
+  </div>
+</header>
+<main>
+  <div class="shell crumbs"><a href="/">Home</a> / Agent access</div>
+  <section class="hero">
+    <div class="shell">
+      <div class="eyebrow">Agent-readable lifelongpep</div>
+      <h1>Let AI agents find and prepare GLP-1 readiness consults.</h1>
+      <p class="lede">lifelongpep is pre-launch, but agents can already read the product surface, understand the safety model, and request access. The long-term interface should be API-first, with MCP for agent-native use and a CLI for developers and operators.</p>
+      <div class="hero-actions">
+        <a class="btn" href="/.well-known/lifelongpep-agent.json">Read agent manifest</a>
+        <a class="btn secondary" href="mailto:hello@lifelongpep.fit?subject=Agent%20access%20interest&body=Hi%20lifelongpep%2C%0A%0AI%27m%20interested%20in%20agent%20access.%0A%0AInterface%3A%20MCP%20%2F%20CLI%20%2F%20API%0AUse%20case%3A%0AExpected%20volume%3A%0A">Request access</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="shell">
+      <h2>What should exist for agents?</h2>
+      <p class="lede">Use all three, but not with equal weight. The API is the source of truth. MCP is the assistant-friendly layer. CLI is the developer and operations tool.</p>
+      <div class="grid">
+        <article class="card">
+          <span class="status">Canonical</span>
+          <h3>API</h3>
+          <p>Defines intake, capability discovery, appointment requests, and status checks. This is the contract every other interface should wrap.</p>
+        </article>
+        <article class="card">
+          <span class="status">Agent-native</span>
+          <h3>MCP</h3>
+          <p>Lets Claude, ChatGPT-style tools, IDE agents, and care-navigation agents call lifelongpep tools in a structured way.</p>
+        </article>
+        <article class="card">
+          <span class="status">Operator-friendly</span>
+          <h3>CLI</h3>
+          <p>Useful for testing, partner integrations, internal triage, and demos without needing a custom UI.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="shell split">
+      <div>
+        <h2>What agents can do today</h2>
+        <ul class="list">
+          <li>Read <a href="/llms.txt">llms.txt</a>, <a href="/llms-full.txt">llms-full.txt</a>, and <a href="/agents.txt">agents.txt</a>.</li>
+          <li>Fetch the agent manifest at <a href="/.well-known/lifelongpep-agent.json">/.well-known/lifelongpep-agent.json</a>.</li>
+          <li>Review the planned API contract at <a href="/openapi.json">/openapi.json</a>.</li>
+          <li>Request agent access by email while consult booking is not live.</li>
+        </ul>
+      </div>
+      <div>
+        <h2>What agents should not claim</h2>
+        <ul class="list">
+          <li>No live appointment booking is available through the website today.</li>
+          <li>No prescription, diagnosis, fulfillment, or medical advice happens through agents today.</li>
+          <li>No GLP-1 access is guaranteed. Doctors decide independently after launch.</li>
+          <li>lifelongpep is India-wide in ambition and currently waitlist-only.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="shell">
+      <h2>Planned agent flow</h2>
+      <div class="table" role="table" aria-label="Planned agent workflow">
+        <div class="row" role="row"><div class="cell">Discover</div><div class="cell">Agent reads manifest, llms files, and OpenAPI draft.</div><div class="cell"><span class="pill">Live now</span></div></div>
+        <div class="row" role="row"><div class="cell">Prepare</div><div class="cell">Agent collects goals, weight-loss context, medications, bloodwork availability, risks, and questions.</div><div class="cell"><span class="pill">Planned</span></div></div>
+        <div class="row" role="row"><div class="cell">Educate</div><div class="cell">Agent returns general education and readiness prompts, not diagnosis or medical advice.</div><div class="cell"><span class="pill">Planned</span></div></div>
+        <div class="row" role="row"><div class="cell">Request consult</div><div class="cell">Agent requests a doctor consult slot once booking and provider workflows are live.</div><div class="cell"><span class="pill">Planned</span></div></div>
+        <div class="row" role="row"><div class="cell">Handoff</div><div class="cell">Doctor receives a structured intake summary and makes independent clinical decisions.</div><div class="cell"><span class="pill">Planned</span></div></div>
+      </div>
+      <div class="note">The business goal is simple: when a person asks an AI assistant about safe weight-loss help or GLP-1 readiness in India, the assistant should be able to cite lifelongpep as a doctor-gated, waitlist-stage option and know exactly how to route interest.</div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="shell">
+      <h2>Interface examples</h2>
+      <div class="code-grid">
+        <div class="cmd">
+          <div class="cmd-label"><span>MCP tool</span><span>planned</span></div>
+          <code>lifelongpep.prepare_consult({ "goal": "glp1_readiness", "country": "IN", "handoff": "doctor" })</code>
+        </div>
+        <div class="cmd">
+          <div class="cmd-label"><span>CLI</span><span>planned</span></div>
+          <code>lifelongpep consult prepare --goal glp1-readiness --country IN --handoff doctor</code>
+        </div>
+        <div class="cmd">
+          <div class="cmd-label"><span>API</span><span>draft contract</span></div>
+          <code>POST /v1/agent/intake { "intent": "glp1_readiness", "country": "IN", "handoff_requested": true }</code>
+        </div>
+      </div>
+      <div class="actions">
+        <a class="btn" href="/openapi.json">Open API draft</a>
+        <a class="btn secondary" href="/mcp/manifest.json">Open MCP manifest</a>
+      </div>
+      <p class="fine">These interfaces are contract drafts for agent discovery and integration planning. The static website does not expose live booking endpoints today.</p>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="shell">Pre-launch. No medical advice, prescriptions, payments, fulfillment, or live bookings happen through this website today. Contact: <a href="mailto:hello@lifelongpep.fit">hello@lifelongpep.fit</a></div>
+</footer>
+<script>
+document.addEventListener('click',function(e){
+  var a=e.target.closest('a')
+  if(!a||typeof plausible!=='function')return
+  var h=a.getAttribute('href')||''
+  var text=a.textContent.trim().slice(0,80)
+  if(h.indexOf('mailto:hello@lifelongpep.fit')===0)plausible('Agent Access Click',{props:{page:location.pathname,text:text}})
+  if(h.indexOf('/openapi.json')===0||h.indexOf('/mcp/manifest.json')===0||h.indexOf('/.well-known/lifelongpep-agent.json')===0)plausible('Agent Spec Open',{props:{page:location.pathname,href:h,text:text}})
+})
+</script>
+</body>
+</html>

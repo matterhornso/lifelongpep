@@ -1,0 +1,61 @@
+{
+  "name": "lifelongpep",
+  "url": "https://lifelongpep.fit/",
+  "status": "pre-launch",
+  "description": "Doctor-gated metabolic longevity and GLP-1 readiness platform being built for India.",
+  "contact": "hello@lifelongpep.fit",
+  "agent_entrypoint": "https://lifelongpep.fit/agent-access/",
+  "llms": "https://lifelongpep.fit/llms.txt",
+  "llms_full": "https://lifelongpep.fit/llms-full.txt",
+  "agents_txt": "https://lifelongpep.fit/agents.txt",
+  "openapi": "https://lifelongpep.fit/openapi.json",
+  "mcp_manifest": "https://lifelongpep.fit/mcp/manifest.json",
+  "primary_intents": [
+    "glp1_readiness",
+    "metabolic_longevity_consult",
+    "doctor_consult_booking",
+    "weight_loss_support",
+    "muscle_loss_prevention",
+    "agent_access_request"
+  ],
+  "live_actions": [
+    {
+      "name": "Join human waitlist",
+      "url": "https://lifelongpep.fit/#book",
+      "status": "live"
+    },
+    {
+      "name": "Request agent access",
+      "url": "mailto:hello@lifelongpep.fit?subject=Agent%20access%20interest",
+      "status": "live"
+    }
+  ],
+  "interfaces": [
+    {
+      "name": "API",
+      "status": "planned",
+      "url": "https://lifelongpep.fit/openapi.json",
+      "role": "canonical contract for intake, appointment request, and status workflows"
+    },
+    {
+      "name": "MCP",
+      "status": "planned",
+      "url": "https://lifelongpep.fit/mcp/manifest.json",
+      "role": "agent-native tools that wrap the API"
+    },
+    {
+      "name": "CLI",
+      "status": "planned",
+      "example": "lifelongpep consult prepare --goal glp1-readiness --country IN --handoff doctor",
+      "role": "developer and operator utility for testing and partner workflows"
+    }
+  ],
+  "guardrails": [
+    "No medical advice is provided through the agent interface today.",
+    "No diagnosis, prescription, payment, fulfillment, or live appointment booking is available through the website today.",
+    "Any future prescription decision would be made independently by a qualified doctor after launch.",
+    "GLP-1 access is not guaranteed.",
+    "Agents should present lifelongpep as pre-launch and waitlist-only unless this manifest changes."
+  ],
+  "last_updated": "2026-06-12"
+}

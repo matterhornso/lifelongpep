@@ -1,0 +1,272 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "lifelongpep Agent API",
+    "version": "0.1.0-draft",
+    "summary": "Draft agent API for lifelongpep GLP-1 readiness and metabolic longevity consult workflows.",
+    "description": "This is a pre-launch contract draft for agent discovery and integration planning. The static website does not expose live booking endpoints today. No medical advice, diagnosis, prescription, payment, fulfillment, or appointment booking is available through this API today."
+  },
+  "servers": [
+    {
+      "url": "https://lifelongpep.fit",
+      "description": "Public static site and future API host"
+    }
+  ],
+  "x-lifelongpep-status": "pre-launch",
+  "x-live-actions": [
+    "join_waitlist",
+    "request_agent_access_by_email"
+  ],
+  "paths": {
+    "/v1/agent/capabilities": {
+      "get": {
+        "summary": "Return agent capabilities and launch status",
+        "description": "Planned endpoint. Returns current status, supported intents, guardrails, and available actions.",
+        "operationId": "getAgentCapabilities",
+        "responses": {
+          "200": {
+            "description": "Capabilities response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CapabilitiesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/agent/intake": {
+      "post": {
+        "summary": "Prepare a consult intake",
+        "description": "Planned endpoint. Accepts a non-diagnostic intake summary for GLP-1 readiness or metabolic longevity consult preparation.",
+        "operationId": "createAgentIntake",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AgentIntakeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Intake accepted for waitlist or future consult handoff",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentRequestResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/agent/appointments": {
+      "post": {
+        "summary": "Request doctor consult options",
+        "description": "Planned endpoint. Booking is not live today. When launched, this would request appointment options after an intake is prepared.",
+        "operationId": "requestAgentAppointment",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AppointmentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Appointment request accepted for routing when booking is live",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentRequestResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/agent/status/{request_id}": {
+      "get": {
+        "summary": "Check agent request status",
+        "description": "Planned endpoint. Returns status for an agent intake or consult request.",
+        "operationId": "getAgentRequestStatus",
+        "parameters": [
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentRequestResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CapabilitiesResponse": {
+        "type": "object",
+        "required": ["status", "live_actions", "planned_interfaces", "guardrails"],
+        "properties": {
+          "status": {
+            "type": "string",
+            "const": "pre-launch"
+          },
+          "live_actions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["join_waitlist", "request_agent_access_by_email"]
+            }
+          },
+          "planned_interfaces": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["api", "mcp", "cli"]
+            }
+          },
+          "guardrails": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "AgentIntakeRequest": {
+        "type": "object",
+        "required": ["intent", "country", "user_contact"],
+        "properties": {
+          "intent": {
+            "type": "string",
+            "enum": ["glp1_readiness", "metabolic_longevity_consult", "weight_loss_support", "muscle_loss_prevention", "recovery_tracking", "agent_access_request"]
+          },
+          "country": {
+            "type": "string",
+            "description": "ISO 3166-1 alpha-2 country code. Expected initial market is IN.",
+            "examples": ["IN"]
+          },
+          "user_contact": {
+            "$ref": "#/components/schemas/UserContact"
+          },
+          "goals": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "medical_context_available": {
+            "type": "boolean",
+            "description": "Whether the user says they have relevant medical history, medications, or bloodwork available for a doctor."
+          },
+          "handoff_requested": {
+            "type": "boolean"
+          },
+          "agent_context": {
+            "$ref": "#/components/schemas/AgentContext"
+          }
+        }
+      },
+      "AppointmentRequest": {
+        "type": "object",
+        "required": ["intake_id", "user_contact", "country"],
+        "properties": {
+          "intake_id": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string",
+            "examples": ["IN"]
+          },
+          "user_contact": {
+            "$ref": "#/components/schemas/UserContact"
+          },
+          "preferred_mode": {
+            "type": "string",
+            "enum": ["online", "in_person", "no_preference"]
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      },
+      "AgentRequestResponse": {
+        "type": "object",
+        "required": ["request_id", "status", "message", "medical_guardrail"],
+        "properties": {
+          "request_id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["waitlist_received", "planned_not_live", "queued", "needs_user_confirmation", "closed"]
+          },
+          "message": {
+            "type": "string"
+          },
+          "medical_guardrail": {
+            "type": "string",
+            "description": "Disclosure that this workflow does not provide medical advice, diagnosis, prescriptions, fulfillment, or guaranteed GLP-1 access."
+          }
+        }
+      },
+      "UserContact": {
+        "type": "object",
+        "required": ["email"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "AgentContext": {
+        "type": "object",
+        "properties": {
+          "agent_name": {
+            "type": "string"
+          },
+          "agent_vendor": {
+            "type": "string",
+            "examples": ["ChatGPT", "Claude", "Gemini", "custom"]
+          },
+          "source_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "conversation_summary": {
+            "type": "string",
+            "description": "User-approved summary only. Do not include private medical details without explicit user consent."
+          }
+        }
+      }
+    }
+  }
+}
