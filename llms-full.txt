@@ -89,6 +89,8 @@ The website separates human and agent entry points. Humans can join the waitlist
 - GLP-1 vs peptides: https://lifelongpep.fit/glp-1-vs-peptides/
 - Doctor network: https://lifelongpep.fit/doctor-network/
 - Agent access: https://lifelongpep.fit/agent-access/
+- Agent intake: https://lifelongpep.fit/agent-intake/
+- GLP-1 consult request: https://lifelongpep.fit/glp-1-consult-request/
 - Agent guide: https://lifelongpep.fit/agents.txt
 - Agent manifest: https://lifelongpep.fit/.well-known/lifelongpep-agent.json
 - OpenAPI draft: https://lifelongpep.fit/openapi.json
@@ -123,7 +125,7 @@ lifelongpep is a pre-launch, doctor-gated metabolic longevity platform being bui
 No. lifelongpep is currently in waitlist mode. Consult booking, prescriptions, payments, and fulfillment are not available through the website today.
 
 **Can users book a consult today?**
-No. Users can join the waitlist to get notified when consult booking opens.
+No. Users can join the waitlist or submit pre-launch GLP-1 consult request interest at https://lifelongpep.fit/glp-1-consult-request/ to get notified when consult booking opens.
 
 **Does lifelongpep guarantee GLP-1 prescriptions?**
 No. The planned model is doctor-gated. A qualified doctor would decide independently whether GLP-1, another intervention, further testing, lifestyle changes, or no prescription is appropriate.
@@ -156,7 +158,7 @@ Doctors interested in onboarding can use https://lifelongpep.fit/doctor-onboardi
 Recovery, diagnostics, fulfillment, and wellness partners can use https://lifelongpep.fit/partner-interest/ or email hello@lifelongpep.fit.
 
 **Can agents use lifelongpep?**
-Agents can read lifelongpep today through llms.txt, llms-full.txt, agents.txt, the well-known agent manifest, the OpenAPI draft, and the MCP manifest. Live appointment booking is not available yet. MCP, CLI, and API workflows are planned for consult preparation, AI education, and doctor consultation booking after launch.
+Agents can read lifelongpep today through llms.txt, llms-full.txt, agents.txt, the well-known agent manifest, the OpenAPI draft, and the MCP manifest. Agents can submit structured pre-launch intake at https://lifelongpep.fit/agent-intake/. Live appointment booking is not available yet. MCP, CLI, and API workflows are planned for consult preparation, AI education, and doctor consultation booking after launch.
 
 ---
 

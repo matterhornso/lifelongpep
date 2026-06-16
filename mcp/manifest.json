@@ -5,6 +5,8 @@
   "homepage": "https://lifelongpep.fit/agent-access/",
   "contact": "hello@lifelongpep.fit",
   "api_contract": "https://lifelongpep.fit/openapi.json",
+  "agent_intake": "https://lifelongpep.fit/agent-intake/",
+  "glp1_consult_request": "https://lifelongpep.fit/glp-1-consult-request/",
   "tools": [
     {
       "name": "lifelongpep.get_capabilities",

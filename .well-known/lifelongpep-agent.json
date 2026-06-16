@@ -25,6 +25,16 @@
       "status": "live"
     },
     {
+      "name": "Submit structured agent intake",
+      "url": "https://lifelongpep.fit/agent-intake/",
+      "status": "live"
+    },
+    {
+      "name": "Submit GLP-1 consult request interest",
+      "url": "https://lifelongpep.fit/glp-1-consult-request/",
+      "status": "live"
+    },
+    {
       "name": "Request agent access",
       "url": "mailto:hello@lifelongpep.fit?subject=Agent%20access%20interest",
       "status": "live"
@@ -53,6 +63,7 @@
   "guardrails": [
     "No medical advice is provided through the agent interface today.",
     "No diagnosis, prescription, payment, fulfillment, or live appointment booking is available through the website today.",
+    "Agent intake and GLP-1 consult request forms collect pre-launch interest only.",
     "Any future prescription decision would be made independently by a qualified doctor after launch.",
     "GLP-1 access is not guaranteed.",
     "Agents should present lifelongpep as pre-launch and waitlist-only unless this manifest changes."
