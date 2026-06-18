@@ -2,14 +2,18 @@
   "openapi": "3.1.0",
   "info": {
     "title": "lifelongpep Agent API",
-    "version": "0.1.0-draft",
-    "summary": "Draft agent API for lifelongpep GLP-1 readiness and metabolic longevity consult workflows.",
-    "description": "This is a pre-launch contract draft for agent discovery and integration planning. The static website does not expose live booking endpoints today. No medical advice, diagnosis, prescription, payment, fulfillment, or appointment booking is available through this API today."
+    "version": "0.2.0-draft",
+    "summary": "Backend API for lifelongpep lead capture, agent intake, GLP-1 consult requests, and admin lead operations.",
+    "description": "Pre-launch backend API for lead capture and early operations. Public endpoints collect interest only; protected admin endpoints support triage, notes, metrics, and export. No medical advice, diagnosis, prescription, payment, fulfillment, or appointment booking is available through this API today."
   },
   "servers": [
     {
+      "url": "https://api.lifelongpep.fit",
+      "description": "Lead API host after Cloudflare Worker deployment"
+    },
+    {
       "url": "https://lifelongpep.fit",
-      "description": "Public static site and future API host"
+      "description": "Public static site"
     }
   ],
   "x-lifelongpep-status": "pre-launch",
@@ -20,6 +24,83 @@
     "request_agent_access_by_email"
   ],
   "paths": {
+    "/v1/capabilities": {
+      "get": {
+        "summary": "Return lead API capabilities and guardrails",
+        "description": "Implemented by the lightweight Cloudflare Worker lead API once deployed.",
+        "operationId": "getLeadApiCapabilities",
+        "responses": {
+          "200": {
+            "description": "Capabilities response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CapabilitiesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/leads": {
+      "post": {
+        "summary": "Create a pre-launch lead",
+        "description": "Stores waitlist, agent intake, GLP-1 consult request, doctor, partner, or issues leads in the D1 lead database. This is lead capture only, not booking or medical advice.",
+        "operationId": "createLead",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeadRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Lead received",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentRequestResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/leads/{request_id}/status": {
+      "get": {
+        "summary": "Check lead request status",
+        "description": "Returns limited public status for a previously submitted pre-launch lead.",
+        "operationId": "getLeadStatus",
+        "parameters": [
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lead status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentRequestResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/agent/capabilities": {
       "get": {
         "summary": "Return agent capabilities and launch status",
@@ -125,13 +206,245 @@
           }
         }
       }
+    },
+    "/v1/admin/leads": {
+      "get": {
+        "summary": "List leads for admin triage",
+        "description": "Protected admin endpoint. Supports status, intent, query, limit, and offset filters.",
+        "operationId": "listAdminLeads",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "intent",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 50,
+              "maximum": 200
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lead list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/admin/leads/{request_id}": {
+      "get": {
+        "summary": "Get lead details",
+        "operationId": "getAdminLead",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lead detail with notes and events",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update lead status, priority, or assignee",
+        "operationId": "updateAdminLead",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminLeadUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated lead detail",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/admin/leads/{request_id}/notes": {
+      "post": {
+        "summary": "Add an internal lead note",
+        "operationId": "addAdminLeadNote",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminLeadNote"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Lead detail with note added",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/admin/leads.csv": {
+      "get": {
+        "summary": "Export leads as CSV",
+        "operationId": "exportAdminLeadsCsv",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "CSV export",
+            "content": {
+              "text/csv": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/admin/metrics": {
+      "get": {
+        "summary": "Return lead metrics",
+        "operationId": "getAdminMetrics",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lead metrics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
       "CapabilitiesResponse": {
         "type": "object",
-        "required": ["status", "live_actions", "planned_interfaces", "guardrails"],
+        "required": [
+          "status",
+          "live_actions",
+          "planned_interfaces",
+          "guardrails"
+        ],
         "properties": {
           "status": {
             "type": "string",
@@ -141,14 +454,24 @@
             "type": "array",
             "items": {
               "type": "string",
-              "enum": ["join_waitlist", "request_agent_access_by_email"]
+              "enum": [
+                "join_waitlist",
+                "submit_agent_intake_form",
+                "submit_glp1_consult_request_form",
+                "create_lead_api",
+                "request_agent_access_by_email"
+              ]
             }
           },
           "planned_interfaces": {
             "type": "array",
             "items": {
               "type": "string",
-              "enum": ["api", "mcp", "cli"]
+              "enum": [
+                "api",
+                "mcp",
+                "cli"
+              ]
             }
           },
           "guardrails": {
@@ -159,18 +482,79 @@
           }
         }
       },
+      "LeadRequest": {
+        "type": "object",
+        "required": [
+          "email"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "name": {
+            "type": "string"
+          },
+          "intent": {
+            "type": "string",
+            "examples": [
+              "early-consult",
+              "glp1-readiness",
+              "agent",
+              "doctor",
+              "partner",
+              "issues"
+            ]
+          },
+          "lead_type": {
+            "type": "string",
+            "examples": [
+              "waitlist",
+              "agent-intake",
+              "glp1-consult-request"
+            ]
+          },
+          "source": {
+            "type": "string"
+          },
+          "landing_path": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "payload": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "additionalProperties": true
+      },
       "AgentIntakeRequest": {
         "type": "object",
-        "required": ["intent", "country", "user_contact"],
+        "required": [
+          "intent",
+          "country",
+          "user_contact"
+        ],
         "properties": {
           "intent": {
             "type": "string",
-            "enum": ["glp1_readiness", "metabolic_longevity_consult", "weight_loss_support", "muscle_loss_prevention", "recovery_tracking", "agent_access_request"]
+            "enum": [
+              "glp1_readiness",
+              "metabolic_longevity_consult",
+              "weight_loss_support",
+              "muscle_loss_prevention",
+              "recovery_tracking",
+              "agent_access_request"
+            ]
           },
           "country": {
             "type": "string",
             "description": "ISO 3166-1 alpha-2 country code. Expected initial market is IN.",
-            "examples": ["IN"]
+            "examples": [
+              "IN"
+            ]
           },
           "user_contact": {
             "$ref": "#/components/schemas/UserContact"
@@ -195,21 +579,31 @@
       },
       "AppointmentRequest": {
         "type": "object",
-        "required": ["intake_id", "user_contact", "country"],
+        "required": [
+          "intake_id",
+          "user_contact",
+          "country"
+        ],
         "properties": {
           "intake_id": {
             "type": "string"
           },
           "country": {
             "type": "string",
-            "examples": ["IN"]
+            "examples": [
+              "IN"
+            ]
           },
           "user_contact": {
             "$ref": "#/components/schemas/UserContact"
           },
           "preferred_mode": {
             "type": "string",
-            "enum": ["online", "in_person", "no_preference"]
+            "enum": [
+              "online",
+              "in_person",
+              "no_preference"
+            ]
           },
           "notes": {
             "type": "string"
@@ -218,14 +612,25 @@
       },
       "AgentRequestResponse": {
         "type": "object",
-        "required": ["request_id", "status", "message", "medical_guardrail"],
+        "required": [
+          "request_id",
+          "status",
+          "message",
+          "medical_guardrail"
+        ],
         "properties": {
           "request_id": {
             "type": "string"
           },
           "status": {
             "type": "string",
-            "enum": ["waitlist_received", "planned_not_live", "queued", "needs_user_confirmation", "closed"]
+            "enum": [
+              "waitlist_received",
+              "planned_not_live",
+              "queued",
+              "needs_user_confirmation",
+              "closed"
+            ]
           },
           "message": {
             "type": "string"
@@ -238,7 +643,9 @@
       },
       "UserContact": {
         "type": "object",
-        "required": ["email"],
+        "required": [
+          "email"
+        ],
         "properties": {
           "email": {
             "type": "string",
@@ -257,7 +664,12 @@
           },
           "agent_vendor": {
             "type": "string",
-            "examples": ["ChatGPT", "Claude", "Gemini", "custom"]
+            "examples": [
+              "ChatGPT",
+              "Claude",
+              "Gemini",
+              "custom"
+            ]
           },
           "source_url": {
             "type": "string",
@@ -268,6 +680,54 @@
             "description": "User-approved summary only. Do not include private medical details without explicit user consent."
           }
         }
+      },
+      "AdminLeadUpdate": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "received",
+              "qualified",
+              "contacted",
+              "scheduled",
+              "waitlisted",
+              "closed",
+              "spam"
+            ]
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "low",
+              "normal",
+              "high"
+            ]
+          },
+          "assigned_to": {
+            "type": "string"
+          }
+        }
+      },
+      "AdminLeadNote": {
+        "type": "object",
+        "required": [
+          "note"
+        ],
+        "properties": {
+          "note": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
       }
     }
   }

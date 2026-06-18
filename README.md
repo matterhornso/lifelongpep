@@ -24,8 +24,12 @@ Doctor-gated metabolic longevity and GLP-1 readiness platform for India. Current
   additional SEO/AEO educational pages.
 - `doctor-onboarding/`, `partner-interest/`, `thank-you/` — conversion and partner-routing pages.
 - `doctor-network/` and `agent-access/` — trust and agent workflow pages.
-- `agent-intake/` and `glp-1-consult-request/` — structured FormSubmit-backed
+- `agent-intake/` and `glp-1-consult-request/` — structured API-first
   pre-launch intake pages for agents and high-intent GLP-1 consult requests.
+- `backend/lead-api/` — deployable Cloudflare Worker + D1 backend with lead
+  capture, admin triage, notes, metrics, CSV export, idempotency, rate-limit
+  hooks, and optional email notifications.
+- `lead-client.js` — API-first lead submission helper with FormSubmit fallback.
 - `agents.txt`, `.well-known/lifelongpep-agent.json`, `openapi.json`, and
   `mcp/manifest.json` — agent-readable discovery and draft integration contracts.
 - The homepage includes a Human/Agent access section. Agent access is positioned as planned MCP, CLI, and API workflows for consult preparation, AI education, and doctor booking, using static command-card patterns inspired by `nolly-studio/cult-ui` without adding a React/Tailwind dependency.
@@ -50,12 +54,23 @@ python3 -m http.server 8765
 
 Then open `http://localhost:8765/`.
 
-## Waitlist form
+## Lead capture
 
-The waitlist form posts to [formsubmit.co](https://formsubmit.co/) which forwards
-submissions to `hello@lifelongpep.fit`. The first submission triggers an
-activation email — confirm it once and all subsequent submissions are forwarded
-as plain emails.
+The public forms use `lead-client.js` to try the lead API first:
+
+```text
+https://api.lifelongpep.fit/v1/leads
+```
+
+If the API is not deployed or unavailable, forms fall back to
+[formsubmit.co](https://formsubmit.co/) and forward submissions to
+`hello@lifelongpep.fit`. The first FormSubmit submission triggers an activation
+email — confirm it once and all subsequent submissions are forwarded as plain
+emails.
+
+The backend lives in `backend/lead-api/` and is designed for Cloudflare Workers
+with D1. See `backend/lead-api/README.md` for deployment steps, required
+secrets, admin endpoints, and local smoke tests.
 
 ## Custom domain
 

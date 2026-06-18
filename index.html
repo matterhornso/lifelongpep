@@ -19,6 +19,7 @@
 
 <!-- Analytics -->
 <script defer data-domain="lifelongpep.fit" src="https://plausible.io/js/script.js"></script>
+<script defer src="/lead-client.js"></script>
 <script>
   window.plausible = window.plausible || function () {
     ;(window.plausible.q = window.plausible.q || []).push(arguments)
@@ -2735,6 +2736,27 @@ async function assertFormSubmitSuccess(res) {
   return payload
 }
 
+async function submitLeadWithFallback(payload, formsubmitEndpoint) {
+  if (window.lifelongpepLeadApi && typeof window.lifelongpepLeadApi.submitLead === 'function') {
+    const apiResult = await window.lifelongpepLeadApi.submitLead(payload)
+    if (apiResult.ok) return { channel: 'api', response: apiResult.response }
+    if (!apiResult.fallback && !apiResult.skipped) {
+      throw new Error('Lead API rejected the submission')
+    }
+  }
+
+  const res = await fetch(formsubmitEndpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  })
+  await assertFormSubmitSuccess(res)
+  return { channel: 'formsubmit' }
+}
+
 document.querySelectorAll('.signup-form.waitlist-form').forEach(form => {
   // If they already signed up on this device, lock the form on load.
   if (localStorage.getItem(WAITLIST_KEY)) markWaitlistedUI(form)
@@ -2757,27 +2779,20 @@ document.querySelectorAll('.signup-form.waitlist-form').forEach(form => {
     btn.disabled = true
 
     try {
-      const res = await fetch(WAITLIST_ENDPOINT, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          email,
-          intent,
-          intent_label: intentLabel,
-          _subject: `lifelongpep waitlist signup — ${intentLabel}`,
-          _captcha: 'false',
-          _template: 'table',
-          source: window.location.href,
-          landing_path: window.location.pathname,
-          ...getUtmParams()
-        })
-      })
-      await assertFormSubmitSuccess(res)
+      const result = await submitLeadWithFallback({
+        email,
+        intent,
+        intent_label: intentLabel,
+        lead_type: 'waitlist',
+        _subject: `lifelongpep waitlist signup — ${intentLabel}`,
+        _captcha: 'false',
+        _template: 'table',
+        source: window.location.href,
+        landing_path: window.location.pathname,
+        ...getUtmParams()
+      }, WAITLIST_ENDPOINT)
       localStorage.setItem(WAITLIST_KEY, JSON.stringify({ email, intent, ts: Date.now() }))
-      track('Waitlist Signup', { source, intent })
+      track('Waitlist Signup', { source, intent, channel: result.channel })
       markWaitlistedUI(form)
       window.location.href = thankYouUrl(intent)
     } catch (err) {
@@ -2830,23 +2845,19 @@ document.querySelectorAll('.signup-form.issues-form').forEach(form => {
     btn.disabled = true
 
     try {
-      const res = await fetch(ISSUES_ENDPOINT, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          email,
-          _subject: 'lifelongpep issues subscribe',
-          _captcha: 'false',
-          _template: 'table',
-          source: window.location.href
-        })
-      })
-      await assertFormSubmitSuccess(res)
+      const result = await submitLeadWithFallback({
+        email,
+        intent: 'issues',
+        lead_type: 'issues',
+        _subject: 'lifelongpep issues subscribe',
+        _captcha: 'false',
+        _template: 'table',
+        source: window.location.href,
+        landing_path: window.location.pathname,
+        ...getUtmParams()
+      }, ISSUES_ENDPOINT)
       localStorage.setItem(ISSUES_KEY, JSON.stringify({ email, ts: Date.now() }))
-      track('Issues Subscribe', { source: 'issues_section' })
+      track('Issues Subscribe', { source: 'issues_section', channel: result.channel })
       markIssuesSubscribedUI(form)
       window.location.href = thankYouUrl('issues')
     } catch (err) {

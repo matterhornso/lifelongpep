@@ -1,0 +1,16 @@
+{
+  "name": "lifelongpep-lead-api",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "node test/smoke.test.js",
+    "migrate:remote": "wrangler d1 migrations apply lifelongpep_leads --remote",
+    "migrate:local": "wrangler d1 migrations apply lifelongpep_leads --local"
+  },
+  "devDependencies": {
+    "wrangler": "^4.20.0"
+  }
+}

@@ -1,0 +1,30 @@
+name = "lifelongpep-lead-api"
+main = "src/index.js"
+compatibility_date = "2026-06-17"
+
+[vars]
+PUBLIC_LEAD_RATE_LIMIT = "12"
+PUBLIC_LEAD_RATE_WINDOW_SECONDS = "3600"
+# Set to "true" only for local debugging.
+DISABLE_RATE_LIMIT = "false"
+
+# Replace this placeholder after running:
+# wrangler d1 create lifelongpep_leads
+[[d1_databases]]
+binding = "DB"
+database_name = "lifelongpep_leads"
+database_id = "REPLACE_WITH_CLOUDFLARE_D1_DATABASE_ID"
+
+# Uncomment after api.lifelongpep.fit is configured in Cloudflare.
+# routes = [
+#   { pattern = "api.lifelongpep.fit/*", zone_name = "lifelongpep.fit" }
+# ]
+
+# Required secrets:
+# wrangler secret put ADMIN_TOKEN
+# wrangler secret put IP_HASH_SALT
+#
+# Optional notification secrets:
+# wrangler secret put RESEND_API_KEY
+# wrangler secret put NOTIFY_TO_EMAIL
+# wrangler secret put NOTIFY_FROM_EMAIL

@@ -46,6 +46,7 @@ Add `lifelongpep.fit` in Plausible, then create custom event goals matching the 
 - `utm_source`
 - `utm_medium`
 - `utm_campaign`
+- `channel`: `api` when the lead API accepts the submission, `formsubmit` when the fallback is used
 
 ## Weekly dashboard
 
@@ -56,7 +57,7 @@ Add `lifelongpep.fit` in Plausible, then create custom event goals matching the 
 - Top SEO landing page
 - Contact clicks by intent
 - Search Console queries and average position
-- FormSubmit activation state
+- Lead API deployment and FormSubmit fallback rate
 
 ## Implemented form routing
 
@@ -71,3 +72,5 @@ The homepage waitlist form now captures optional intent:
 - educational issues
 
 Successful submissions redirect to `/thank-you/?intent=...` for cleaner conversion tracking.
+
+The frontend now tries the Cloudflare Worker lead API first, then falls back to FormSubmit while the API is not deployed or temporarily unavailable.
