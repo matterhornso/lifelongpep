@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>lifelongpep Admin</title>
+<meta name="description" content="Private lifelongpep lead operations dashboard.">
+<link rel="canonical" href="https://lifelongpep.fit/admin/">
+<meta name="robots" content="noindex, nofollow">
+<style>
+:root{--bg:#fff;--ink:#0f172a;--muted:#64748b;--accent:#1e40af;--line:rgba(15,23,42,.14);--soft:#f8fafc;--good:#166534;--warn:#b45309;--bad:#b91c1c}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:15px;line-height:1.45}a{color:var(--accent)}button,input,select,textarea{font:inherit}.shell{max-width:1280px;margin:0 auto;padding:0 20px}header{border-bottom:1px solid var(--line);padding:16px 0;position:sticky;top:0;background:#fff;z-index:5}.top{display:flex;justify-content:space-between;gap:16px;align-items:center}.brand{font-weight:800;font-size:20px;margin:0}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:360px 1fr;gap:20px;padding:20px 0}.panel{border:1px solid var(--line);background:#fff}.panel-head{display:flex;justify-content:space-between;gap:10px;align-items:center;border-bottom:1px solid var(--line);padding:14px 16px}.panel-body{padding:16px}.filters{display:grid;gap:10px}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}label{font-size:12px;font-weight:800;color:#334155}input,select,textarea{width:100%;border:1px solid var(--line);border-radius:4px;background:#fff;color:var(--ink);padding:9px 10px}textarea{min-height:88px;resize:vertical}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:38px;border:1px solid var(--accent);border-radius:4px;background:var(--accent);color:#fff;padding:8px 12px;text-decoration:none;font-weight:800;cursor:pointer}.btn.secondary{background:#fff;color:var(--accent)}.btn.danger{border-color:var(--bad);background:var(--bad)}.btn:disabled{opacity:.55;cursor:default}.toolbar{display:flex;gap:8px;flex-wrap:wrap}.lead-list{display:grid;max-height:70vh;overflow:auto}.lead-item{border-bottom:1px solid var(--line);padding:12px 16px;cursor:pointer;background:#fff}.lead-item:hover,.lead-item.active{background:var(--soft)}.lead-title{display:flex;justify-content:space-between;gap:10px;font-weight:800}.lead-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;color:var(--muted);font-size:13px}.pill{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:2px 8px;font-size:12px;font-weight:800}.pill.high{color:var(--bad)}.pill.normal{color:var(--accent)}.pill.low{color:var(--muted)}.detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}.field{border-top:1px solid var(--line);padding-top:10px}.field b{display:block;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.note{border-top:1px solid var(--line);padding:12px 0}.pre{background:var(--soft);border:1px solid var(--line);padding:12px;white-space:pre-wrap;overflow:auto;max-height:280px}.status{min-height:20px;color:var(--muted)}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:20px 0}.kpi{border:1px solid var(--line);padding:12px}.kpi b{display:block;font-size:24px}.hidden{display:none}@media(max-width:900px){.grid{grid-template-columns:1fr}.detail-grid,.kpis{grid-template-columns:1fr 1fr}.lead-list{max-height:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="shell top">
+    <div><h1 class="brand">lifelongpep admin</h1><div class="muted">Lead operations dashboard</div></div>
+    <div class="toolbar">
+      <button class="btn secondary" id="refresh">Refresh</button>
+      <button class="btn secondary" id="export">Export CSV</button>
+      <button class="btn danger" id="logout">Forget token</button>
+    </div>
+  </div>
+</header>
+
+<main class="shell">
+  <section class="panel" id="auth-panel">
+    <div class="panel-head"><strong>Connect to lead API</strong><span class="muted">Token stays in this browser</span></div>
+    <div class="panel-body">
+      <div class="row">
+        <div>
+          <label for="api-base">API base</label>
+          <input id="api-base" value="https://api.lifelongpep.fit">
+        </div>
+        <div>
+          <label for="admin-token">Admin token</label>
+          <input id="admin-token" type="password" placeholder="ADMIN_TOKEN">
+        </div>
+      </div>
+      <div class="toolbar" style="margin-top:12px">
+        <button class="btn" id="save-token">Open dashboard</button>
+      </div>
+      <p class="muted">Set `ADMIN_TOKEN` as a Worker secret. This page sends it as a Bearer token to the admin API.</p>
+    </div>
+  </section>
+
+  <section class="kpis hidden" id="kpis"></section>
+
+  <section class="grid hidden" id="dashboard">
+    <aside class="panel">
+      <div class="panel-head"><strong>Leads</strong><span class="status" id="list-status"></span></div>
+      <div class="panel-body filters">
+        <div class="row">
+          <div>
+            <label for="status-filter">Status</label>
+            <select id="status-filter">
+              <option value="">All</option>
+              <option>received</option>
+              <option>qualified</option>
+              <option>contacted</option>
+              <option>scheduled</option>
+              <option>waitlisted</option>
+              <option>closed</option>
+              <option>spam</option>
+            </select>
+          </div>
+          <div>
+            <label for="intent-filter">Intent</label>
+            <select id="intent-filter">
+              <option value="">All</option>
+              <option value="glp1-readiness">glp1-readiness</option>
+              <option value="agent">agent</option>
+              <option value="doctor">doctor</option>
+              <option value="partner">partner</option>
+              <option value="issues">issues</option>
+              <option value="early-consult">early-consult</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label for="q-filter">Search</label>
+          <input id="q-filter" placeholder="email, name, city">
+        </div>
+        <button class="btn" id="apply-filters">Apply filters</button>
+      </div>
+      <div class="lead-list" id="lead-list"></div>
+    </aside>
+
+    <section class="panel">
+      <div class="panel-head"><strong id="detail-title">Select a lead</strong><span class="status" id="detail-status"></span></div>
+      <div class="panel-body" id="detail">
+        <p class="muted">Choose a lead from the list.</p>
+      </div>
+    </section>
+  </section>
+</main>
+
+<script>
+const TOKEN_KEY = 'lifelongpep_admin_token'
+const API_KEY = 'lifelongpep_admin_api_base'
+const state = { leads: [], selected: null }
+const $ = id => document.getElementById(id)
+
+function apiBase(){return ($('api-base').value || localStorage.getItem(API_KEY) || 'https://api.lifelongpep.fit').replace(/\/$/,'')}
+function token(){return $('admin-token').value || localStorage.getItem(TOKEN_KEY) || ''}
+function headers(){return {'Authorization':'Bearer '+token(),'Content-Type':'application/json','Accept':'application/json'}}
+function showDashboard(show){$('dashboard').classList.toggle('hidden',!show);$('kpis').classList.toggle('hidden',!show)}
+function setStatus(id,text){$(id).textContent=text||''}
+
+async function api(path, options={}){
+  const res = await fetch(apiBase()+path,{...options,headers:{...headers(),...(options.headers||{})}})
+  if(!res.ok){throw new Error((await res.text()).slice(0,300)||('HTTP '+res.status))}
+  const type=res.headers.get('Content-Type')||''
+  return type.includes('application/json')?res.json():res.text()
+}
+
+function renderKpis(metrics){
+  const byStatus=(metrics.by_status||[]).map(x=>`${x.status}: ${x.count}`).join(' | ')
+  const byIntent=(metrics.by_intent||[]).slice(0,4).map(x=>`${x.intent}: ${x.count}`).join(' | ')
+  $('kpis').innerHTML=`<div class="kpi"><span class="muted">Total</span><b>${metrics.total||0}</b></div><div class="kpi"><span class="muted">Last 7 days</span><b>${metrics.last_7_days||0}</b></div><div class="kpi"><span class="muted">By status</span><div>${byStatus||'none'}</div></div><div class="kpi"><span class="muted">Top intents</span><div>${byIntent||'none'}</div></div>`
+}
+
+function renderLeads(){
+  $('lead-list').innerHTML = state.leads.map(lead => `
+    <article class="lead-item ${state.selected===lead.id?'active':''}" data-id="${lead.id}">
+      <div class="lead-title"><span>${lead.email}</span><span class="pill ${lead.priority}">${lead.priority}</span></div>
+      <div>${lead.name || 'No name'} ${lead.city ? '- '+lead.city : ''}</div>
+      <div class="lead-meta"><span>${lead.intent}</span><span>${lead.status}</span><span>${lead.created_at||''}</span></div>
+    </article>
+  `).join('') || '<div class="panel-body muted">No leads found.</div>'
+  document.querySelectorAll('.lead-item').forEach(item=>item.addEventListener('click',()=>loadLead(item.dataset.id)))
+}
+
+function detailHtml(data){
+  const lead=data.lead
+  const notes=data.notes||[]
+  return `
+    <div class="detail-grid">
+      <div class="field"><b>Email</b>${lead.email}</div>
+      <div class="field"><b>Name</b>${lead.name||''}</div>
+      <div class="field"><b>City</b>${lead.city||''}</div>
+      <div class="field"><b>Intent</b>${lead.intent}</div>
+      <div class="field"><b>Type</b>${lead.lead_type}</div>
+      <div class="field"><b>Source</b>${lead.source||''}</div>
+    </div>
+    <div class="row">
+      <div><label>Status</label><select id="edit-status">${['received','qualified','contacted','scheduled','waitlisted','closed','spam'].map(s=>`<option ${s===lead.status?'selected':''}>${s}</option>`).join('')}</select></div>
+      <div><label>Priority</label><select id="edit-priority">${['low','normal','high'].map(p=>`<option ${p===lead.priority?'selected':''}>${p}</option>`).join('')}</select></div>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <div><label>Assigned to</label><input id="edit-assigned" value="${lead.assigned_to||''}"></div>
+      <div style="display:flex;align-items:end"><button class="btn" id="save-lead">Save lead</button></div>
+    </div>
+    <h3>Payload</h3><pre class="pre">${escapeHtml(JSON.stringify(lead.payload||{},null,2))}</pre>
+    <h3>Notes</h3>
+    <textarea id="new-note" placeholder="Add an internal note"></textarea>
+    <div class="toolbar" style="margin-top:8px"><button class="btn secondary" id="add-note">Add note</button></div>
+    <div>${notes.map(n=>`<div class="note"><b>${n.author||'admin'}</b> <span class="muted">${n.created_at}</span><br>${escapeHtml(n.note)}</div>`).join('')||'<p class="muted">No notes yet.</p>'}</div>
+  `
+}
+
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+
+async function loadAll(){
+  setStatus('list-status','Loading...')
+  const params=new URLSearchParams()
+  if($('status-filter').value)params.set('status',$('status-filter').value)
+  if($('intent-filter').value)params.set('intent',$('intent-filter').value)
+  if($('q-filter').value)params.set('q',$('q-filter').value)
+  const [list, metrics] = await Promise.all([api('/v1/admin/leads?'+params.toString()), api('/v1/admin/metrics')])
+  state.leads=list.leads||[]
+  renderKpis(metrics)
+  renderLeads()
+  setStatus('list-status',`${list.total||0} total`)
+}
+
+async function loadLead(id){
+  state.selected=id
+  renderLeads()
+  setStatus('detail-status','Loading...')
+  const data=await api('/v1/admin/leads/'+id)
+  $('detail-title').textContent=data.lead.email
+  $('detail').innerHTML=detailHtml(data)
+  $('save-lead').addEventListener('click',()=>saveLead(id))
+  $('add-note').addEventListener('click',()=>addNote(id))
+  setStatus('detail-status','')
+}
+
+async function saveLead(id){
+  setStatus('detail-status','Saving...')
+  await api('/v1/admin/leads/'+id,{method:'PATCH',body:JSON.stringify({status:$('edit-status').value,priority:$('edit-priority').value,assigned_to:$('edit-assigned').value})})
+  await loadAll()
+  await loadLead(id)
+}
+
+async function addNote(id){
+  const note=$('new-note').value.trim()
+  if(!note)return
+  setStatus('detail-status','Saving note...')
+  await api('/v1/admin/leads/'+id+'/notes',{method:'POST',body:JSON.stringify({note,author:'admin'})})
+  await loadLead(id)
+}
+
+$('save-token').addEventListener('click',async()=>{
+  localStorage.setItem(TOKEN_KEY,$('admin-token').value)
+  localStorage.setItem(API_KEY,$('api-base').value)
+  showDashboard(true)
+  await loadAll().catch(err=>alert(err.message))
+})
+$('refresh').addEventListener('click',()=>loadAll().catch(err=>alert(err.message)))
+$('apply-filters').addEventListener('click',()=>loadAll().catch(err=>alert(err.message)))
+$('export').addEventListener('click',async()=>{
+  const res=await fetch(apiBase()+'/v1/admin/leads.csv',{headers:{Authorization:'Bearer '+token()}})
+  if(!res.ok){alert((await res.text()).slice(0,300));return}
+  const blob=await res.blob()
+  const url=URL.createObjectURL(blob)
+  const a=document.createElement('a')
+  a.href=url
+  a.download='lifelongpep-leads.csv'
+  a.click()
+  URL.revokeObjectURL(url)
+})
+$('logout').addEventListener('click',()=>{localStorage.removeItem(TOKEN_KEY);localStorage.removeItem(API_KEY);location.reload()})
+
+$('admin-token').value=localStorage.getItem(TOKEN_KEY)||''
+$('api-base').value=localStorage.getItem(API_KEY)||$('api-base').value
+if(token()){showDashboard(true);loadAll().catch(err=>setStatus('list-status',err.message))}
+</script>
+</body>
+</html>

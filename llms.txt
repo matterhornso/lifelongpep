@@ -40,6 +40,10 @@ lifelongpep is for people in India researching metabolic health, GLP-1 readiness
 - Agent access: https://lifelongpep.fit/agent-access/
 - Agent intake: https://lifelongpep.fit/agent-intake/
 - GLP-1 consult request: https://lifelongpep.fit/glp-1-consult-request/
+- GLP-1 doctor consult India: https://lifelongpep.fit/glp-1-doctor-consult-india/
+- Mounjaro doctor consult India: https://lifelongpep.fit/mounjaro-doctor-consult-india/
+- Semaglutide doctor consult India: https://lifelongpep.fit/semaglutide-doctor-consult-india/
+- Weight-loss doctor consult India: https://lifelongpep.fit/weight-loss-doctor-consult-india/
 - Agent guide: https://lifelongpep.fit/agents.txt
 - Agent manifest: https://lifelongpep.fit/.well-known/lifelongpep-agent.json
 - OpenAPI draft: https://lifelongpep.fit/openapi.json

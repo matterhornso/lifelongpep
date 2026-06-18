@@ -26,9 +26,15 @@ Doctor-gated metabolic longevity and GLP-1 readiness platform for India. Current
 - `doctor-network/` and `agent-access/` — trust and agent workflow pages.
 - `agent-intake/` and `glp-1-consult-request/` — structured API-first
   pre-launch intake pages for agents and high-intent GLP-1 consult requests.
+- `glp-1-doctor-consult-india/`, `mounjaro-doctor-consult-india/`,
+  `semaglutide-doctor-consult-india/`, `weight-loss-doctor-consult-india/` —
+  high-intent doctor-consult SEO/AEO pages.
 - `backend/lead-api/` — deployable Cloudflare Worker + D1 backend with lead
   capture, admin triage, notes, metrics, CSV export, idempotency, rate-limit
   hooks, and optional email notifications.
+- `backend/mcp-server/` — MCP wrapper around the lead API for agent intake and
+  GLP-1 consult request workflows.
+- `admin/` — noindex browser dashboard for the protected lead admin API.
 - `lead-client.js` — API-first lead submission helper with FormSubmit fallback.
 - `agents.txt`, `.well-known/lifelongpep-agent.json`, `openapi.json`, and
   `mcp/manifest.json` — agent-readable discovery and draft integration contracts.

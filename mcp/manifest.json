@@ -1,41 +1,37 @@
 {
   "name": "lifelongpep-mcp",
-  "status": "planned",
-  "description": "Planned MCP tools for GLP-1 readiness, metabolic longevity consult preparation, and doctor booking handoff in India.",
+  "status": "implementation-ready",
+  "description": "MCP tools for GLP-1 readiness, metabolic longevity consult preparation, and pre-launch lead handoff in India.",
   "homepage": "https://lifelongpep.fit/agent-access/",
   "contact": "hello@lifelongpep.fit",
+  "server_package": "backend/mcp-server/",
   "api_contract": "https://lifelongpep.fit/openapi.json",
   "agent_intake": "https://lifelongpep.fit/agent-intake/",
   "glp1_consult_request": "https://lifelongpep.fit/glp-1-consult-request/",
   "tools": [
     {
-      "name": "lifelongpep.get_capabilities",
-      "status": "planned",
+      "name": "lifelongpep_get_capabilities",
+      "status": "implemented-in-repo",
       "description": "Return current lifelongpep status, guardrails, live actions, and planned interfaces."
     },
     {
-      "name": "lifelongpep.get_readiness_checklist",
-      "status": "planned",
-      "description": "Return non-medical GLP-1 readiness questions a user can prepare before a doctor consult."
-    },
-    {
-      "name": "lifelongpep.prepare_consult",
-      "status": "planned",
+      "name": "lifelongpep_submit_agent_intake",
+      "status": "implemented-in-repo",
       "description": "Collect a structured intake summary for a future metabolic longevity or GLP-1 readiness consult."
     },
     {
-      "name": "lifelongpep.request_doctor_consult",
-      "status": "planned",
-      "description": "Request doctor consultation options after booking workflows are live."
+      "name": "lifelongpep_submit_glp1_consult_request",
+      "status": "implemented-in-repo",
+      "description": "Submit pre-launch interest for doctor-gated GLP-1 readiness consult access."
     },
     {
-      "name": "lifelongpep.get_request_status",
-      "status": "planned",
-      "description": "Check the status of a submitted agent intake or consult request after launch."
+      "name": "lifelongpep_get_request_status",
+      "status": "implemented-in-repo",
+      "description": "Check the public status of a submitted agent intake or consult request."
     }
   ],
   "guardrails": [
-    "The MCP server is not live today.",
+    "The MCP server implementation is in the repo but must be installed and connected to the deployed API.",
     "No medical advice, diagnosis, prescription, fulfillment, payment, or live booking is available today.",
     "Agents must disclose that lifelongpep is pre-launch and waitlist-only.",
     "Doctors decide independently after launch. GLP-1 access is not guaranteed."
