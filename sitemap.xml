@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/0.9">
   <url>
     <loc>https://lifelongpep.fit/</loc>
-    <lastmod>2026-06-12</lastmod>
+    <lastmod>2026-07-31</lastmod>
     <image:image>
       <image:loc>https://lifelongpep.fit/og.png</image:loc>
       <image:title>lifelongpep — Metabolic longevity and GLP-1 readiness in India.</image:title>
@@ -51,14 +51,6 @@
     <lastmod>2026-06-12</lastmod>
   </url>
   <url>
-    <loc>https://lifelongpep.fit/agent-intake/</loc>
-    <lastmod>2026-06-12</lastmod>
-  </url>
-  <url>
-    <loc>https://lifelongpep.fit/glp-1-consult-request/</loc>
-    <lastmod>2026-06-12</lastmod>
-  </url>
-  <url>
     <loc>https://lifelongpep.fit/glp-1-doctor-consult-india/</loc>
     <lastmod>2026-06-18</lastmod>
   </url>
@@ -101,6 +93,14 @@
   <url>
     <loc>https://lifelongpep.fit/medical-disclaimer/</loc>
     <lastmod>2026-06-11</lastmod>
+  </url>
+  <url>
+    <loc>https://lifelongpep.fit/public-beta/</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://lifelongpep.fit/privacy/</loc>
+    <lastmod>2026-07-31</lastmod>
   </url>
   <url>
     <loc>https://lifelongpep.fit/editorial-policy/</loc>

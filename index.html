@@ -6,7 +6,7 @@
 
 <!-- Title + description -->
 <title>lifelongpep — Metabolic longevity and GLP-1 readiness in India.</title>
-<meta name="description" content="Join the waitlist for lifelongpep, a doctor-gated metabolic longevity platform being built for India. GLP-1 readiness, consult prep, muscle-loss prevention, recovery, and wearable tracking.">
+<meta name="description" content="Join the lifelongpep public-interest beta for clear, non-clinical GLP-1 readiness education and launch updates in India. No medical advice, prescriptions, or bookings are available today.">
 
 <!-- Crawlers -->
 <link rel="canonical" href="https://lifelongpep.fit/">
@@ -31,7 +31,7 @@
 <meta property="og:site_name" content="lifelongpep">
 <meta property="og:url" content="https://lifelongpep.fit/">
 <meta property="og:title" content="Metabolic longevity and GLP-1 readiness in India — lifelongpep">
-<meta property="og:description" content="Join the waitlist for a doctor-gated metabolic longevity platform being built for India: GLP-1 readiness, consult prep, recovery, and wearable tracking.">
+<meta property="og:description" content="Public-interest beta for clear GLP-1 readiness education and launch updates in India. No medical advice, prescriptions, or bookings are available today.">
 <meta property="og:image" content="https://lifelongpep.fit/og.png">
 <meta property="og:image:width" content="2400">
 <meta property="og:image:height" content="1260">
@@ -42,7 +42,7 @@
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Metabolic longevity and GLP-1 readiness in India — lifelongpep">
-<meta name="twitter:description" content="Join the waitlist for a doctor-gated metabolic longevity platform being built for India. GLP-1 readiness, recovery, and wearable tracking.">
+<meta name="twitter:description" content="Public-interest beta for clear GLP-1 readiness education and launch updates in India. No medical advice, prescriptions, or bookings are available today.">
 <meta name="twitter:image" content="https://lifelongpep.fit/og.png">
 <meta name="twitter:image:alt" content="lifelongpep — Metabolic longevity and GLP-1 readiness in India.">
 
@@ -506,6 +506,19 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
   align-items: center;
   margin-bottom: var(--s-5);
 }
+.signup-form .consent-wrap {
+  flex: 1 1 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: var(--muted);
+  font-family: var(--ui);
+  font-size: 12px;
+  line-height: 1.45;
+  margin-top: -2px;
+}
+.signup-form .consent-wrap input { width: auto; margin: 3px 0 0; accent-color: var(--accent); }
+.signup-form .consent-wrap a { color: var(--ink); text-underline-offset: 2px; }
 .signup-form .input-wrap {
   flex: 1 1 280px;
   min-width: 240px;
@@ -1756,13 +1769,13 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
   <!-- ============ HERO ============ -->
   <section class="hero" aria-labelledby="hero-title">
     <h1 id="hero-title">
-      Metabolic longevity. <em>Doctor-gated.</em>
+      Metabolic longevity. <em>Clearer first.</em>
     </h1>
 
     <p class="lede" data-pretext="hero-lede">
-      lifelongpep is being built for India as a doctor-gated platform for
-      <em>GLP-1 readiness</em>, metabolic health consults, muscle-loss
-      prevention, recovery, supplements, and wearable-based protocol tracking.
+      lifelongpep is a public-interest beta for India: clear, non-clinical
+      education on <em>GLP-1 readiness</em>, metabolic health, muscle
+      preservation, and the questions worth taking to a qualified doctor.
     </p>
 
     <form class="signup-form waitlist-form" id="book" novalidate>
@@ -1780,24 +1793,25 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
         </select>
       </div>
       <button class="btn btn-primary" type="submit">
-        Get early access
+        Join the public beta
         <span class="arrow" aria-hidden="true">→</span>
       </button>
       <a class="btn btn-secondary" href="#how">
-        See how it works
+        What this beta includes
       </a>
+      <label class="consent-wrap"><input type="checkbox" name="consent" required> <span>I want lifelongpep to store my email and send public-beta and launch updates. See the <a href="/privacy/">privacy notice</a>.</span></label>
     </form>
 
     <p class="fineprint">
-      <strong>Pre-launch waitlist.</strong>
-      Drop your email and we'll tell you when consult booking opens. No medical
-      advice, prescriptions, or payments happen through this page.
+      <strong>Public-interest beta.</strong>
+      We collect only your email and interest category. No medical history,
+      symptom tracking, medical advice, prescriptions, payments, or booking happen here.
     </p>
 
     <div class="trust-row" aria-label="At a glance">
-      <div><strong>Doctor-gated model</strong>GLP-1 readiness and consult workflow in progress</div>
-      <div><strong>Transparent pricing</strong>consult and partner pricing shown before payment when launched</div>
-      <div><strong>India-wide waitlist</strong>email signup gets you early access updates</div>
+      <div><strong>Education first</strong>plain-language GLP-1 readiness information</div>
+      <div><strong>Clear boundaries</strong>no medical advice or care through this beta</div>
+      <div><strong>India-wide updates</strong>email signup for public-beta and launch news</div>
     </div>
   </section>
 
@@ -1898,9 +1912,10 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
             </select>
           </div>
           <button class="btn btn-primary" type="submit">
-            Join as a human
+            Join the public beta
             <span class="arrow" aria-hidden="true">&rarr;</span>
           </button>
+          <label class="consent-wrap"><input type="checkbox" name="consent" required> <span>I want lifelongpep to store my email and send public-beta and launch updates. See the <a href="/privacy/">privacy notice</a>.</span></label>
         </form>
         <p class="fineprint">
           No medical advice, prescriptions, or payments happen through this form.
@@ -1941,7 +1956,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
         <a class="btn btn-secondary" href="mailto:hello@lifelongpep.fit?subject=Agent%20access%20interest&body=Hi%20lifelongpep%2C%0A%0AI%27m%20interested%20in%20agent%20access.%0A%0AInterface%3A%20MCP%20%2F%20CLI%20%2F%20API%0AUse%20case%3A%0AExpected%20volume%3A%0A">
           Request agent access
         </a>
-        <a class="text-link" href="/agent-intake/">Submit structured agent intake &rarr;</a>
+        <a class="text-link" href="/agent-access/">Read planned agent access &rarr;</a>
         <a class="text-link" href="/agent-access/">Read the agent access guide &rarr;</a>
       </article>
     </div>
@@ -2324,6 +2339,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
             Send me the first issue
             <span class="arrow" aria-hidden="true">&rarr;</span>
           </button>
+          <label class="consent-wrap"><input type="checkbox" name="consent" required> <span>I want lifelongpep to store my email and send educational updates. See the <a href="/privacy/">privacy notice</a>.</span></label>
         </form>
         <p class="fineprint issues-fineprint">
           Different list from the booking waitlist. Sign up for both if you want both.
@@ -2458,17 +2474,17 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
         </select>
       </div>
       <button class="btn btn-primary" type="submit">
-        Get early access
+        Join the public beta
         <span class="arrow" aria-hidden="true">→</span>
       </button>
       <a class="btn btn-secondary" href="#how">
-        Read how it works
+        What this beta includes
       </a>
+      <label class="consent-wrap"><input type="checkbox" name="consent" required> <span>I want lifelongpep to store my email and send public-beta and launch updates. See the <a href="/privacy/">privacy notice</a>.</span></label>
     </form>
 
     <p class="fineprint">
-      <strong>No spam.</strong> One email when consults open, then occasional
-      notes on the marketplace, doctors, and what's next. Unsubscribe in one click.
+      <strong>No clinical care through this beta.</strong> We will send public-beta and launch updates. You can ask us to stop at any time.
     </p>
   </section>
 </div>
@@ -2499,12 +2515,10 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
           <li><a href="/what-happens-after-stopping-glp-1/">After stopping GLP-1</a></li>
           <li><a href="/mounjaro-vs-wegovy-generic-semaglutide-india/">Mounjaro vs Wegovy vs generic semaglutide</a></li>
           <li><a href="#agent-access">Human and agent access</a></li>
-          <li><a href="/glp-1-consult-request/">GLP-1 consult request</a></li>
           <li><a href="/glp-1-doctor-consult-india/">GLP-1 doctor consult India</a></li>
           <li><a href="/mounjaro-doctor-consult-india/">Mounjaro doctor consult India</a></li>
           <li><a href="/semaglutide-doctor-consult-india/">Semaglutide doctor consult India</a></li>
           <li><a href="/weight-loss-doctor-consult-india/">Weight-loss doctor consult India</a></li>
-          <li><a href="/agent-intake/">Agent intake</a></li>
           <li><a href="/agent-access/">Agent access page</a></li>
           <li><a href="/metabolic-longevity-india/">Metabolic longevity</a></li>
           <li><a href="/glp-1-muscle-loss-prevention/">Muscle-loss prevention</a></li>
@@ -2525,10 +2539,12 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
           <li><a href="#pricing">Pricing</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="/medical-disclaimer/">Medical disclaimer</a></li>
+          <li><a href="/public-beta/">Public beta</a></li>
+          <li><a href="/privacy/">Privacy notice</a></li>
           <li><a href="/editorial-policy/">Editorial policy</a></li>
           <li><a href="/doctor-network/">Doctor network</a></li>
           <li><a href="/longevity-doctor-vs-general-physician/">Longevity vs primary care</a></li>
-          <li><a href="mailto:hello@lifelongpep.fit?subject=Legal%20and%20licensing%20question">Legal &amp; licensing</a></li>
+          <li><a href="mailto:hello@lifelongpep.fit?subject=Public%20beta%20feedback">Public-beta feedback &amp; concerns</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -2543,7 +2559,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
     </div>
     <div class="footer-meta">
       <div>&copy; 2026 lifelongpep.</div>
-      <div>Pre-launch waitlist. Doctor-gated model. India-wide ambition.</div>
+      <div>Public-interest beta. No medical advice, prescriptions, or bookings.</div>
     </div>
   </div>
 </footer>
@@ -2770,8 +2786,9 @@ document.querySelectorAll('.signup-form.waitlist-form').forEach(form => {
     const input = form.querySelector('input[type="email"]')
     const btn = form.querySelector('button[type="submit"]')
     if (!input || !btn) return
-    if (!input.value || !input.checkValidity()) {
+    if (!form.checkValidity() || !input.value || !input.checkValidity()) {
       flashError(input, 'Please enter a valid email')
+      form.reportValidity()
       return
     }
 
@@ -2791,6 +2808,9 @@ document.querySelectorAll('.signup-form.waitlist-form').forEach(form => {
         _subject: `lifelongpep waitlist signup — ${intentLabel}`,
         _captcha: 'false',
         _template: 'table',
+        consent_to_contact: true,
+        consent_to_store: true,
+        beta_type: 'public-interest',
         source: window.location.href,
         landing_path: window.location.pathname,
         ...getUtmParams()
@@ -2839,8 +2859,9 @@ document.querySelectorAll('.signup-form.issues-form').forEach(form => {
     const input = form.querySelector('input[type="email"]')
     const btn = form.querySelector('button[type="submit"]')
     if (!input || !btn) return
-    if (!input.value || !input.checkValidity()) {
+    if (!form.checkValidity() || !input.value || !input.checkValidity()) {
       flashError(input, 'Please enter a valid email')
+      form.reportValidity()
       return
     }
 
@@ -2856,6 +2877,9 @@ document.querySelectorAll('.signup-form.issues-form').forEach(form => {
         _subject: 'lifelongpep issues subscribe',
         _captcha: 'false',
         _template: 'table',
+        consent_to_contact: true,
+        consent_to_store: true,
+        beta_type: 'public-interest',
         source: window.location.href,
         landing_path: window.location.pathname,
         ...getUtmParams()
