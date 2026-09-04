@@ -3,24 +3,13 @@
   "info": {
     "title": "lifelongpep Agent API",
     "version": "0.2.0-draft",
-    "summary": "Backend API for lifelongpep lead capture, agent intake, GLP-1 consult requests, and admin lead operations.",
-    "description": "Pre-launch backend API for lead capture and early operations. Public endpoints collect interest only; protected admin endpoints support triage, notes, metrics, and export. No medical advice, diagnosis, prescription, payment, fulfillment, or appointment booking is available through this API today."
+    "summary": "Draft contract for potential future lifelongpep integrations.",
+    "description": "This is a planning document, not a deployed public API. No API endpoints are available for public use. No medical advice, diagnosis, prescription, payment, fulfilment, appointment booking, or health-information collection is available through this draft."
   },
-  "servers": [
-    {
-      "url": "https://api.lifelongpep.fit",
-      "description": "Lead API host after Cloudflare Worker deployment"
-    },
-    {
-      "url": "https://lifelongpep.fit",
-      "description": "Public static site"
-    }
-  ],
-  "x-lifelongpep-status": "pre-launch",
+  "servers": [],
+  "x-lifelongpep-status": "planned-not-deployed",
   "x-live-actions": [
-    "join_waitlist",
-    "submit_agent_intake_form",
-    "submit_glp1_consult_request_form",
+    "join_public_beta_by_email",
     "request_agent_access_by_email"
   ],
   "paths": {

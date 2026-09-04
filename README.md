@@ -24,8 +24,8 @@ Doctor-gated metabolic longevity and GLP-1 readiness platform for India. Current
   additional SEO/AEO educational pages.
 - `doctor-onboarding/`, `partner-interest/`, `thank-you/` — conversion and partner-routing pages.
 - `doctor-network/` and `agent-access/` — trust and agent workflow pages.
-- `agent-intake/` and `glp-1-consult-request/` — structured API-first
-  pre-launch intake pages for agents and high-intent GLP-1 consult requests.
+- `agent-intake/` and `glp-1-consult-request/` — closed legacy routes that
+  direct visitors to the public beta without collecting health information.
 - `glp-1-doctor-consult-india/`, `mounjaro-doctor-consult-india/`,
   `semaglutide-doctor-consult-india/`, `weight-loss-doctor-consult-india/` —
   high-intent doctor-consult SEO/AEO pages.
@@ -35,7 +35,6 @@ Doctor-gated metabolic longevity and GLP-1 readiness platform for India. Current
 - `backend/mcp-server/` — MCP wrapper around the lead API for agent intake and
   GLP-1 consult request workflows.
 - `admin/` — noindex browser dashboard for the protected lead admin API.
-- `lead-client.js` — API-first lead submission helper with FormSubmit fallback.
 - `agents.txt`, `.well-known/lifelongpep-agent.json`, `openapi.json`, and
   `mcp/manifest.json` — agent-readable discovery and draft integration contracts.
 - The homepage includes a Human/Agent access section. Agent access is positioned as planned MCP, CLI, and API workflows for consult preparation, AI education, and doctor booking, using static command-card patterns inspired by `nolly-studio/cult-ui` without adding a React/Tailwind dependency.
@@ -60,23 +59,12 @@ python3 -m http.server 8765
 
 Then open `http://localhost:8765/`.
 
-## Lead capture
+## Public-beta email capture
 
-The public forms use `lead-client.js` to try the lead API first:
-
-```text
-https://api.lifelongpep.fit/v1/leads
-```
-
-If the API is not deployed or unavailable, forms fall back to
-[formsubmit.co](https://formsubmit.co/) and forward submissions to
-`hello@lifelongpep.fit`. The first FormSubmit submission triggers an activation
-email — confirm it once and all subsequent submissions are forwarded as plain
-emails.
-
-The backend lives in `backend/lead-api/` and is designed for Cloudflare Workers
-with D1. See `backend/lead-api/README.md` for deployment steps, required
-secrets, admin endpoints, and local smoke tests.
+The public-beta forms submit directly to [FormSubmit](https://formsubmit.co/)
+and forward email-only interest to `hello@lifelongpep.fit`. The public site does
+not currently expose a lead API. Verify FormSubmit activation and delivery with
+a real test submission before inviting users to join.
 
 ## Custom domain
 

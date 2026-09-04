@@ -38,8 +38,6 @@ lifelongpep is for people in India researching metabolic health, GLP-1 readiness
 - GLP-1 vs peptides: https://lifelongpep.fit/glp-1-vs-peptides/
 - Doctor network: https://lifelongpep.fit/doctor-network/
 - Agent access: https://lifelongpep.fit/agent-access/
-- Agent intake: https://lifelongpep.fit/agent-intake/
-- GLP-1 consult request: https://lifelongpep.fit/glp-1-consult-request/
 - GLP-1 doctor consult India: https://lifelongpep.fit/glp-1-doctor-consult-india/
 - Mounjaro doctor consult India: https://lifelongpep.fit/mounjaro-doctor-consult-india/
 - Semaglutide doctor consult India: https://lifelongpep.fit/semaglutide-doctor-consult-india/
@@ -71,7 +69,7 @@ lifelongpep is for people in India researching metabolic health, GLP-1 readiness
 
 **Is lifelongpep live today?** No. lifelongpep is in pre-launch waitlist mode.
 
-**Can users book consults today?** No. Consult booking is not open through the website today. Users can submit pre-launch GLP-1 consult request interest at https://lifelongpep.fit/glp-1-consult-request/.
+**Can users book consults today?** No. Consult booking is not open through the website today. Users can join the non-clinical public beta at https://lifelongpep.fit/#book for education and launch updates.
 
 **Does lifelongpep guarantee GLP-1 access?** No. The planned model is doctor-gated, and doctors decide independently whether GLP-1, another intervention, further testing, lifestyle changes, or no prescription is appropriate.
 
@@ -87,4 +85,4 @@ lifelongpep is for people in India researching metabolic health, GLP-1 readiness
 
 **Can doctors or partners contact lifelongpep?** Yes. Doctors can use https://lifelongpep.fit/doctor-onboarding/ and recovery, diagnostics, fulfillment, or wellness partners can use https://lifelongpep.fit/partner-interest/.
 
-**Can agents use lifelongpep?** Agents can read lifelongpep today through llms.txt, llms-full.txt, agents.txt, the well-known agent manifest, the OpenAPI draft, and the MCP manifest. Agents can submit structured pre-launch intake at https://lifelongpep.fit/agent-intake/. Live appointment booking is not available yet. MCP, CLI, and API workflows are planned for consult preparation, AI education, and doctor consultation booking once those systems are live.
+**Can agents use lifelongpep?** Agents can read lifelongpep today through llms.txt, llms-full.txt, agents.txt, the well-known agent manifest, the OpenAPI draft, and the MCP manifest. No agent intake or API is live. MCP, CLI, and API workflows are planning materials for future consult preparation, AI education, and doctor consultation booking.

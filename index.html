@@ -19,7 +19,6 @@
 
 <!-- Analytics -->
 <script defer data-domain="lifelongpep.fit" src="https://plausible.io/js/script.js"></script>
-<script defer src="/lead-client.js"></script>
 <script>
   window.plausible = window.plausible || function () {
     ;(window.plausible.q = window.plausible.q || []).push(arguments)
@@ -2756,15 +2755,7 @@ async function assertFormSubmitSuccess(res) {
   return payload
 }
 
-async function submitLeadWithFallback(payload, formsubmitEndpoint) {
-  if (window.lifelongpepLeadApi && typeof window.lifelongpepLeadApi.submitLead === 'function') {
-    const apiResult = await window.lifelongpepLeadApi.submitLead(payload)
-    if (apiResult.ok) return { channel: 'api', response: apiResult.response }
-    if (!apiResult.fallback && !apiResult.skipped) {
-      throw new Error('Lead API rejected the submission')
-    }
-  }
-
+async function submitEmailInterest(payload, formsubmitEndpoint) {
   const res = await fetch(formsubmitEndpoint, {
     method: 'POST',
     headers: {
@@ -2800,7 +2791,7 @@ document.querySelectorAll('.signup-form.waitlist-form').forEach(form => {
     btn.disabled = true
 
     try {
-      const result = await submitLeadWithFallback({
+      const result = await submitEmailInterest({
         email,
         intent,
         intent_label: intentLabel,
@@ -2821,9 +2812,9 @@ document.querySelectorAll('.signup-form.waitlist-form').forEach(form => {
       window.location.href = thankYouUrl(intent)
     } catch (err) {
       console.warn('Waitlist submission failed.', err)
-      alert('The waitlist email is still being activated. Please try again after hello@lifelongpep.fit is receiving mail.')
-      track('Waitlist Mailto Fallback', { source, intent })
-      btn.textContent = 'Join the waitlist'
+      alert('We could not record your interest. Please try again or email hello@lifelongpep.fit.')
+      track('Waitlist Submission Failed', { source, intent })
+      btn.textContent = 'Join the public beta'
       btn.disabled = false
     }
   })
@@ -2870,7 +2861,7 @@ document.querySelectorAll('.signup-form.issues-form').forEach(form => {
     btn.disabled = true
 
     try {
-      const result = await submitLeadWithFallback({
+      const result = await submitEmailInterest({
         email,
         intent: 'issues',
         lead_type: 'issues',
@@ -2890,8 +2881,8 @@ document.querySelectorAll('.signup-form.issues-form').forEach(form => {
       window.location.href = thankYouUrl('issues')
     } catch (err) {
       console.warn('Issues subscription failed.', err)
-      alert('The issues email is still being activated. Please try again after hello@lifelongpep.fit is receiving mail.')
-      track('Issues Mailto Fallback', { source: 'issues_section' })
+      alert('We could not record your subscription. Please try again or email hello@lifelongpep.fit.')
+      track('Issues Subscription Failed', { source: 'issues_section' })
       btn.textContent = 'Send me the first issue'
       btn.disabled = false
     }
