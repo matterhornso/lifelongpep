@@ -1,56 +1,78 @@
-# Founder LinkedIn Posts
+# Founder LinkedIn posts
 
-## Post 1: Consult First
+Use these posts with a personal founder observation, a plain visual, and one link. Do not add medicine names, prices, treatment claims, before-and-after images, or a call to message the founder for access.
 
-Most GLP-1 conversations start too late.
+## 1. What the public beta is for
 
-The first question should not be "which drug?"
+There is a lot of noise around GLP-1s in India.
 
-It should be:
+Most of it starts with access. We think the first step should be better questions.
 
-- What problem are we solving?
-- What does the evidence actually support?
-- What would make this inappropriate?
-- What would count as success after 8 weeks?
-- Who is responsible for follow-up?
+What is the goal? What should a qualified doctor know? What does muscle preservation have to do with it? What happens if the plan changes or stops?
 
-lifelongpep is being built around a consult-first model for India: doctor-gated, pre-launch, and intentionally slower than a shopping cart.
+lifelongpep is a public-interest beta for people who want clear, non-clinical education on those questions. We collect only an email address and interest category for beta and launch updates.
 
-Waitlist: https://lifelongpep.fit/
+No medical histories. No prescriptions. No booking.
 
-## Post 2: India Needs Accountable Longevity
+Join the public beta: https://lifelongpep.fit/?utm_source=linkedin&utm_medium=organic&utm_campaign=public_beta&utm_content=post_01
 
-India does not need a gray-market longevity boom.
+## 2. The question before "which medicine?"
 
-It needs accountable workflows:
+"Which medicine should I take?" is usually not the first question.
 
-- Doctors who can say yes or no independently
-- Licensed partners where fulfillment is relevant
-- Clear pricing before payment
-- Recovery and supplement decisions that are tracked
-- No guaranteed prescriptions
+Start with the problem you are trying to solve and the questions that belong in a doctor conversation:
 
-That is the operating idea behind lifelongpep.
+- What would a good outcome look like?
+- What medical context matters?
+- How will muscle, nutrition, and training be discussed?
+- What follow-up questions should be answered before starting anything?
 
-Pre-launch now. Building the provider and partner network.
+This is not a diagnosis checklist. It is a way to show up better prepared.
 
-https://lifelongpep.fit/
+We published a GLP-1 readiness checklist for that purpose: https://lifelongpep.fit/glp-1-readiness-checklist/?utm_source=linkedin&utm_medium=organic&utm_campaign=public_beta&utm_content=post_02
 
-## Post 3: Wearables Are Logs, Not Doctors
+## 3. Weight loss is not the only outcome
 
-Consumer wearables are not medical devices.
+It is easy to make a weight chart the whole story.
 
-But they can still make a protocol easier to remember, discuss, and review.
+It is rarely the whole story.
 
-The useful thing is not "my wearable told me what to do."
+People considering any serious change in metabolic health should have room to ask about food, strength training, recovery, energy, and what happens after the first few weeks.
 
-The useful thing is:
+That is why our public-beta education keeps returning to muscle preservation. It is a useful question to take into a qualified doctor conversation.
 
-- I know what I did
-- I know when I did it
-- I can bring that record to a follow-up
-- I can separate adherence from outcomes
+Read the guide: https://lifelongpep.fit/glp-1-muscle-loss-prevention/?utm_source=linkedin&utm_medium=organic&utm_campaign=public_beta&utm_content=post_03
 
-lifelongpep plans to use wearable tracking as a logging layer, not a diagnostic layer.
+## 4. A useful health product should make room for "no"
 
-https://lifelongpep.fit/wearable-protocol-tracking/
+A good health conversation needs a real option to say no.
+
+No, this is not appropriate.
+No, we need more context.
+No, a different approach may make more sense.
+
+That is not friction. It is part of responsible care.
+
+lifelongpep is not providing care through this beta. We are building educational material for people who want to ask better questions before they make personal medical decisions.
+
+What the beta does and does not include: https://lifelongpep.fit/public-beta/?utm_source=linkedin&utm_medium=organic&utm_campaign=public_beta&utm_content=post_04
+
+## 5. Wearables can keep a useful record
+
+Wearables can be helpful without pretending to be doctors.
+
+The useful part is often simple: a person can see what they did, when they did it, and what they want to discuss at a follow-up.
+
+That does not turn a wearable into a medical device. It makes it a better personal log.
+
+Our view on wearable protocol tracking: https://lifelongpep.fit/wearable-protocol-tracking/?utm_source=linkedin&utm_medium=organic&utm_campaign=public_beta&utm_content=post_05
+
+## 6. A call for careful feedback
+
+We are building lifelongpep in public, starting with education.
+
+If you are a clinician, researcher, patient advocate, or operator who sees a gap in the questions people ask before a metabolic-health decision, I would value your feedback.
+
+The public beta is deliberately narrow. It does not collect health information or provide clinical care. It is a place to make the educational material clearer and more useful.
+
+Read the beta scope or send a correction: https://lifelongpep.fit/public-beta/?utm_source=linkedin&utm_medium=organic&utm_campaign=public_beta&utm_content=post_06

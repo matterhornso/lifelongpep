@@ -1,81 +1,57 @@
-# Founder posts: GLP-1 readiness
+# GLP-1 readiness social copy
 
-Use these after the site is indexed and FormSubmit is activated.
+Use this copy only after FormSubmit activation is confirmed. Each post is suitable for LinkedIn. Its opening line can also become the first slide or first spoken line of an Instagram post.
 
-## Post 1: Readiness, not access
+## 1. Start with questions
 
-Most GLP-1 conversations start too late.
+The internet can make a prescription conversation feel like a product search.
 
-The first question should not be: "How do I get it?"
+It is not.
 
-It should be:
-- Am I clinically appropriate?
-- What risks matter for me?
-- How do I protect muscle?
-- What happens if I stop?
-- How will follow-up work?
+Personal medical decisions need personal medical context. lifelongpep cannot provide that context or make that decision. Our public beta helps people prepare better questions for a qualified doctor.
 
-That is the lane we are building at lifelongpep: doctor-gated metabolic longevity in India, starting with GLP-1 readiness.
+Start with the readiness checklist: https://lifelongpep.fit/glp-1-readiness-checklist/?utm_source=linkedin&utm_medium=organic&utm_campaign=readiness_series&utm_content=questions
 
-Pre-launch now. Waitlist is open.
+## 2. What to bring to a conversation
 
-## Post 2: Muscle preservation
+You do not need to arrive at a doctor conversation with a perfect spreadsheet.
 
-Weight loss is not the whole outcome.
+It does help to know your goal, the questions you are worried about, what you have already tried, and what you want to understand about follow-up.
 
-For GLP-1 and related metabolic therapies, the better conversation includes:
-- protein
-- resistance training
-- body composition
-- fatigue and recovery
-- adherence
-- maintenance after stopping
+Write those down. Ask for clarity when a term or trade-off is unclear.
 
-The product we are building is not a prescription funnel.
+This guide is educational only: https://lifelongpep.fit/questions-to-ask-before-glp-1/?utm_source=linkedin&utm_medium=organic&utm_campaign=readiness_series&utm_content=bring_questions
 
-It is a readiness and follow-up workflow around doctor judgement.
+## 3. The stopping question belongs at the beginning
 
-## Post 3: Agent access
+People often ask about starting first and stopping later.
 
-I think health agents will need structured rails, not just chat.
+It is reasonable to ask both early. What would follow-up look like? What changes might be discussed? What does maintenance mean in this situation?
 
-For metabolic longevity, that means:
-- preparing a consult
-- collecting relevant context
-- asking safe educational questions
-- handing off to qualified doctors
-- booking only when the workflow is live
+There is no one online answer. There are better questions to carry into a qualified doctor conversation.
 
-lifelongpep is adding planned MCP, CLI, and API access for agent workflows.
+Read the educational guide: https://lifelongpep.fit/what-happens-after-stopping-glp-1/?utm_source=linkedin&utm_medium=organic&utm_campaign=readiness_series&utm_content=stopping
 
-Still pre-launch. Still doctor-gated.
+## 4. No shortcut claims
 
-## Post 4: India framing
+We will not use this page to sell a shortcut, promise access, or ask people to send medical details in a DM.
 
-India does not need a gray-market GLP-1 boom.
+The public beta is for non-clinical education and launch updates. That boundary matters.
 
-It needs better workflows:
-- doctor judgement
-- risk review
-- transparent pricing
-- muscle-loss prevention
-- follow-up
-- licensed fulfillment where appropriate
+Read it before joining: https://lifelongpep.fit/public-beta/?utm_source=linkedin&utm_medium=organic&utm_campaign=readiness_series&utm_content=boundaries
 
-lifelongpep is being built around that idea.
+## 5. Ask about strength and food too
 
-## Post 5: Call for doctors
+If the conversation is only about a number on a scale, it is incomplete.
 
-We are speaking with doctors for lifelongpep.
+People can ask a qualified doctor about food, strength training, body composition, recovery, and the practical parts of sticking with a plan.
 
-Especially:
-- endocrinology
-- obesity medicine
-- internal medicine
-- preventive medicine
-- sports medicine
-- careful adjacent practices
+Our muscle-preservation page offers a starting set of questions, not a personal recommendation: https://lifelongpep.fit/glp-1-muscle-loss-prevention/?utm_source=linkedin&utm_medium=organic&utm_campaign=readiness_series&utm_content=muscle
 
-The important part: doctors should be comfortable saying no when a GLP-1 or another intervention is not appropriate.
+## 6. The beta is intentionally narrow
 
-That is a feature, not a bug.
+The smallest useful version of lifelongpep is not an online clinic.
+
+It is clear information, useful questions, and a way to hear about future milestones.
+
+That is what is available today: https://lifelongpep.fit/public-beta/?utm_source=linkedin&utm_medium=organic&utm_campaign=readiness_series&utm_content=narrow_beta

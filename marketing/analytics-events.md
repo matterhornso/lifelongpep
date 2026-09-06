@@ -21,12 +21,10 @@ Add `lifelongpep.fit` in Plausible, then create custom event goals matching the 
 - `Partner Click`: user clicks recovery or fulfillment partner interest
 - `Agent Access Click`: user clicks agent access interest
 - `Agent Spec Open`: user opens agent manifest, OpenAPI draft, or MCP manifest
-- `Agent Intake Submit`: agent intake form submits successfully
-- `GLP1 Consult Request Submit`: GLP-1 consult request form submits successfully
 - `Contact Click`: user clicks the general contact email
 - `External Openwearables Click`: user clicks openwearables.io
-- `Waitlist Mailto Fallback`: waitlist form failed and opened mail client fallback
-- `Issues Mailto Fallback`: issues form failed and opened mail client fallback
+- `Waitlist Submission Failed`: waitlist form could not be submitted
+- `Issues Subscription Failed`: issues form could not be submitted
 - `Thank You View`: user lands on the intent-specific thank-you page
 - `404 View`: user lands on the GitHub Pages 404 page
 
@@ -41,12 +39,11 @@ Add `lifelongpep.fit` in Plausible, then create custom event goals matching the 
 - `page`
 - `cta_text`
 - `source_url`
-- `intent`: waitlist, issues, doctor, partner, agent, press
 - `intent`: early-consult, glp1-readiness, researching-peptides, doctor, partner, agent, issues
 - `utm_source`
 - `utm_medium`
 - `utm_campaign`
-- `channel`: `api` when the lead API accepts the submission, `formsubmit` when the fallback is used
+- `channel`: `formsubmit` for successful public-beta email submissions
 
 ## Weekly dashboard
 
@@ -57,7 +54,8 @@ Add `lifelongpep.fit` in Plausible, then create custom event goals matching the 
 - Top SEO landing page
 - Contact clicks by intent
 - Search Console queries and average position
-- Lead API deployment and FormSubmit fallback rate
+- Social visits and conversion rate by `utm_source`, `utm_campaign`, and `utm_content`
+- FormSubmit submission success and failure rate
 
 ## Implemented form routing
 
@@ -73,4 +71,15 @@ The homepage waitlist form now captures optional intent:
 
 Successful submissions redirect to `/thank-you/?intent=...` for cleaner conversion tracking.
 
-The frontend now tries the Cloudflare Worker lead API first, then falls back to FormSubmit while the API is not deployed or temporarily unavailable.
+The public-beta forms submit directly to FormSubmit. They do not use a public lead API.
+
+## Social reporting
+
+For each LinkedIn and Instagram post, record:
+
+- Publish date, channel, format, and `utm_content`
+- Impressions, profile visits, reactions, comments, saves, shares, and link clicks
+- Landing-page visitors and successful public-beta signups in Plausible
+- The question or objection repeated in comments
+
+Use the 30-day social calendar's UTM content values to compare posts. A post that produces thoughtful comments but few clicks is useful for editorial learning. A post that produces signups is useful for conversion. Keep those outcomes separate.
