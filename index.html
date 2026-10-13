@@ -52,7 +52,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=optional&family=Inter:wght@700&display=swap" rel="stylesheet">
 
 <!-- Structured data -->
-<script type="application/ld+json">
+<script type="application/json" data-legacy-schema="disabled">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -290,6 +290,43 @@
           }
         }
       ]
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://lifelongpep.fit/#organization",
+      "name": "lifelongpep",
+      "url": "https://lifelongpep.fit/",
+      "logo": "https://lifelongpep.fit/apple-touch-icon.png",
+      "description": "lifelongpep is a public-interest beta for non-clinical GLP-1 readiness and metabolic-health education in India.",
+      "email": "hello@lifelongpep.fit",
+      "areaServed": { "@type": "Country", "name": "India" }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://lifelongpep.fit/#website",
+      "url": "https://lifelongpep.fit/",
+      "name": "lifelongpep",
+      "publisher": { "@id": "https://lifelongpep.fit/#organization" },
+      "inLanguage": "en-IN",
+      "dateModified": "2026-10-13"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://lifelongpep.fit/#webpage",
+      "url": "https://lifelongpep.fit/",
+      "name": "lifelongpep public-interest beta",
+      "description": "Non-clinical GLP-1 readiness education and launch updates for people in India.",
+      "isPartOf": { "@id": "https://lifelongpep.fit/#website" },
+      "about": { "@id": "https://lifelongpep.fit/#organization" },
+      "inLanguage": "en-IN",
+      "dateModified": "2026-10-13"
     }
   ]
 }

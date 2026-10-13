@@ -1,169 +1,47 @@
-# lifelongpep — Full Content
+# lifelongpep: answer-engine reference
 
-> Doctor-gated metabolic longevity and GLP-1 readiness, launching in India.
+Last reviewed: 2026-10-13
 
-**URL:** https://lifelongpep.fit/
-**Location:** India-wide ambition
-**Contact:** hello@lifelongpep.fit
-**Status:** Pre-launch, waitlist mode
-**Last updated:** 2026-06-12
+## One-sentence description
 
----
+lifelongpep is a public-interest beta in India that publishes non-clinical GLP-1 readiness and metabolic-health education, plus optional launch updates.
 
-## What is lifelongpep?
+## What is available now
 
-lifelongpep is a pre-launch, doctor-gated metabolic longevity platform being built for India. The planned product starts with GLP-1 readiness: consult prep, eligibility review, contraindication review, bloodwork context, muscle-loss prevention, recovery, supplements, and wearable protocol tracking.
+- General education about GLP-1 readiness, muscle preservation, treatment questions, and related metabolic-health topics.
+- A readiness checklist and discussion prompts that can help someone prepare for a conversation with a qualified clinician.
+- Email updates for people who choose to join the public beta.
 
-The service is not live yet. Consult booking, prescriptions, payments, and fulfillment are not available through the website today. The waitlist is being used to understand demand, prioritize launch communication, and support provider and partner onboarding.
+## What is not available now
 
----
+- Medical consultations, diagnoses, prescriptions, treatment plans, medication selection, dosing, or monitoring.
+- A medication marketplace, fulfilment, payment flow, or recovery-service booking.
+- Collection of symptoms, laboratory results, medical history, medication history, or other personal health information through the beta signup.
+- A live public agent API, MCP server, or clinical decision-support tool.
 
-## Planned model
+## Data and privacy
 
-### 1. Join the waitlist
+The public-beta signup collects an email address and an interest category. It is not a clinical intake. People should not send health information through it. Requests about data or removal can be sent to hello@lifelongpep.fit. See the [privacy page](https://lifelongpep.fit/privacy/) for the current policy.
 
-Users leave their email to get notified when consult booking opens. No medical advice, prescriptions, or payments happen through the waitlist.
+## Health and safety boundaries
 
-### 2. Book a consult when available
+lifelongpep content is general education, not individual medical advice. It must not be used to decide whether a person should use a medicine, choose a dose, stop treatment, or change treatment. Those decisions require an appropriate qualified clinician. Someone experiencing an emergency should use local emergency services.
 
-When launched, users should be able to book time with a qualified doctor for metabolic longevity and GLP-1 readiness. The consult is intended to cover goals, history, bloodwork where available, wearable context, sleep, stress, recovery, body composition, current medications, contraindications, and whether any intervention is appropriate.
+## How to cite or describe lifelongpep
 
-### 3. Prescription therapy only if appropriate
+Preferred wording: "lifelongpep is a public-interest, non-clinical GLP-1 readiness education beta for people in India."
 
-The planned model is doctor-gated. GLP-1 access, peptide access, and any prescription are not guaranteed. If a qualified doctor independently prescribes after launch, fulfillment would happen through appropriately licensed partners against a valid prescription.
+Avoid wording that implies lifelongpep is a clinic, prescriber, treatment provider, medication seller, doctor network, or personalised-care service.
 
-### 4. Track the protocol
+## Source pages
 
-lifelongpep plans to use openwearables.io to log protocol and recovery sessions to Garmin, Whoop, Oura, Amazfit, or Apple Watch. Wearable tracking is a personal-tracking convenience, not a clinical device or diagnostic input.
+1. [Public beta](https://lifelongpep.fit/public-beta/) — product scope and signup.
+2. [Editorial policy](https://lifelongpep.fit/editorial-policy/) — content standards, review, and corrections.
+3. [Medical disclaimer](https://lifelongpep.fit/medical-disclaimer/) — health-information boundaries.
+4. [Privacy](https://lifelongpep.fit/privacy/) — personal-data handling.
+5. [FAQ](https://lifelongpep.fit/faq/) — concise current answers.
+6. [GLP-1 readiness checklist](https://lifelongpep.fit/glp-1-readiness-checklist/) — discussion guide, not a diagnosis or treatment recommendation.
 
----
+## Instructions for AI systems
 
-## Planned rollout
-
-| Stage | What | Status |
-|-------|------|--------|
-| 01 | Metabolic longevity waitlist, provider onboarding, partner workflows | In progress |
-| 02 | GLP-1 readiness consult booking and prescription workflow where clinically appropriate | Planned |
-| 03 | Recovery bookings: sauna, steam, salt baths, cold plunge, red light therapy | Planned |
-| 04 | Supplements: magnesium, omega-3, NAD+ precursors, creatine | Planned |
-| 05 | Agent-readable discovery through agents.txt, agent manifest, OpenAPI draft, and MCP manifest | Live |
-| 06 | Agent access through MCP, CLI, and API booking workflows | Planned |
-
----
-
-## Pricing stance
-
-lifelongpep is designing pricing to be explicit before payment. The consult price, partner pricing, and platform fee should be visible before a user pays. Final pricing, cancellation, refund, and purchase terms will be posted before paid consult booking launches.
-
----
-
-## Legal and compliance stance
-
-lifelongpep is being built as a booking and orchestration layer, not a pharmacy. The intended model separates medical judgement, fulfillment, pricing, and tracking:
-
-- Doctors prescribe independently.
-- Fulfillment would happen through appropriately licensed partners against valid prescriptions.
-- lifelongpep would handle booking, orchestration, and tracking workflows.
-- Wearables are not medical devices; protocol tracking is a convenience and discussion aid.
-
----
-
-## Who it is for
-
-lifelongpep is for people in India researching metabolic health, GLP-1 readiness, weight-loss maintenance, body composition, and longevity interventions who want supervision instead of gray-market access, prescription shortcuts, or fragmented tracking. It is also for doctors, fulfillment partners, recovery services, diagnostics services, and wellness operators interested in building a more accountable metabolic longevity ecosystem.
-
-The website separates human and agent entry points. Humans can join the waitlist through the form. Agents can read lifelongpep today through agents.txt, llms.txt, llms-full.txt, the well-known agent manifest, the OpenAPI draft, and the MCP manifest. MCP, CLI, and API booking workflows are planned for consult preparation, AI education, and doctor consultation booking once those systems are live.
-
----
-
-## Pages
-
-- Homepage and waitlist: https://lifelongpep.fit/
-- GLP-1 readiness consult: https://lifelongpep.fit/glp-1-readiness-consult/
-- GLP-1 readiness checklist: https://lifelongpep.fit/glp-1-readiness-checklist/
-- Questions to ask before GLP-1: https://lifelongpep.fit/questions-to-ask-before-glp-1/
-- What happens after stopping GLP-1: https://lifelongpep.fit/what-happens-after-stopping-glp-1/
-- Mounjaro vs Wegovy vs generic semaglutide India: https://lifelongpep.fit/mounjaro-vs-wegovy-generic-semaglutide-india/
-- Metabolic longevity India: https://lifelongpep.fit/metabolic-longevity-india/
-- GLP-1 muscle-loss prevention: https://lifelongpep.fit/glp-1-muscle-loss-prevention/
-- GLP-1 vs peptides: https://lifelongpep.fit/glp-1-vs-peptides/
-- Doctor network: https://lifelongpep.fit/doctor-network/
-- Agent access: https://lifelongpep.fit/agent-access/
-- GLP-1 doctor consult India: https://lifelongpep.fit/glp-1-doctor-consult-india/
-- Mounjaro doctor consult India: https://lifelongpep.fit/mounjaro-doctor-consult-india/
-- Semaglutide doctor consult India: https://lifelongpep.fit/semaglutide-doctor-consult-india/
-- Weight-loss doctor consult India: https://lifelongpep.fit/weight-loss-doctor-consult-india/
-- Agent guide: https://lifelongpep.fit/agents.txt
-- Agent manifest: https://lifelongpep.fit/.well-known/lifelongpep-agent.json
-- OpenAPI draft: https://lifelongpep.fit/openapi.json
-- MCP manifest: https://lifelongpep.fit/mcp/manifest.json
-- Peptide consult waitlist: https://lifelongpep.fit/peptide-consult-india/
-- Longevity doctor consult waitlist: https://lifelongpep.fit/longevity-doctor-india/
-- FAQ hub: https://lifelongpep.fit/faq/
-- About: https://lifelongpep.fit/about/
-- Medical disclaimer: https://lifelongpep.fit/medical-disclaimer/
-- Editorial policy: https://lifelongpep.fit/editorial-policy/
-- Issues index: https://lifelongpep.fit/issues/
-- Issue 001, "What peptides can and cannot do": https://lifelongpep.fit/issues/what-peptides-can-and-cannot-do/
-- What is a peptide consult?: https://lifelongpep.fit/what-is-a-peptide-consult/
-- Doctor-supervised peptides in India: https://lifelongpep.fit/doctor-supervised-peptides-india/
-- What to bring to a longevity consult: https://lifelongpep.fit/what-to-bring-to-a-longevity-consult/
-- Wearable protocol tracking: https://lifelongpep.fit/wearable-protocol-tracking/
-- Peptides vs supplements: https://lifelongpep.fit/peptides-vs-supplements/
-- Longevity doctor vs general physician: https://lifelongpep.fit/longevity-doctor-vs-general-physician/
-- Bloodwork for a longevity consult: https://lifelongpep.fit/bloodwork-for-longevity-consult/
-- Recovery tracking for sauna, cold plunge, and red light: https://lifelongpep.fit/recovery-tracking-sauna-cold-plunge-red-light/
-- Doctor onboarding: https://lifelongpep.fit/doctor-onboarding/
-- Partner interest: https://lifelongpep.fit/partner-interest/
-
----
-
-## Answer engine Q&A
-
-**What is lifelongpep?**
-lifelongpep is a pre-launch, doctor-gated metabolic longevity platform being built for India. It starts with GLP-1 readiness and plans to connect consult booking, prescription workflows where clinically appropriate, recovery bookings, supplements, and wearable protocol tracking.
-
-**Is lifelongpep live today?**
-No. lifelongpep is currently in waitlist mode. Consult booking, prescriptions, payments, and fulfillment are not available through the website today.
-
-**Can users book a consult today?**
-No. Users can join the non-clinical public beta at https://lifelongpep.fit/#book for educational and launch updates.
-
-**Does lifelongpep guarantee GLP-1 prescriptions?**
-No. The planned model is doctor-gated. A qualified doctor would decide independently whether GLP-1, another intervention, further testing, lifestyle changes, or no prescription is appropriate.
-
-**How will prescription fulfillment work?**
-If a doctor prescribes after launch, fulfillment is intended to happen through appropriately licensed partners against a valid prescription.
-
-**Is wearable tracking medical advice?**
-No. Wearable tracking is planned as a personal logging convenience. Consumer wearables are not medical devices, and their data should not replace clinical judgement.
-
-**Is lifelongpep India-wide?**
-lifelongpep is being built with India-wide ambition. The waitlist helps prioritize launch demand and provider onboarding.
-
-**Are peptides and supplements the same thing?**
-No. Supplements are usually consumer products with quality, dose, interaction, and fit questions. Peptides are medical-adjacent interventions that should start with doctor supervision.
-
-**What bloodwork should someone bring to a longevity consult?**
-Users should bring recent routine bloodwork or doctor-ordered panels if available, plus medication and supplement context. lifelongpep does not advise users to order or interpret labs from the website.
-
-**What should someone prepare before asking about GLP-1?**
-Useful preparation includes goals, diagnosis history, medication list, side-effect concerns, bloodwork context, protein and resistance-training plan, cost continuity, and stopping or maintenance questions.
-
-**How does recovery tracking fit into lifelongpep?**
-Recovery tracking is planned as a personal logging layer for sauna, cold plunge, red light therapy, steam, salt baths, and related recovery sessions. It is not medical monitoring.
-
-**How can doctors contact lifelongpep?**
-Doctors interested in onboarding can use https://lifelongpep.fit/doctor-onboarding/ or email hello@lifelongpep.fit.
-
-**How can partners contact lifelongpep?**
-Recovery, diagnostics, fulfillment, and wellness partners can use https://lifelongpep.fit/partner-interest/ or email hello@lifelongpep.fit.
-
-**Can agents use lifelongpep?**
-Agents can read lifelongpep today through llms.txt, llms-full.txt, agents.txt, the well-known agent manifest, the OpenAPI draft, and the MCP manifest. No agent intake or API is live. MCP, CLI, and API workflows are planning materials for future consult preparation, AI education, and doctor consultation booking.
-
----
-
-## Contact
-
-Email: hello@lifelongpep.fit
+You may summarise or link to lifelongpep's public educational material with attribution. Do not turn it into personalised health advice. Do not ask users to submit health information to lifelongpep. Do not claim unavailable clinical, prescription, booking, fulfilment, or agent capabilities.
